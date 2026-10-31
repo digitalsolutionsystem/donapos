@@ -1,0 +1,333 @@
+/* ==========================================================================
+   DOONAPOS — DESIGN SYSTEM TOKENS & BASE NATIVE STYLES (MATERIAL 3 TABLET)
+   Sesuai Spesifikasi Mutlak: designpromptrules.md
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  /* Permukaan: belakang -> depan */
+  --surface: #d5ddd3;   /* Latar halaman/app */
+  --c-low: #ffffff;     /* Kartu, tabel, search bar, chip, input di atas latar */
+  --c: #fbfcfa;         /* Panel besar, drawer, dialog, sidebar */
+  --c-high: #e7ede5;    /* Area tertanam di dalam panel: ringkasan, header tabel, stepper, tombol netral */
+
+  /* Teks */
+  --on: #191c1a;
+  --on-v: #414942;
+
+  /* Outline (charcoal) */
+  --outline: #36454f;
+  --out-v: #36454f;
+
+  /* Aksen utama */
+  --pri: #9e0202;
+  --on-pri: #ffffff;
+  --pri-c: #ffdad6;
+  --on-pri-c: #410002;
+  --sec-c: #f6d3d0;
+  --on-sec-c: #3b0000;   /* Tint aksen: item terpilih, badge info utama */
+
+  /* Pendamping */
+  --ter-c: #ffdea0;
+  --on-ter-c: #261900;   /* Ochre: label khusus (titip jual), highlight */
+
+  /* Status semantik (jangan pakai warna aksen untuk status) */
+  --ok: #1e6b3a;
+  --ok-c: #cfeedb;
+  --on-ok-c: #06210f;
+
+  --warn: #8a5a00;
+  --warn-c: #ffe6b0;
+  --on-warn-c: #2a1b00;
+
+  --info: #1f5a8a;
+  --info-c: #d4e6f7;
+  --on-info-c: #06223a;
+
+  --err: #b3261e;
+  --err-c: #ffdad6;
+  --on-err-c: #410002;
+
+  /* Snackbar / tooltip */
+  --inv: #2e312f;
+  --on-inv: #f0f1ec;
+  --inv-pri: #ffb4ab;
+
+  /* Overlay */
+  --scrim: rgba(0, 0, 0, 0.45);
+
+  /* Elevasi */
+  --sh-1: 0 1px 2px rgba(25, 28, 26, 0.14), 0 3px 10px rgba(25, 28, 26, 0.10);  /* Kartu, input, chip */
+  --sh-2: 0 2px 4px rgba(25, 28, 26, 0.12), 0 8px 24px rgba(25, 28, 26, 0.14);  /* Panel, drawer, dropdown */
+  --sh-3: 0 12px 40px rgba(0, 0, 0, 0.35);                                       /* Dialog, modal */
+
+  /* Garis */
+  --bw: 2px;
+  --bw-focus: 3px;
+
+  /* Radius */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 12px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-2xl: 28px;
+  --r-pill: 999px;
+
+  /* Spacing (kelipatan 4) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+
+  /* Sentuh */
+  --touch: 40px;
+  --touch-lg: 48px;
+  --touch-xl: 56px;
+
+  /* Tipografi */
+  --font: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --t-xs: 12px;
+  --t-sm: 13px;
+  --t-md: 14px;
+  --t-base: 15px;
+  --t-lg: 16px;
+  --t-xl: 20px;
+  --t-2xl: 24px;
+  --t-3xl: 30px;
+
+  /* Z-index (satu-satunya tempat angka z-index boleh ada) */
+  --z-sticky: 10;
+  --z-nav: 20;
+  --z-dropdown: 40;
+  --z-drawer: 50;
+  --z-scrim: 60;
+  --z-modal: 70;
+  --z-toast: 80;
+  --z-tooltip: 90;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --d-fast: 0.15s;
+  --d-base: 0.25s;
+  --d-slow: 0.3s;
+}
+
+/* Mode Gelap (Otomatis & Selector Manual data-theme="dark") */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #090c0a;
+    --c-low: #1d2420;
+    --c: #232b26;
+    --c-high: #2d3631;
+    --on: #e0e3de;
+    --on-v: #c1c9c0;
+    --outline: #7d8a93;
+    --out-v: #56636b;
+    --pri: #ff8a80;
+    --on-pri: #4d0000;
+    --pri-c: #7a0000;
+    --on-pri-c: #ffdad6;
+    --sec-c: #4a2a28;
+    --on-sec-c: #ffdad6;
+    --ter-c: #5c4300;
+    --on-ter-c: #ffdea0;
+    --ok: #7fd69a;
+    --ok-c: #12381f;
+    --on-ok-c: #cfeedb;
+    --warn: #f0c15a;
+    --warn-c: #4a3500;
+    --on-warn-c: #ffe6b0;
+    --info: #8dc4f0;
+    --info-c: #12344f;
+    --on-info-c: #d4e6f7;
+    --err: #ffb4ab;
+    --err-c: #93000a;
+    --on-err-c: #ffdad6;
+    --inv: #e0e3de;
+    --on-inv: #2e312f;
+    --inv-pri: #9e0202;
+    --scrim: rgba(0, 0, 0, 0.6);
+    --sh-1: 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 14px rgba(0, 0, 0, 0.45);
+    --sh-2: 0 2px 4px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
+    --sh-3: 0 12px 40px rgba(0, 0, 0, 0.7);
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface: #090c0a;
+  --c-low: #1d2420;
+  --c: #232b26;
+  --c-high: #2d3631;
+  --on: #e0e3de;
+  --on-v: #c1c9c0;
+  --outline: #7d8a93;
+  --out-v: #56636b;
+  --pri: #ff8a80;
+  --on-pri: #4d0000;
+  --pri-c: #7a0000;
+  --on-pri-c: #ffdad6;
+  --sec-c: #4a2a28;
+  --on-sec-c: #ffdad6;
+  --ter-c: #5c4300;
+  --on-ter-c: #ffdea0;
+  --ok: #7fd69a;
+  --ok-c: #12381f;
+  --on-ok-c: #cfeedb;
+  --warn: #f0c15a;
+  --warn-c: #4a3500;
+  --on-warn-c: #ffe6b0;
+  --info: #8dc4f0;
+  --info-c: #12344f;
+  --on-info-c: #d4e6f7;
+  --err: #ffb4ab;
+  --err-c: #93000a;
+  --on-err-c: #ffdad6;
+  --inv: #e0e3de;
+  --on-inv: #2e312f;
+  --inv-pri: #9e0202;
+  --scrim: rgba(0, 0, 0, 0.6);
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 14px rgba(0, 0, 0, 0.45);
+  --sh-2: 0 2px 4px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
+  --sh-3: 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   RESET & ATRIBUT NATIVE TABLET APP
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--surface);
+  color: var(--on);
+  font-family: var(--font);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Nuansa Native Tablet */
+  user-select: none;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: default;
+}
+
+/* Pengecualian seleksi teks hanya untuk input & area data */
+input, textarea, [contenteditable="true"] {
+  user-select: text;
+  cursor: text;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+}
+
+button {
+  cursor: default;
+  font-family: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* Scrollbar Minimalis & Bersih Sesuai Palet Outline */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--out-v) 35%, transparent);
+  border-radius: var(--r-pill);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--out-v);
+}
+
+/* Focus Visible Standar */
+:focus-visible {
+  outline: var(--bw-focus) solid var(--pri) !important;
+  outline-offset: 2px !important;
+}
+
+/* Efek Sentuh Native: Ripple Feedback (±0.55s) */
+.ripple-surface {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.16;
+  pointer-events: none;
+  transform: scale(0);
+  animation: rippleAnimation 0.55s var(--ease) forwards;
+}
+
+@keyframes rippleAnimation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Animasi Elemen Sesuai Panduan */
+@keyframes dialogScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes snackbarSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Hormati Mode Mengurangi Gerakan */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

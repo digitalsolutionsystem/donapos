@@ -1,0 +1,992 @@
+/* ==========================================================================
+   DOONAPOS — DESIGN SYSTEM PRIMITIVES (MATERIAL 3 TABLET)
+   Sesuai Katalog Komponen & Aturan Turunan: designpromptrules.md
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. AKSI / TOMBOL (BUTTONS)
+   -------------------------------------------------------------------------- */
+.pos-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  height: var(--touch-lg);
+  padding: 0 var(--s-5);
+  border-radius: var(--r-pill);
+  font-family: var(--font);
+  font-size: var(--t-md);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  touch-action: manipulation;
+  transition: background-color var(--d-fast) var(--ease),
+              border-color var(--d-fast) var(--ease),
+              color var(--d-fast) var(--ease),
+              opacity var(--d-fast) var(--ease);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+/* Ukuran Tombol */
+.pos-btn-xl {
+  height: var(--touch-xl);
+  padding: 0 var(--s-6);
+  font-size: var(--t-base);
+}
+.pos-btn-lg {
+  height: var(--touch-lg);
+  padding: 0 var(--s-5);
+}
+.pos-btn-md {
+  height: var(--touch);
+  padding: 0 var(--s-4);
+  font-size: var(--t-sm);
+}
+.pos-btn-sm {
+  height: 32px;
+  padding: 0 var(--s-3);
+  font-size: var(--t-xs);
+  border-radius: var(--r-sm);
+}
+
+/* Varian Tombol */
+/* 1. Filled (Utama): Latar --pri, teks --on-pri */
+.pos-btn-filled {
+  background-color: var(--pri);
+  color: var(--on-pri);
+  border: var(--bw) solid var(--pri);
+}
+@media (hover: hover) {
+  .pos-btn-filled:hover {
+    background-color: color-mix(in srgb, var(--pri) 88%, black);
+    border-color: color-mix(in srgb, var(--pri) 88%, black);
+  }
+}
+
+/* 2. Tonal (Sekunder Penting): Latar --sec-c, teks --on-sec-c */
+.pos-btn-tonal {
+  background-color: var(--sec-c);
+  color: var(--on-sec-c);
+  border: var(--bw) solid var(--sec-c);
+}
+@media (hover: hover) {
+  .pos-btn-tonal:hover {
+    background-color: color-mix(in srgb, var(--sec-c) 85%, black);
+  }
+}
+
+/* 3. Outlined / Netral: Latar --c-high, teks --on, outline --bw */
+.pos-btn-outlined {
+  background-color: var(--c-high);
+  color: var(--on);
+  border: var(--bw) solid var(--out-v);
+}
+@media (hover: hover) {
+  .pos-btn-outlined:hover {
+    background-color: color-mix(in srgb, var(--c-high) 80%, black);
+  }
+}
+
+/* 4. Text: Tanpa latar, teks --pri */
+.pos-btn-text {
+  background-color: transparent;
+  color: var(--pri);
+  border: var(--bw) solid transparent;
+  padding: 0 var(--s-3);
+}
+@media (hover: hover) {
+  .pos-btn-text:hover {
+    background-color: color-mix(in srgb, var(--pri) 10%, transparent);
+  }
+}
+
+/* 5. Destructive: Latar --err, teks putih/on-err-c */
+.pos-btn-destructive {
+  background-color: var(--err);
+  color: #ffffff;
+  border: var(--bw) solid var(--err);
+}
+@media (hover: hover) {
+  .pos-btn-destructive:hover {
+    background-color: color-mix(in srgb, var(--err) 85%, black);
+    border-color: color-mix(in srgb, var(--err) 85%, black);
+  }
+}
+
+/* Disabled State */
+.pos-btn:disabled,
+.pos-btn[aria-disabled="true"] {
+  opacity: 0.45 !important;
+  pointer-events: none !important;
+  box-shadow: none !important;
+}
+
+/* Loading State */
+.pos-btn.is-loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+.pos-btn.is-loading .pos-btn-icon {
+  animation: spinLoading 0.8s linear infinite;
+}
+@keyframes spinLoading {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* IconButton: Lingkaran touch / touch-lg */
+.pos-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch);
+  height: var(--touch);
+  border-radius: var(--r-pill);
+  border: var(--bw) solid transparent;
+  color: var(--on-v);
+  background: transparent;
+  transition: background-color var(--d-fast) var(--ease),
+              color var(--d-fast) var(--ease),
+              border-color var(--d-fast) var(--ease);
+  user-select: none;
+  touch-action: manipulation;
+  flex-shrink: 0;
+}
+.pos-icon-btn-lg {
+  width: var(--touch-lg);
+  height: var(--touch-lg);
+}
+.pos-icon-btn-outlined {
+  border-color: var(--out-v);
+  background-color: var(--c-high);
+  color: var(--on);
+}
+@media (hover: hover) {
+  .pos-icon-btn:hover {
+    background-color: color-mix(in srgb, var(--on) 8%, transparent);
+    color: var(--on);
+  }
+  .pos-icon-btn-outlined:hover {
+    background-color: color-mix(in srgb, var(--c-high) 80%, black);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. INPUT & FORM
+   -------------------------------------------------------------------------- */
+.pos-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  width: 100%;
+}
+
+.pos-field-label {
+  font-size: var(--t-xs);
+  font-weight: 500;
+  color: var(--on-v);
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+}
+
+.pos-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--outline);
+  border-radius: var(--r-md);
+  height: var(--touch-xl);
+  padding: 0 var(--s-3);
+  box-shadow: var(--sh-1);
+  transition: border-color var(--d-fast) var(--ease);
+}
+
+.pos-input-container:focus-within {
+  border-color: var(--pri) !important;
+  border-width: var(--bw-focus) !important;
+  outline: none;
+}
+
+.pos-input-container.is-error {
+  border-color: var(--err) !important;
+}
+
+.pos-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font);
+  font-size: var(--t-base);
+  color: var(--on);
+  user-select: text;
+  cursor: text;
+}
+.pos-input::placeholder {
+  color: color-mix(in srgb, var(--on-v) 60%, transparent);
+  font-weight: 400;
+}
+
+.pos-input-prefix {
+  font-size: var(--t-md);
+  font-weight: 500;
+  color: var(--on-v);
+  margin-right: var(--s-2);
+  user-select: none;
+}
+.pos-input-icon {
+  color: var(--on-v);
+  margin-right: var(--s-2);
+  flex-shrink: 0;
+}
+
+.pos-input-number {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.pos-textarea {
+  width: 100%;
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--outline);
+  border-radius: var(--r-md);
+  padding: var(--s-3);
+  font-family: var(--font);
+  font-size: var(--t-base);
+  color: var(--on);
+  box-shadow: var(--sh-1);
+  min-height: 96px;
+  resize: vertical;
+  outline: none;
+}
+.pos-textarea:focus {
+  border-color: var(--pri) !important;
+  border-width: var(--bw-focus) !important;
+}
+
+.pos-select {
+  width: 100%;
+  height: var(--touch-xl);
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--outline);
+  border-radius: var(--r-md);
+  padding: 0 var(--s-3);
+  font-family: var(--font);
+  font-size: var(--t-base);
+  color: var(--on);
+  box-shadow: var(--sh-1);
+  outline: none;
+}
+.pos-select:focus {
+  border-color: var(--pri) !important;
+  border-width: var(--bw-focus) !important;
+}
+
+.pos-field-error-msg {
+  font-size: var(--t-xs);
+  color: var(--err);
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  margin-top: 2px;
+}
+
+/* Numpad Keypad Buttons */
+.pos-numpad-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--touch-xl);
+  min-width: var(--touch-xl);
+  border-radius: var(--r-xl);
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  box-shadow: var(--sh-1);
+  font-family: var(--font);
+  font-size: var(--t-xl);
+  font-weight: 700;
+  color: var(--on);
+  user-select: none;
+  touch-action: manipulation;
+  transition: background-color var(--d-fast) var(--ease);
+}
+@media (hover: hover) {
+  .pos-numpad-btn:hover {
+    background-color: var(--c-high);
+  }
+}
+.pos-numpad-btn:active {
+  background-color: var(--sec-c);
+}
+
+/* --------------------------------------------------------------------------
+   3. CHIP, BADGE, STATUS
+   -------------------------------------------------------------------------- */
+/* Chip Filter */
+.pos-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  height: 36px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-sm);
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  font-family: var(--font);
+  font-size: var(--t-md);
+  font-weight: 500;
+  color: var(--on);
+  box-shadow: var(--sh-1);
+  user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  transition: all var(--d-fast) var(--ease);
+}
+@media (hover: hover) {
+  .pos-chip:hover {
+    background-color: var(--c-high);
+  }
+}
+.pos-chip.is-selected {
+  background-color: var(--pri) !important;
+  color: var(--on-pri) !important;
+  border-color: var(--pri) !important;
+}
+
+/* Badge Status Pil */
+.pos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px var(--s-2);
+  border-radius: var(--r-xs);
+  font-family: var(--font);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  user-select: none;
+}
+.pos-badge-ok {
+  background-color: var(--ok-c);
+  color: var(--on-ok-c);
+}
+.pos-badge-warn {
+  background-color: var(--warn-c);
+  color: var(--on-warn-c);
+}
+.pos-badge-info {
+  background-color: var(--info-c);
+  color: var(--on-info-c);
+}
+.pos-badge-err {
+  background-color: var(--err-c);
+  color: var(--on-err-c);
+}
+.pos-badge-ter {
+  background-color: var(--ter-c);
+  color: var(--on-ter-c);
+}
+.pos-badge-neutral {
+  background-color: var(--c-high);
+  color: var(--on-v);
+  border: var(--bw) solid var(--out-v);
+}
+.pos-badge-counter {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--r-pill);
+  background-color: var(--pri);
+  color: var(--on-pri);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   4. CARD & PANEL
+   -------------------------------------------------------------------------- */
+.pos-card {
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-1);
+  padding: var(--s-4);
+  position: relative;
+}
+
+.pos-panel {
+  background-color: var(--c);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--sh-2);
+  padding: var(--s-4);
+  position: relative;
+}
+
+.pos-surface-embedded {
+  background-color: var(--c-high);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-lg);
+  padding: var(--s-3);
+}
+
+/* KPI Card */
+.pos-kpi-card {
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-1);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+.pos-kpi-label {
+  font-size: var(--t-sm);
+  color: var(--on-v);
+  font-weight: 500;
+}
+.pos-kpi-value {
+  font-size: var(--t-3xl);
+  font-weight: 700;
+  color: var(--on);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   5. TABEL & DAFTAR DATA
+   -------------------------------------------------------------------------- */
+.pos-table-container {
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-1);
+  overflow: hidden;
+  width: 100%;
+}
+
+.pos-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: var(--font);
+}
+
+.pos-table thead th {
+  background-color: var(--c-high);
+  color: var(--on-v);
+  font-size: var(--t-sm);
+  font-weight: 700;
+  padding: var(--s-3) var(--s-4);
+  border-bottom: var(--bw) solid var(--out-v);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  white-space: nowrap;
+}
+
+.pos-table tbody tr {
+  min-height: var(--touch-lg);
+  border-bottom: 1px solid color-mix(in srgb, var(--out-v) 35%, transparent);
+  transition: background-color var(--d-fast) var(--ease);
+}
+
+@media (hover: hover) {
+  .pos-table tbody tr:hover {
+    background-color: color-mix(in srgb, var(--on) 6%, transparent);
+  }
+}
+
+.pos-table tbody tr.is-selected {
+  background-color: var(--sec-c) !important;
+}
+
+.pos-table tbody td {
+  padding: var(--s-3) var(--s-4);
+  font-size: var(--t-base);
+  color: var(--on);
+  vertical-align: middle;
+}
+
+.pos-table-footer {
+  background-color: var(--c-high);
+  border-top: var(--bw) solid var(--out-v);
+  padding: var(--s-3) var(--s-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   6. TAB & NAVIGASI
+   -------------------------------------------------------------------------- */
+/* Segmented Button (2-4 opsi) */
+.pos-segmented-group {
+  display: inline-flex;
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-pill);
+  padding: 2px;
+  box-shadow: var(--sh-1);
+  overflow: hidden;
+}
+
+.pos-segmented-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-1);
+  height: 36px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-pill);
+  font-size: var(--t-md);
+  font-weight: 500;
+  color: var(--on);
+  background: transparent;
+  border: none;
+  transition: all var(--d-fast) var(--ease);
+  user-select: none;
+}
+.pos-segmented-btn.is-active {
+  background-color: var(--sec-c) !important;
+  color: var(--on-sec-c) !important;
+  font-weight: 700;
+}
+
+/* Page Header */
+.pos-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  margin-bottom: var(--s-4);
+}
+.pos-page-title {
+  font-size: var(--t-2xl);
+  font-weight: 500;
+  color: var(--on);
+}
+
+/* --------------------------------------------------------------------------
+   7. OVERLAY, DIALOG, & DRAWER
+   -------------------------------------------------------------------------- */
+.pos-scrim {
+  position: fixed;
+  inset: 0;
+  background-color: var(--scrim);
+  z-index: var(--z-scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-4);
+}
+
+.pos-dialog {
+  background-color: var(--c);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--sh-3);
+  width: min(380px, 92vw);
+  padding: var(--s-6);
+  z-index: var(--z-modal);
+  animation: dialogScaleIn var(--d-slow) var(--ease);
+}
+.pos-dialog-title {
+  font-size: var(--t-2xl);
+  font-weight: 500;
+  color: var(--on);
+  margin-bottom: var(--s-3);
+}
+.pos-dialog-message {
+  font-size: var(--t-md);
+  color: var(--on-v);
+  line-height: 1.5;
+  margin-bottom: var(--s-6);
+}
+.pos-dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-2);
+}
+
+/* Modal Form Container */
+.pos-modal-card {
+  background-color: var(--c);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--sh-3);
+  max-height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: var(--z-modal);
+  animation: dialogScaleIn var(--d-slow) var(--ease);
+}
+.pos-modal-sm { width: min(420px, 94vw); }
+.pos-modal-md { width: min(560px, 94vw); }
+.pos-modal-lg { width: min(760px, 94vw); }
+.pos-modal-xl { width: min(980px, 94vw); }
+
+.pos-modal-header {
+  padding: var(--s-4) var(--s-5);
+  border-bottom: var(--bw) solid var(--out-v);
+  background-color: var(--c-high);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.pos-modal-title {
+  font-size: var(--t-xl);
+  font-weight: 500;
+  color: var(--on);
+}
+
+.pos-modal-body {
+  padding: var(--s-5);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.pos-modal-footer {
+  padding: var(--s-3) var(--s-5);
+  border-top: var(--bw) solid var(--out-v);
+  background-color: var(--c-high);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-2);
+  flex-shrink: 0;
+}
+
+/* Popover & Menu */
+.pos-popover {
+  position: absolute;
+  background-color: var(--c);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-2);
+  padding: var(--s-3);
+  z-index: var(--z-dropdown);
+}
+
+/* Toast / Snackbar */
+.pos-snackbar {
+  position: fixed;
+  bottom: var(--s-6);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--inv);
+  color: var(--on-inv);
+  min-height: 48px;
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--r-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  box-shadow: var(--sh-2);
+  z-index: var(--z-toast);
+  font-size: var(--t-md);
+  animation: snackbarSlideUp var(--d-base) var(--ease);
+}
+.pos-snackbar-action {
+  color: var(--inv-pri);
+  font-weight: 700;
+  background: none;
+  border: none;
+  padding: 0 var(--s-2);
+  cursor: default;
+}
+
+/* --------------------------------------------------------------------------
+   8. EMPTY STATE & SKELETON
+   -------------------------------------------------------------------------- */
+.pos-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--s-8) var(--s-4);
+  gap: var(--s-3);
+}
+.pos-empty-icon-circle {
+  width: 88px;
+  height: 88px;
+  border-radius: var(--r-pill);
+  background-color: var(--sec-c);
+  color: var(--on-sec-c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--s-2);
+}
+.pos-empty-title {
+  font-size: var(--t-xl);
+  font-weight: 500;
+  color: var(--on);
+}
+.pos-empty-desc {
+  font-size: var(--t-base);
+  color: var(--on-v);
+  max-width: 340px;
+}
+
+.pos-skeleton {
+  background-color: var(--c-high);
+  border-radius: var(--r-md);
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+@keyframes skeletonPulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
+
+/* --------------------------------------------------------------------------
+   9. WORKSTATION KASIR (POS DUAL-PANE)
+   -------------------------------------------------------------------------- */
+.pos-workstation-layout {
+  display: flex;
+  gap: var(--s-3);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.pos-catalog-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.pos-catalog-toolbar {
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-1);
+  padding: var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  .pos-catalog-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.pos-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s-3);
+  overflow-y: auto;
+  padding: 2px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Kartu Produk POS */
+.pos-product-card {
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: left;
+  user-select: none;
+  touch-action: manipulation;
+  transition: background-color var(--d-fast) var(--ease),
+              border-color var(--d-fast) var(--ease);
+}
+@media (hover: hover) {
+  .pos-product-card:hover {
+    background-color: color-mix(in srgb, var(--c-low) 92%, black);
+  }
+}
+.pos-product-card.is-selected {
+  background-color: var(--sec-c) !important;
+  border-color: var(--pri) !important;
+}
+.pos-product-card.is-out-of-stock {
+  opacity: 0.45 !important;
+  pointer-events: none !important;
+}
+
+.pos-product-thumb {
+  width: 100%;
+  height: 124px;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--c-high);
+  border-bottom: 1px solid color-mix(in srgb, var(--out-v) 35%, transparent);
+}
+.pos-product-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pos-product-body {
+  padding: var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  flex: 1;
+  justify-content: space-between;
+}
+.pos-product-name {
+  font-size: var(--t-md);
+  font-weight: 500;
+  color: var(--on);
+  line-height: 1.3;
+}
+.pos-product-price {
+  font-size: var(--t-lg);
+  font-weight: 700;
+  color: var(--pri);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Panel Rincian Pemesanan (Cart Panel 392px) */
+.pos-cart-panel {
+  width: 392px;
+  flex-shrink: 0;
+  height: 100%;
+  background-color: var(--c);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--sh-2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: var(--z-nav);
+}
+
+.pos-cart-header {
+  padding: var(--s-3) var(--s-4);
+  background-color: var(--c-high);
+  border-bottom: var(--bw) solid var(--out-v);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.pos-cart-title {
+  font-size: var(--t-xl);
+  font-weight: 500;
+  color: var(--on);
+}
+
+.pos-cart-customer {
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--out-v) 35%, transparent);
+  background-color: var(--c);
+  flex-shrink: 0;
+}
+
+.pos-cart-items-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--s-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.pos-cart-item {
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  padding: var(--s-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+}
+
+.pos-cart-stepper {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--c-high);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-pill);
+  padding: 2px;
+}
+.pos-stepper-btn {
+  width: var(--touch);
+  height: var(--touch);
+  border-radius: var(--r-pill);
+  background-color: var(--c-low);
+  border: var(--bw) solid var(--out-v);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--t-lg);
+  font-weight: 700;
+  color: var(--on);
+  user-select: none;
+  touch-action: manipulation;
+}
+.pos-stepper-qty {
+  min-width: 28px;
+  text-align: center;
+  font-size: var(--t-md);
+  font-weight: 700;
+  color: var(--on);
+  font-variant-numeric: tabular-nums;
+}
+
+.pos-cart-summary {
+  margin: var(--s-3);
+  margin-top: 0;
+  background-color: var(--c-high);
+  border: var(--bw) solid var(--out-v);
+  border-radius: var(--r-xl);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  flex-shrink: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 899px) {
+  .pos-workstation-layout {
+    display: block;
+    height: auto;
+    overflow: visible;
+  }
+  .pos-cart-panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    z-index: var(--z-modal);
+  }
+}
+
