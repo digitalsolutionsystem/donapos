@@ -1398,26 +1398,24 @@
     <!-- TAB 3: INVENTARIS BAHAN MENTAH -->
     <!-- ============================================== -->
     <section id="tab-stock" class="tab-content hidden space-y-4">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm sticky-menu-header">
+      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
-          <button onclick="toggleSidebar()" class="p-2 sm:p-2.5 rounded-lg bg-stone-950 hover:bg-stone-850 text-amber-400 border-2 border-stone-900 flex items-center justify-center cursor-pointer transition shrink-0 shadow-xs hover:scale-105 active:scale-95" title="Buka / Tutup Sidebar Menu (Pintasan: M)">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-            </svg>
+          <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
           <div>
-            <h2 class="text-sm font-black text-stone-950 uppercase tracking-tight">Inventaris Bahan Mentah</h2>
-            <p class="text-xs text-stone-700 font-semibold mt-0.5">Bahan dasar gudang yang dideplesi sistem kasir secara otomatis berdasarkan resep porsi.</p>
+            <h2 class="text-sm font-bold text-[var(--on-surf)]">Inventaris bahan mentah</h2>
+            <p class="text-xs text-[var(--on-surf-v)] font-normal mt-0.5">Bahan dasar gudang yang dideplesi sistem kasir secara otomatis berdasarkan resep porsi</p>
           </div>
         </div>
         <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
-          <button onclick="openCopyStockReportModal()" class="flex-1 sm:flex-initial justify-center px-3.5 py-2 bg-stone-100 hover:bg-stone-200 text-stone-950 rounded-lg text-xs font-black flex items-center gap-2 transition border-2 border-stone-400 shadow-2xs active:scale-95">
-            <svg class="w-4 h-4 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-            <span>Salin Info Stok</span>
+          <button type="button" onclick="openCopyStockReportModal()" class="pos-btn-tonal text-xs flex items-center gap-2 shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+            <span>Salin info stok</span>
           </button>
-          <button onclick="openStockModal()" class="flex-1 sm:flex-initial justify-center px-4 py-2 bg-stone-950 hover:bg-stone-850 text-white rounded-lg text-xs font-extrabold flex items-center gap-2 transition border-2 border-stone-950 shadow-2xs active:scale-95">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-            <span>Tambah Bahan</span>
+          <button type="button" onclick="openStockModal()" class="pos-btn-filled text-xs flex items-center gap-2 shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            <span>Tambah bahan</span>
           </button>
         </div>
       </div>
@@ -1428,20 +1426,20 @@
       </div>
 
       <!-- Raw Materials Table -->
-      <div class="bg-white rounded-xl border-2 border-stone-300 shadow-sm overflow-hidden">
+      <div class="pos-table-container">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-stone-800 min-w-[650px]">
-            <thead class="bg-stone-100 text-stone-950 font-black border-b-2 border-stone-300 uppercase tracking-wider text-[11px]">
+          <table class="pos-table w-full text-left text-xs min-w-[650px]">
+            <thead>
               <tr>
-                <th class="px-5 py-3.5">Nama Bahan</th>
+                <th class="px-5 py-3.5">Nama bahan</th>
                 <th class="px-5 py-3.5">Satuan</th>
-                <th class="px-5 py-3.5 font-mono">Sisa Gudang</th>
-                <th class="px-5 py-3.5 font-mono">Batas Kritis</th>
+                <th class="px-5 py-3.5">Sisa gudang</th>
+                <th class="px-5 py-3.5">Batas kritis</th>
                 <th class="px-5 py-3.5">Status</th>
-                <th class="px-5 py-3.5 text-right">Kelola & Restock</th>
+                <th class="px-5 py-3.5 text-right">Kelola & restock</th>
               </tr>
             </thead>
-            <tbody id="stock-table-body" class="divide-y-2 divide-stone-200">
+            <tbody id="stock-table-body">
               <!-- Render by JS -->
             </tbody>
           </table>
@@ -2683,65 +2681,65 @@
   </div>
 
   <!-- MODAL: TAMBAH / EDIT BAHAN MENTAH -->
-  <div id="stock-modal" class="fixed inset-0 bg-stone-950/70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-xs">
-    <div class="bg-white w-full max-w-sm rounded-xl shadow-2xl border-2 border-stone-400 overflow-hidden">
-      <div class="px-4 py-3.5 border-b-2 border-stone-300 flex items-center justify-between bg-stone-100">
-        <h3 id="stock-modal-title" class="font-black text-stone-950 text-xs tracking-tight uppercase">Tambah Item Bahan Mentah</h3>
-        <button onclick="closeStockModal()" class="text-stone-600 hover:text-stone-950 p-1">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
+  <div id="stock-modal" class="pos-scrim hidden flex items-center justify-center p-4">
+    <div class="pos-dialog max-w-sm w-full p-0 overflow-hidden">
+      <div class="pos-modal-header bg-[var(--surf-hi)] border-b border-[var(--out-v)]">
+        <h3 id="stock-modal-title" class="font-bold text-[var(--on-surf)] text-sm">Tambah item bahan mentah</h3>
+        <button type="button" onclick="closeStockModal()" class="pos-icon-btn" title="Tutup">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
       <form id="stock-form" onsubmit="handleStockSubmit(event)" class="p-4 space-y-3.5">
         <input type="hidden" id="stock-form-id">
         <div>
-          <label class="block text-xs font-bold text-stone-900 mb-1">Nama Bahan *</label>
-          <input type="text" id="stock-name" required placeholder="Contoh: Biji Kopi Gayo Espresso Roast" class="w-full px-3 py-2 text-xs font-bold border-2 border-stone-300 rounded-lg focus:outline-none focus:border-stone-950 text-stone-950">
+          <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Nama bahan *</label>
+          <input type="text" id="stock-name" required placeholder="Contoh: Biji Kopi Gayo Espresso Roast" class="pos-input w-full">
         </div>
         <div class="grid grid-cols-2 gap-2.5">
           <div>
-            <label class="block text-xs font-bold text-stone-900 mb-1">Satuan *</label>
-            <input type="text" id="stock-unit" required placeholder="gram, ml, pcs" class="w-full px-3 py-2 text-xs font-bold border-2 border-stone-300 rounded-lg focus:outline-none focus:border-stone-950 text-stone-950">
+            <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Satuan *</label>
+            <input type="text" id="stock-unit" required placeholder="gram, ml, pcs" class="pos-input w-full">
           </div>
           <div>
-            <label class="block text-xs font-bold text-stone-900 mb-1">Stok Awal *</label>
-            <input type="number" id="stock-quantity" required min="0" step="any" placeholder="1000" class="w-full px-3 py-2 font-mono text-xs font-bold border-2 border-stone-300 rounded-lg focus:outline-none focus:border-stone-950 text-stone-950">
+            <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Stok awal *</label>
+            <input type="number" id="stock-quantity" required min="0" step="any" placeholder="1000" class="pos-input w-full tabular-nums">
           </div>
         </div>
         <div>
-          <label class="block text-xs font-bold text-stone-900 mb-1">Batas Minimum Peringatan *</label>
-          <input type="number" id="stock-min-limit" required min="0" step="any" placeholder="200" class="w-full px-3 py-2 font-mono text-xs font-bold border-2 border-stone-300 rounded-lg focus:outline-none focus:border-stone-950 text-stone-950">
-          <p class="text-[11px] text-stone-600 font-semibold mt-1">Status menjadi 'Kritis' jika sisa bahan di bawah ambang ini.</p>
+          <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Batas minimum peringatan *</label>
+          <input type="number" id="stock-min-limit" required min="0" step="any" placeholder="200" class="pos-input w-full tabular-nums">
+          <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Status menjadi 'Kritis' jika sisa bahan di bawah ambang ini</p>
         </div>
-        <div class="pt-2 flex justify-end space-x-2 border-t-2 border-stone-200">
-          <button type="button" onclick="closeStockModal()" class="px-3.5 py-1.5 border-2 border-stone-300 rounded-lg text-xs font-bold text-stone-800 hover:bg-stone-100">Batal</button>
-          <button type="submit" class="px-4 py-1.5 bg-stone-950 hover:bg-stone-850 text-white rounded-lg text-xs font-black uppercase">Simpan</button>
+        <div class="pt-3 flex justify-end space-x-2 border-t border-[var(--out-v)]">
+          <button type="button" onclick="closeStockModal()" class="pos-btn-outlined text-xs py-1.5 px-3.5">Batal</button>
+          <button type="submit" class="pos-btn-filled text-xs py-1.5 px-4">Simpan</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- MODAL: RESTOCK CEPAT -->
-  <div id="restock-modal" class="fixed inset-0 bg-stone-950/70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-xs">
-    <div class="bg-white w-full max-w-xs rounded-xl shadow-2xl border-2 border-stone-400 overflow-hidden">
-      <div class="px-4 py-3.5 border-b-2 border-stone-300 flex items-center justify-between bg-stone-100">
-        <h3 class="font-black text-stone-950 text-xs uppercase">Penerimaan Stok (Restock)</h3>
-        <button onclick="closeRestockModal()" class="text-stone-600 hover:text-stone-950 p-1">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
+  <div id="restock-modal" class="pos-scrim hidden flex items-center justify-center p-4">
+    <div class="pos-dialog max-w-xs w-full p-0 overflow-hidden">
+      <div class="pos-modal-header bg-[var(--surf-hi)] border-b border-[var(--out-v)]">
+        <h3 class="font-bold text-[var(--on-surf)] text-sm">Penerimaan stok (restock)</h3>
+        <button type="button" onclick="closeRestockModal()" class="pos-icon-btn" title="Tutup">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
       <form id="restock-form" onsubmit="handleRestockSubmit(event)" class="p-4 space-y-3.5">
         <input type="hidden" id="restock-stock-id">
-        <div class="bg-stone-100 p-3 rounded-lg border-2 border-stone-300">
-          <span class="text-xs text-stone-950 font-black block" id="restock-stock-name">-</span>
-          <span class="text-xs font-mono font-bold text-stone-700">Sisa Saat Ini: <strong id="restock-stock-current" class="text-stone-950 font-black">0</strong></span>
+        <div class="pos-surface-embedded p-3">
+          <span class="text-xs text-[var(--on-surf)] font-bold block" id="restock-stock-name">-</span>
+          <span class="text-xs text-[var(--on-surf-v)] font-medium tabular-nums mt-0.5 block">Sisa saat ini: <strong id="restock-stock-current" class="text-[var(--on-surf)] font-bold">0</strong></span>
         </div>
         <div>
-          <label class="block text-xs font-bold text-stone-900 mb-1">Jumlah Tambahan Masuk *</label>
-          <input type="number" id="restock-amount" required min="0.01" step="any" placeholder="0" class="w-full px-3 py-2 font-mono text-xs font-bold border-2 border-stone-300 rounded-lg focus:outline-none focus:border-stone-950 text-stone-950">
+          <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Jumlah tambahan masuk *</label>
+          <input type="number" id="restock-amount" required min="0.01" step="any" placeholder="0" class="pos-input w-full tabular-nums">
         </div>
-        <div class="pt-2 flex justify-end gap-2 border-t-2 border-stone-200">
-          <button type="button" onclick="closeRestockModal()" class="px-3.5 py-1.5 border-2 border-stone-300 rounded-lg text-xs font-bold text-stone-800">Batal</button>
-          <button type="submit" class="px-4 py-1.5 bg-stone-950 hover:bg-stone-850 text-white rounded-lg text-xs font-black uppercase">Tambah</button>
+        <div class="pt-3 flex justify-end gap-2 border-t border-[var(--out-v)]">
+          <button type="button" onclick="closeRestockModal()" class="pos-btn-outlined text-xs py-1.5 px-3.5">Batal</button>
+          <button type="submit" class="pos-btn-filled text-xs py-1.5 px-4">Tambah</button>
         </div>
       </form>
     </div>
@@ -3209,28 +3207,28 @@
   </div>
 
   <!-- MODAL: PRATINJAU & SALIN LAPORAN STOK HARIAN -->
-  <div id="copy-stock-modal" class="fixed inset-0 bg-stone-950/70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-xs">
-    <div class="bg-white w-full max-w-md rounded-xl shadow-2xl border-2 border-stone-400 overflow-hidden flex flex-col max-h-[88vh]">
-      <div class="px-4 py-3.5 border-b-2 border-stone-300 flex items-center justify-between bg-stone-100">
+  <div id="copy-stock-modal" class="pos-scrim hidden flex items-center justify-center p-4">
+    <div class="pos-dialog max-w-md w-full p-0 overflow-hidden flex flex-col max-h-[88vh]">
+      <div class="pos-modal-header bg-[var(--surf-hi)] border-b border-[var(--out-v)] flex items-center justify-between">
         <div class="flex items-center space-x-2">
-          <div class="w-6 h-6 rounded bg-stone-950 text-white flex items-center justify-center">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          <div class="w-8 h-8 rounded-lg bg-[var(--pri-c)] text-[var(--pri)] flex items-center justify-center border border-[var(--out-v)]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
           </div>
-          <h3 class="font-black text-stone-950 text-xs uppercase">Format Teks Laporan Stok Harian</h3>
+          <h3 class="font-bold text-[var(--on-surf)] text-sm">Format teks laporan stok harian</h3>
         </div>
-        <button onclick="closeCopyStockReportModal()" class="text-stone-600 hover:text-stone-950 p-1">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button type="button" onclick="closeCopyStockReportModal()" class="pos-icon-btn" title="Tutup">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
       <div class="p-4 space-y-3 overflow-y-auto flex-1">
-        <p class="text-xs text-stone-700 font-bold">Teks ringkasan jumlah stok di bawah ini siap disalin untuk laporan harian (WhatsApp / Telegram / Catatan Operasional):</p>
-        <textarea id="copy-stock-textarea" readonly rows="13" class="w-full p-3 font-mono text-xs font-bold bg-stone-50 border-2 border-stone-300 rounded-lg text-stone-950 focus:outline-none focus:border-stone-950 resize-none leading-relaxed"></textarea>
+        <p class="text-xs text-[var(--on-surf-v)] font-normal">Teks ringkasan jumlah stok di bawah ini siap disalin untuk laporan harian (WhatsApp / Telegram / catatan operasional):</p>
+        <textarea id="copy-stock-textarea" readonly rows="13" class="pos-textarea w-full font-sans tabular-nums text-xs resize-none leading-relaxed"></textarea>
       </div>
-      <div class="p-3.5 bg-stone-100 border-t-2 border-stone-300 flex justify-end gap-2">
-        <button type="button" onclick="closeCopyStockReportModal()" class="px-3.5 py-2 border-2 border-stone-300 rounded-lg text-xs font-bold text-stone-800 hover:bg-stone-200">Tutup</button>
-        <button type="button" onclick="copyStockTextFromModal()" class="px-4 py-2 bg-stone-950 hover:bg-stone-850 text-white rounded-lg text-xs font-black uppercase flex items-center gap-1.5 border-2 border-stone-950 shadow-xs active:scale-95 transition">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-          <span>Salin ke Clipboard</span>
+      <div class="p-3.5 bg-[var(--surf-hi)] border-t border-[var(--out-v)] flex justify-end gap-2">
+        <button type="button" onclick="closeCopyStockReportModal()" class="pos-btn-outlined text-xs py-2 px-3.5">Tutup</button>
+        <button type="button" onclick="copyStockTextFromModal()" class="pos-btn-filled text-xs py-2 px-4 flex items-center gap-1.5">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+          <span>Salin ke clipboard</span>
         </button>
       </div>
     </div>
@@ -5235,42 +5233,54 @@
       const outOfStockItems = appState.stockItems.filter(s => s.qty <= 0);
 
       document.getElementById('stock-summary-cards').innerHTML = `
-        <div class="bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm flex items-center space-x-3.5">
-          <div class="w-10 h-10 rounded-lg bg-stone-900 text-white flex items-center justify-center font-mono font-black text-xs border-2 border-stone-950">TOT</div>
-          <div><span class="text-[11px] font-mono font-bold text-stone-700 block uppercase">Total Master Bahan</span><h4 class="text-xl font-mono font-black text-stone-950">${totalItems} Item</h4></div>
+        <div class="pos-kpi-card p-4">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-medium text-[var(--on-surf-v)]">Total master bahan</span>
+            <span class="pos-badge-neutral text-[10px]">Total</span>
+          </div>
+          <h4 class="text-2xl font-bold tabular-nums text-[var(--on-surf)] mt-2">${totalItems} item</h4>
+          <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Bahan aktif di sistem</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm flex items-center space-x-3.5">
-          <div class="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center font-mono font-black text-xs border-2 border-amber-800">CRIT</div>
-          <div><span class="text-[11px] font-mono font-bold text-amber-900 block uppercase">Stok Menipis / Kritis</span><h4 class="text-xl font-mono font-black text-amber-950">${lowStockItems.length} Bahan</h4></div>
+        <div class="pos-kpi-card p-4">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-medium text-[var(--on-surf-v)]">Stok menipis / kritis</span>
+            <span class="pos-badge-warn text-[10px]">Perhatian</span>
+          </div>
+          <h4 class="text-2xl font-bold tabular-nums text-[var(--warn)] mt-2">${lowStockItems.length} bahan</h4>
+          <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Perlu segera restock</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm flex items-center space-x-3.5">
-          <div class="w-10 h-10 rounded-lg bg-rose-800 text-white flex items-center justify-center font-mono font-black text-xs border-2 border-rose-950">NIL</div>
-          <div><span class="text-[11px] font-mono font-bold text-rose-900 block uppercase">Stok Kosong</span><h4 class="text-xl font-mono font-black text-rose-950">${outOfStockItems.length} Bahan</h4></div>
+        <div class="pos-kpi-card p-4">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-medium text-[var(--on-surf-v)]">Stok kosong</span>
+            <span class="pos-badge-err text-[10px]">Habis</span>
+          </div>
+          <h4 class="text-2xl font-bold tabular-nums text-[var(--err)] mt-2">${outOfStockItems.length} bahan</h4>
+          <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Tidak dapat diproses</p>
         </div>
       `;
 
       const tbody = document.getElementById('stock-table-body');
       if (appState.stockItems.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="px-5 py-8 text-center text-stone-700 font-mono font-bold">Belum ada data bahan baku.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="px-5 py-8 text-center text-[var(--on-surf-v)] font-medium text-xs">Belum ada data bahan baku</td></tr>`;
         return;
       }
 
       tbody.innerHTML = appState.stockItems.map(s => {
-        let statusBadge = `<span class="bg-stone-100 text-stone-950 border-2 border-stone-300 text-xs font-mono font-black px-2.5 py-0.5 rounded">Normal</span>`;
-        if (s.qty <= 0) statusBadge = `<span class="bg-rose-800 text-white border-2 border-rose-950 text-xs font-mono font-black px-2.5 py-0.5 rounded">Habis</span>`;
-        else if (s.qty <= s.minLimit) statusBadge = `<span class="bg-amber-600 text-white border-2 border-amber-800 text-xs font-mono font-black px-2.5 py-0.5 rounded">Kritis</span>`;
+        let statusBadge = `<span class="pos-badge-ok text-xs">Normal</span>`;
+        if (s.qty <= 0) statusBadge = `<span class="pos-badge-err text-xs">Habis</span>`;
+        else if (s.qty <= s.minLimit) statusBadge = `<span class="pos-badge-warn text-xs">Kritis</span>`;
 
         return `
-          <tr class="hover:bg-stone-50 transition">
-            <td class="px-5 py-3.5"><span class="font-black text-stone-950 block text-xs">${s.name}</span><span class="text-[10px] font-mono font-bold text-stone-600">${s.id}</span></td>
-            <td class="px-5 py-3.5 font-mono font-black text-stone-800">${s.unit}</td>
-            <td class="px-5 py-3.5 font-mono font-black text-stone-950">${s.qty.toLocaleString('id-ID')} <span class="text-[11px] font-bold text-stone-700">${s.unit}</span></td>
-            <td class="px-5 py-3.5 font-mono text-xs font-bold text-stone-800">${s.minLimit.toLocaleString('id-ID')} ${s.unit}</td>
+          <tr class="hover:bg-[var(--surf-hi)] transition">
+            <td class="px-5 py-3.5"><span class="font-medium text-[var(--on-surf)] block text-xs">${s.name}</span><span class="text-[10px] tabular-nums text-[var(--on-surf-v)]">${s.id}</span></td>
+            <td class="px-5 py-3.5 text-xs text-[var(--on-surf-v)] font-medium">${s.unit}</td>
+            <td class="px-5 py-3.5 tabular-nums font-bold text-xs text-[var(--on-surf)]">${s.qty.toLocaleString('id-ID')} <span class="text-[11px] font-normal text-[var(--on-surf-v)]">${s.unit}</span></td>
+            <td class="px-5 py-3.5 tabular-nums text-xs text-[var(--on-surf-v)] font-medium">${s.minLimit.toLocaleString('id-ID')} ${s.unit}</td>
             <td class="px-5 py-3.5">${statusBadge}</td>
             <td class="px-5 py-3.5 text-right space-x-1.5 whitespace-nowrap">
-              <button onclick="openRestockModal('${s.id}')" class="px-3 py-1 bg-stone-100 hover:bg-stone-950 text-stone-950 hover:text-white rounded-md text-xs font-black transition border-2 border-stone-400 hover:border-stone-950 shadow-2xs cursor-pointer">+ Restock</button>
-              <button onclick="editStock('${s.id}')" class="px-3 py-1 bg-stone-900 text-white hover:bg-stone-950 border-2 border-stone-950 rounded-md text-xs font-black transition cursor-pointer">Edit</button>
-              <button onclick="deleteStock('${s.id}')" class="px-3 py-1 bg-rose-800 text-white hover:bg-rose-900 border-2 border-rose-950 rounded-md text-xs font-black transition cursor-pointer">Hapus</button>
+              <button type="button" onclick="openRestockModal('${s.id}')" class="pos-btn-tonal text-xs py-1 px-2.5">+ Restock</button>
+              <button type="button" onclick="editStock('${s.id}')" class="pos-btn-outlined text-xs py-1 px-2.5">Edit</button>
+              <button type="button" onclick="deleteStock('${s.id}')" class="pos-btn-text text-xs py-1 px-2.5 text-[var(--err)] hover:bg-[var(--err-c)]">Hapus</button>
             </td>
           </tr>
         `;
