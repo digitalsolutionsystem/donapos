@@ -1556,43 +1556,41 @@
     <!-- ============================================== -->
     <section id="tab-report" class="tab-content hidden space-y-4">
       <!-- Top Action Bar -->
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm sticky-menu-header">
+      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
-          <button onclick="toggleSidebar()" class="p-2 sm:p-2.5 rounded-lg bg-stone-950 hover:bg-stone-850 text-amber-400 border-2 border-stone-900 flex items-center justify-center cursor-pointer transition shrink-0 shadow-xs hover:scale-105 active:scale-95" title="Buka / Tutup Sidebar Menu (Pintasan: M)">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-            </svg>
+          <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
           <div>
-            <h2 class="text-sm font-black text-stone-950 uppercase tracking-tight">Buku Kas & Rekapitulasi Harian</h2>
-            <p class="text-xs text-stone-700 font-semibold mt-0.5">Rekonsiliasi uang fisik laci kasir, penerimaan QRIS, dan petty cash operasional.</p>
+            <h2 class="text-sm font-bold text-[var(--on-surf)]">Buku kas & rekapitulasi harian</h2>
+            <p class="text-xs text-[var(--on-surf-v)] font-normal mt-0.5">Rekonsiliasi uang fisik laci kasir, penerimaan QRIS, dan petty cash operasional</p>
           </div>
         </div>
         <div class="flex items-center space-x-2.5 w-full sm:w-auto">
           <!-- Indonesian Calendar Slicer Dropdown for Report -->
           <div class="relative">
-            <button id="report-calendar-btn" type="button" onclick="toggleCalendarDropdown('report')" class="flex items-center gap-2 bg-stone-100 hover:bg-stone-200 border-2 border-stone-400 rounded-lg px-3.5 py-1.5 text-xs text-stone-950 font-bold transition">
-              <svg class="w-4 h-4 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-              <span id="report-calendar-label" class="font-extrabold">-</span>
-              <svg class="w-3.5 h-3.5 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/></svg>
+            <button id="report-calendar-btn" type="button" onclick="toggleCalendarDropdown('report')" class="pos-btn-outlined text-xs flex items-center gap-2">
+              <svg class="w-4 h-4 text-[var(--on-surf-v)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <span id="report-calendar-label">-</span>
+              <svg class="w-3.5 h-3.5 text-[var(--on-surf-v)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <input type="hidden" id="report-filter-date" value="">
 
             <!-- Popover Kalender Bahasa Indonesia -->
-            <div id="calendar-popover-report" class="hidden absolute right-0 mt-2 z-40 bg-white rounded-xl shadow-2xl border-2 border-stone-400 p-3.5 w-72">
-              <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-stone-200">
-                <button type="button" onclick="navigateCalendarMonth('report', -1)" class="p-1 hover:bg-stone-100 rounded text-stone-800 transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            <div id="calendar-popover-report" class="pos-popover hidden absolute right-0 mt-2 z-40 p-3.5 w-72">
+              <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--out-v)]">
+                <button type="button" onclick="navigateCalendarMonth('report', -1)" class="pos-icon-btn p-1" title="Bulan sebelumnya">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
                 </button>
-                <span id="calendar-title-report" class="text-xs font-black text-stone-950 uppercase">Oktober 2026</span>
-                <button type="button" onclick="navigateCalendarMonth('report', 1)" class="p-1 hover:bg-stone-100 rounded text-stone-800 transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                <span id="calendar-title-report" class="text-xs font-bold text-[var(--on-surf)]">Oktober 2026</span>
+                <button type="button" onclick="navigateCalendarMonth('report', 1)" class="pos-icon-btn p-1" title="Bulan berikutnya">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
                 </button>
               </div>
 
               <!-- Header Nama Hari Bahasa Indonesia -->
-              <div class="grid grid-cols-7 text-center text-[10px] font-black text-stone-600 mb-1">
-                <span class="text-rose-600 font-black">Min</span>
+              <div class="grid grid-cols-7 text-center text-[10px] font-bold text-[var(--on-surf-v)] mb-1">
+                <span class="text-[var(--err)] font-bold">Min</span>
                 <span>Sen</span>
                 <span>Sel</span>
                 <span>Rab</span>
@@ -1607,15 +1605,15 @@
               </div>
 
               <!-- Tombol Cepat -->
-              <div class="pt-2.5 mt-2.5 border-t-2 border-stone-200 flex items-center justify-end text-xs">
-                <button type="button" onclick="selectCalendarToday('report')" class="px-2.5 py-1 rounded bg-stone-950 text-white font-extrabold hover:bg-stone-850 transition">Hari Ini</button>
+              <div class="pt-2.5 mt-2.5 border-t border-[var(--out-v)] flex items-center justify-end text-xs">
+                <button type="button" onclick="selectCalendarToday('report')" class="pos-btn-filled text-xs py-1 px-2.5">Hari ini</button>
               </div>
             </div>
           </div>
 
-          <button onclick="openExpenseModal()" class="px-3.5 py-2 bg-stone-950 hover:bg-stone-850 text-white rounded-lg text-xs font-extrabold flex items-center gap-1.5 shrink-0 transition border-2 border-stone-950 shadow-2xs">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 12H6"/></svg>
-            <span>Catat Pengeluaran</span>
+          <button type="button" onclick="openExpenseModal()" class="pos-btn-filled text-xs flex items-center gap-1.5 shrink-0">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6"/></svg>
+            <span>Catat pengeluaran</span>
           </button>
         </div>
       </div>
@@ -1626,35 +1624,35 @@
       </div>
 
       <!-- Payment Breakdown Analytical Strip -->
-      <div class="bg-white rounded-xl border-2 border-stone-300 shadow-sm p-4 space-y-4">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b-2 border-stone-200">
+      <div class="pos-card p-4 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-[var(--out-v)]">
           <div>
-            <h3 class="font-black text-stone-950 text-xs tracking-tight uppercase">Distribusi & Share Metode Pembayaran</h3>
-            <p class="text-[11px] text-stone-600 font-semibold">Komparasi frekuensi transaksi dan perputaran kas.</p>
+            <h3 class="font-bold text-[var(--on-surf)] text-xs">Distribusi metode pembayaran</h3>
+            <p class="text-[11px] text-[var(--on-surf-v)] font-normal">Komparasi frekuensi transaksi dan perputaran kas</p>
           </div>
-          <div class="flex items-center space-x-2 font-mono text-[11px]" id="report-payment-share-badges">
+          <div class="flex items-center space-x-2 text-[11px]" id="report-payment-share-badges">
             <!-- Share badges via JS -->
           </div>
         </div>
 
         <!-- Proportion Meter -->
         <div class="space-y-1.5">
-          <div class="flex justify-between text-xs font-mono font-bold text-stone-700">
-            <span>Rasio Volume:</span>
+          <div class="flex justify-between text-xs tabular-nums font-bold text-[var(--on-surf-v)]">
+            <span>Rasio volume:</span>
             <span id="payment-prop-label">0% Tunai · 0% QRIS</span>
           </div>
-          <div class="w-full h-3 rounded-full bg-stone-200 overflow-hidden flex border border-stone-400">
-            <div id="bar-cash" class="bg-stone-900 h-full transition-all duration-300" style="width: 50%;"></div>
-            <div id="bar-qris" class="bg-stone-400 h-full transition-all duration-300" style="width: 50%;"></div>
+          <div class="w-full h-3 rounded-full bg-[var(--surf-hi)] overflow-hidden flex border border-[var(--out-v)]">
+            <div id="bar-cash" class="bg-[var(--p)] h-full transition-all duration-300" style="width: 50%;"></div>
+            <div id="bar-qris" class="bg-[var(--sec)] h-full transition-all duration-300" style="width: 50%;"></div>
           </div>
-          <div class="flex items-center justify-between text-[11px] font-bold text-stone-700">
+          <div class="flex items-center justify-between text-[11px] font-bold text-[var(--on-surf-v)]">
             <span class="flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-stone-900 inline-block border border-black"></span>
-              Tunai / Laci Fisik
+              <span class="w-2 h-2 rounded-full bg-[var(--p)] inline-block"></span>
+              Tunai / laci fisik
             </span>
             <span class="flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-stone-400 inline-block border border-stone-600"></span>
-              QRIS / Rekening Bank
+              <span class="w-2 h-2 rounded-full bg-[var(--sec)] inline-block"></span>
+              QRIS / rekening bank
             </span>
           </div>
         </div>
@@ -1669,23 +1667,23 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
         
         <!-- Sales Log Table -->
-        <div class="lg:col-span-7 bg-white rounded-xl border-2 border-stone-300 shadow-sm overflow-hidden">
-          <div class="px-4 py-3 border-b-2 border-stone-300 bg-stone-100 flex justify-between items-center">
-            <h3 class="font-black text-stone-950 text-xs uppercase">Faktur Terbit Hari Ini</h3>
-            <span class="text-xs font-mono font-extrabold text-stone-800" id="report-sales-count-badge">0 Faktur</span>
+        <div class="lg:col-span-7 pos-card p-0 overflow-hidden">
+          <div class="pos-modal-header bg-[var(--surf-hi)] border-b border-[var(--out-v)] flex justify-between items-center">
+            <h3 class="font-bold text-[var(--on-surf)] text-xs">Faktur terbit hari ini</h3>
+            <span class="pos-badge-neutral text-xs tabular-nums font-bold" id="report-sales-count-badge">0 faktur</span>
           </div>
           <div class="overflow-x-auto max-h-80">
-            <table class="w-full text-left text-xs text-stone-800">
-              <thead class="bg-stone-50 text-stone-950 uppercase font-black text-[10px] border-b-2 border-stone-200 sticky top-0">
+            <table class="pos-table">
+              <thead>
                 <tr>
-                  <th class="px-3.5 py-2 font-mono">Waktu</th>
-                  <th class="px-3.5 py-2 font-mono">ID</th>
-                  <th class="px-3.5 py-2">Metode</th>
-                  <th class="px-3.5 py-2 text-right font-mono">Nominal</th>
-                  <th class="px-3.5 py-2 text-center">Aksi</th>
+                  <th class="tabular-nums">Waktu</th>
+                  <th class="tabular-nums">ID</th>
+                  <th>Metode</th>
+                  <th class="text-right tabular-nums">Nominal</th>
+                  <th class="text-center">Tindakan</th>
                 </tr>
               </thead>
-              <tbody id="report-sales-tbody" class="divide-y-2 divide-stone-100">
+              <tbody id="report-sales-tbody">
                 <!-- JS inserted -->
               </tbody>
             </table>
@@ -1693,21 +1691,21 @@
         </div>
 
         <!-- Expense Log Table (Petty Cash) -->
-        <div class="lg:col-span-5 bg-white rounded-xl border-2 border-stone-300 shadow-sm overflow-hidden">
-          <div class="px-4 py-3 border-b-2 border-stone-300 bg-stone-100 flex justify-between items-center">
-            <h3 class="font-black text-stone-950 text-xs uppercase">Pengeluaran Kas Laci</h3>
-            <span class="text-xs font-mono font-extrabold text-stone-800" id="report-expense-count-badge">0 Catatan</span>
+        <div class="lg:col-span-5 pos-card p-0 overflow-hidden">
+          <div class="pos-modal-header bg-[var(--surf-hi)] border-b border-[var(--out-v)] flex justify-between items-center">
+            <h3 class="font-bold text-[var(--on-surf)] text-xs">Pengeluaran kas laci</h3>
+            <span class="pos-badge-err text-xs tabular-nums font-bold" id="report-expense-count-badge">0 catatan</span>
           </div>
           <div class="overflow-x-auto max-h-80">
-            <table class="w-full text-left text-xs text-stone-800">
-              <thead class="bg-stone-50 text-stone-950 uppercase font-black text-[10px] border-b-2 border-stone-200 sticky top-0">
+            <table class="pos-table">
+              <thead>
                 <tr>
-                  <th class="px-3.5 py-2">Catatan</th>
-                  <th class="px-3.5 py-2 text-right font-mono">Jumlah</th>
-                  <th class="px-3.5 py-2 text-center">Batal</th>
+                  <th>Catatan</th>
+                  <th class="text-right tabular-nums">Jumlah</th>
+                  <th class="text-center">Tindakan</th>
                 </tr>
               </thead>
-              <tbody id="report-expense-tbody" class="divide-y-2 divide-stone-100">
+              <tbody id="report-expense-tbody">
                 <!-- JS inserted -->
               </tbody>
             </table>
@@ -6368,33 +6366,37 @@
       const summaryCards = document.getElementById('report-summary-cards');
       if (summaryCards) {
         summaryCards.innerHTML = `
-          <div class="bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm flex items-center space-x-3.5">
-            <div class="w-10 h-10 rounded-lg bg-stone-900 text-white flex items-center justify-center font-mono font-black text-xs border-2 border-stone-950">GROSS</div>
-            <div>
-              <span class="text-[11px] font-mono font-bold text-stone-700 block uppercase">Total Omzet Penjualan</span>
-              <h4 class="text-xl font-mono font-black text-stone-950">${formatRupiah(grossSales)}</h4>
+          <div class="pos-kpi-card p-4">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-medium text-[var(--on-surf-v)]">Total omzet penjualan</span>
+              <span class="pos-badge-neutral text-[10px]">Total</span>
             </div>
+            <h4 class="text-2xl font-bold tabular-nums text-[var(--on-surf)] mt-2">${formatRupiah(grossSales)}</h4>
+            <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Akumulasi seluruh transaksi</p>
           </div>
-          <div class="bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm flex items-center space-x-3.5">
-            <div class="w-10 h-10 rounded-lg bg-emerald-800 text-white flex items-center justify-center font-mono font-black text-xs border-2 border-emerald-950">CASH</div>
-            <div>
-              <span class="text-[11px] font-mono font-bold text-stone-700 block uppercase">Penerimaan Kas Tunai</span>
-              <h4 class="text-xl font-mono font-black text-emerald-900">${formatRupiah(cashGross)}</h4>
+          <div class="pos-kpi-card p-4">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-medium text-[var(--on-surf-v)]">Penerimaan kas tunai</span>
+              <span class="pos-badge-ok text-[10px]">Tunai</span>
             </div>
+            <h4 class="text-2xl font-bold tabular-nums text-[var(--p)] mt-2">${formatRupiah(cashGross)}</h4>
+            <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Penjualan metode kas</p>
           </div>
-          <div class="bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm flex items-center space-x-3.5">
-            <div class="w-10 h-10 rounded-lg bg-blue-800 text-white flex items-center justify-center font-mono font-black text-xs border-2 border-blue-950">QRIS</div>
-            <div>
-              <span class="text-[11px] font-mono font-bold text-stone-700 block uppercase">Penerimaan QRIS Bank</span>
-              <h4 class="text-xl font-mono font-black text-stone-950">${formatRupiah(qrisGross)}</h4>
+          <div class="pos-kpi-card p-4">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-medium text-[var(--on-surf-v)]">Penerimaan QRIS bank</span>
+              <span class="pos-badge-neutral text-[10px]">QRIS</span>
             </div>
+            <h4 class="text-2xl font-bold tabular-nums text-[var(--on-surf)] mt-2">${formatRupiah(qrisGross)}</h4>
+            <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Settlement rekening bank</p>
           </div>
-          <div class="bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm flex items-center space-x-3.5">
-            <div class="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center font-mono font-black text-xs border-2 border-amber-800">LACI</div>
-            <div>
-              <span class="text-[11px] font-mono font-bold text-stone-700 block uppercase">Uang Fisik di Laci Utama</span>
-              <h4 class="text-xl font-mono font-black text-stone-950">${formatRupiah(netDrawerCash)}</h4>
+          <div class="pos-kpi-card p-4">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-medium text-[var(--on-surf-v)]">Uang fisik di laci</span>
+              <span class="pos-badge-warn text-[10px]">Laci</span>
             </div>
+            <h4 class="text-2xl font-bold tabular-nums text-[var(--on-surf)] mt-2">${formatRupiah(netDrawerCash)}</h4>
+            <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">Kas masuk - petty cash</p>
           </div>
         `;
       }
@@ -6408,7 +6410,7 @@
       let qrisPct = totalTxCount > 0 ? (100 - cashPct) : 50;
 
       const propLabel = document.getElementById('payment-prop-label');
-      if (propLabel) propLabel.innerText = `${cashPct}% Tunai (${cashCount}x) · ${qrisPct}% QRIS (${qrisCount}x)`;
+      if (propLabel) propLabel.innerText = `${cashPct}% tunai (${cashCount}x) · ${qrisPct}% QRIS (${qrisCount}x)`;
 
       const barCash = document.getElementById('bar-cash');
       const barQris = document.getElementById('bar-qris');
@@ -6420,26 +6422,26 @@
       const badgesEl = document.getElementById('report-payment-share-badges');
       if (badgesEl) {
         badgesEl.innerHTML = `
-          <span class="px-2 py-0.5 rounded bg-stone-100 border border-stone-300 text-stone-950 font-bold">${cashCount} Nota Tunai</span>
-          <span class="px-2 py-0.5 rounded bg-stone-100 border border-stone-300 text-stone-950 font-bold">${qrisCount} Nota QRIS</span>
+          <span class="pos-badge-neutral text-[10px]">${cashCount} nota tunai</span>
+          <span class="pos-badge-neutral text-[10px]">${qrisCount} nota QRIS</span>
         `;
       }
 
       const compGrid = document.getElementById('report-payment-comparison-grid');
       if (compGrid) {
         compGrid.innerHTML = `
-          <div class="p-3 rounded-lg border-2 border-stone-200 bg-stone-50">
-            <span class="text-[11px] font-mono font-bold text-stone-700 uppercase block">Rincian Pembayaran Tunai</span>
+          <div class="p-3 rounded-lg border border-[var(--out-v)] bg-[var(--surf-hi)]">
+            <span class="text-[11px] font-medium text-[var(--on-surf-v)] block">Rincian pembayaran tunai</span>
             <div class="flex justify-between items-baseline mt-1">
-              <span class="text-xs font-black text-stone-950">${cashCount} Transaksi Selesai</span>
-              <span class="text-sm font-mono font-black text-stone-950">${formatRupiah(cashGross)}</span>
+              <span class="text-xs font-bold text-[var(--on-surf)]">${cashCount} transaksi selesai</span>
+              <span class="text-sm tabular-nums font-bold text-[var(--on-surf)]">${formatRupiah(cashGross)}</span>
             </div>
           </div>
-          <div class="p-3 rounded-lg border-2 border-stone-200 bg-stone-50">
-            <span class="text-[11px] font-mono font-bold text-stone-700 uppercase block">Rincian Pembayaran Digital QRIS</span>
+          <div class="p-3 rounded-lg border border-[var(--out-v)] bg-[var(--surf-hi)]">
+            <span class="text-[11px] font-medium text-[var(--on-surf-v)] block">Rincian pembayaran digital QRIS</span>
             <div class="flex justify-between items-baseline mt-1">
-              <span class="text-xs font-black text-stone-950">${qrisCount} Transaksi Selesai</span>
-              <span class="text-sm font-mono font-black text-stone-950">${formatRupiah(qrisGross)}</span>
+              <span class="text-xs font-bold text-[var(--on-surf)]">${qrisCount} transaksi selesai</span>
+              <span class="text-sm tabular-nums font-bold text-[var(--on-surf)]">${formatRupiah(qrisGross)}</span>
             </div>
           </div>
         `;
@@ -6447,23 +6449,23 @@
 
       // Tabel Faktur Terbit Hari Ini
       const salesCountBadge = document.getElementById('report-sales-count-badge');
-      if (salesCountBadge) salesCountBadge.innerText = `${daySales.length} Faktur`;
+      if (salesCountBadge) salesCountBadge.innerText = `${daySales.length} faktur`;
 
       const salesTbody = document.getElementById('report-sales-tbody');
       if (salesTbody) {
         if (daySales.length === 0) {
-          salesTbody.innerHTML = `<tr><td colspan="5" class="px-3.5 py-6 text-center text-stone-600 font-mono text-xs">Belum ada faktur terbit hari ini.</td></tr>`;
+          salesTbody.innerHTML = `<tr><td colspan="5" class="px-3.5 py-6 text-center text-[var(--on-surf-v)] font-medium text-xs">Belum ada faktur terbit hari ini</td></tr>`;
         } else {
           salesTbody.innerHTML = daySales.map(t => {
             const timeOnly = t.date.includes(',') ? t.date.split(',')[1].trim() : t.date;
             return `
-              <tr class="hover:bg-stone-50 transition">
-                <td class="px-3.5 py-2 font-mono text-xs text-stone-700">${timeOnly}</td>
-                <td class="px-3.5 py-2 font-mono font-black text-xs text-stone-950">${t.id}</td>
-                <td class="px-3.5 py-2 text-xs font-bold text-stone-800">${t.method}</td>
-                <td class="px-3.5 py-2 text-right font-mono font-black text-xs text-stone-950">${formatRupiah(t.total)}</td>
+              <tr class="hover:bg-[var(--surf-hi)] transition">
+                <td class="px-3.5 py-2 tabular-nums text-xs text-[var(--on-surf-v)]">${timeOnly}</td>
+                <td class="px-3.5 py-2 tabular-nums font-bold text-xs text-[var(--on-surf)]">${t.id}</td>
+                <td class="px-3.5 py-2 text-xs font-medium text-[var(--on-surf)]">${t.method}</td>
+                <td class="px-3.5 py-2 text-right tabular-nums font-bold text-xs text-[var(--on-surf)]">${formatRupiah(t.total)}</td>
                 <td class="px-3.5 py-2 text-center">
-                  <button onclick='openReceiptModal(${JSON.stringify(t)})' class="px-2 py-0.5 text-[10px] font-black rounded border border-stone-300 hover:bg-stone-950 hover:text-white transition">Struk</button>
+                  <button type="button" onclick='openReceiptModal(${JSON.stringify(t)})' class="pos-btn-outlined text-[10px] py-0.5 px-2">Struk</button>
                 </td>
               </tr>
             `;
@@ -6473,22 +6475,22 @@
 
       // Tabel Pengeluaran Kas Laci (Petty Cash)
       const expCountBadge = document.getElementById('report-expense-count-badge');
-      if (expCountBadge) expCountBadge.innerText = `${dayExpenses.length} Catatan`;
+      if (expCountBadge) expCountBadge.innerText = `${dayExpenses.length} catatan`;
 
       const expTbody = document.getElementById('report-expense-tbody');
       if (expTbody) {
         if (dayExpenses.length === 0) {
-          expTbody.innerHTML = `<tr><td colspan="3" class="px-3.5 py-6 text-center text-stone-600 font-mono text-xs">Tidak ada pengeluaran kas laci hari ini.</td></tr>`;
+          expTbody.innerHTML = `<tr><td colspan="3" class="px-3.5 py-6 text-center text-[var(--on-surf-v)] font-medium text-xs">Tidak ada pengeluaran kas laci hari ini</td></tr>`;
         } else {
           expTbody.innerHTML = dayExpenses.map(e => `
-            <tr class="hover:bg-stone-50 transition">
+            <tr class="hover:bg-[var(--surf-hi)] transition">
               <td class="px-3.5 py-2">
-                <span class="font-bold text-xs text-stone-950 block">${e.note}</span>
-                <span class="text-[10px] font-mono text-stone-600">${e.category} · ${e.time || ''}</span>
+                <span class="font-bold text-xs text-[var(--on-surf)] block">${e.note}</span>
+                <span class="text-[10px] tabular-nums text-[var(--on-surf-v)]">${e.category} · ${e.time || ''}</span>
               </td>
-              <td class="px-3.5 py-2 text-right font-mono font-black text-rose-700 text-xs">-${formatRupiah(e.amount)}</td>
+              <td class="px-3.5 py-2 text-right tabular-nums font-bold text-[var(--err)] text-xs">-${formatRupiah(e.amount)}</td>
               <td class="px-3.5 py-2 text-center">
-                <button onclick="deleteMainExpense('${e.id}')" class="text-rose-600 hover:text-rose-900 text-xs font-bold p-1">✕</button>
+                <button type="button" onclick="deleteMainExpense('${e.id}')" class="pos-icon-btn text-[var(--err)] hover:bg-[var(--err-c)] p-1 text-xs font-bold" title="Hapus catatan">✕</button>
               </td>
             </tr>
           `).join('');
