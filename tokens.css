@@ -16,21 +16,37 @@
   --on: #191c1a;
   --on-v: #414942;
 
-  /* Outline (charcoal) */
-  --outline: #36454f;
-  --out-v: #36454f;
+  /* Outline */
+  --outline: #717971;
+  --out-v: #b4beb2;
 
-  /* Aksen utama */
-  --pri: #9e0202;
+  /* Aksen utama (Material 3 Pine Green - Sesuai Contoh Kasir Referensi) */
+  --pri: #1b6b4f;
   --on-pri: #ffffff;
-  --pri-c: #ffdad6;
-  --on-pri-c: #410002;
-  --sec-c: #f6d3d0;
-  --on-sec-c: #3b0000;   /* Tint aksen: item terpilih, badge info utama */
+  --pri-c: #b4ecd2;
+  --on-pri-c: #002115;
+  --sec-c: #cfe9da;
+  --on-sec-c: #0a1f16;   /* Tint aksen: item terpilih, badge info utama */
 
   /* Pendamping */
   --ter-c: #ffdea0;
   --on-ter-c: #261900;   /* Ochre: label khusus (titip jual), highlight */
+
+  /* Thumbnail Tints (Katalog Makanan & Minuman Sesuai Referensi) */
+  --thumb-warm-bg: #e3d5c4;
+  --thumb-warm-fg: #5a3b24;
+  --thumb-espresso-bg: #3a2e27;
+  --thumb-espresso-fg: #e8d3b9;
+  --thumb-matcha-bg: #d6dec3;
+  --thumb-matcha-fg: #3d5326;
+  --thumb-burger-bg: #ead3ac;
+  --thumb-burger-fg: #6b3f10;
+  --thumb-donut-bg: #ecd0cc;
+  --thumb-donut-fg: #7a2f3a;
+  --thumb-pastry-bg: #e8d7b8;
+  --thumb-pastry-fg: #7a4a14;
+  --thumb-pudding-bg: #f0dcb0;
+  --thumb-pudding-fg: #8a4b0c;
 
   /* Status semantik (jangan pakai warna aksen untuk status) */
   --ok: #1e6b3a;
@@ -45,14 +61,14 @@
   --info-c: #d4e6f7;
   --on-info-c: #06223a;
 
-  --err: #b3261e;
+  --err: #ba1a1a;
   --err-c: #ffdad6;
   --on-err-c: #410002;
 
   /* Snackbar / tooltip */
   --inv: #2e312f;
   --on-inv: #f0f1ec;
-  --inv-pri: #ffb4ab;
+  --inv-pri: #8ad6b4;
 
   /* Overlay */
   --scrim: rgba(0, 0, 0, 0.45);
@@ -63,8 +79,8 @@
   --sh-3: 0 12px 40px rgba(0, 0, 0, 0.35);                                       /* Dialog, modal */
 
   /* Garis */
-  --bw: 2px;
-  --bw-focus: 3px;
+  --bw: 1px;
+  --bw-focus: 2px;
 
   /* Radius */
   --r-xs: 6px;
@@ -126,14 +142,14 @@
     --c-high: #2d3631;
     --on: #e0e3de;
     --on-v: #c1c9c0;
-    --outline: #7d8a93;
-    --out-v: #56636b;
-    --pri: #ff8a80;
-    --on-pri: #4d0000;
-    --pri-c: #7a0000;
-    --on-pri-c: #ffdad6;
-    --sec-c: #4a2a28;
-    --on-sec-c: #ffdad6;
+    --outline: #8b938a;
+    --out-v: #3f4a43;
+    --pri: #8ad6b4;
+    --on-pri: #00382a;
+    --pri-c: #00513c;
+    --on-pri-c: #b4ecd2;
+    --sec-c: #354b3f;
+    --on-sec-c: #cfe9da;
     --ter-c: #5c4300;
     --on-ter-c: #ffdea0;
     --ok: #7fd69a;
@@ -150,7 +166,7 @@
     --on-err-c: #ffdad6;
     --inv: #e0e3de;
     --on-inv: #2e312f;
-    --inv-pri: #9e0202;
+    --inv-pri: #1b6b4f;
     --scrim: rgba(0, 0, 0, 0.6);
     --sh-1: 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 14px rgba(0, 0, 0, 0.45);
     --sh-2: 0 2px 4px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);
@@ -165,14 +181,14 @@
   --c-high: #2d3631;
   --on: #e0e3de;
   --on-v: #c1c9c0;
-  --outline: #7d8a93;
-  --out-v: #56636b;
-  --pri: #ff8a80;
-  --on-pri: #4d0000;
-  --pri-c: #7a0000;
-  --on-pri-c: #ffdad6;
-  --sec-c: #4a2a28;
-  --on-sec-c: #ffdad6;
+  --outline: #8b938a;
+  --out-v: #3f4a43;
+  --pri: #8ad6b4;
+  --on-pri: #00382a;
+  --pri-c: #00513c;
+  --on-pri-c: #b4ecd2;
+  --sec-c: #354b3f;
+  --on-sec-c: #cfe9da;
   --ter-c: #5c4300;
   --on-ter-c: #ffdea0;
   --ok: #7fd69a;
@@ -189,7 +205,7 @@
   --on-err-c: #ffdad6;
   --inv: #e0e3de;
   --on-inv: #2e312f;
-  --inv-pri: #9e0202;
+  --inv-pri: #1b6b4f;
   --scrim: rgba(0, 0, 0, 0.6);
   --sh-1: 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 14px rgba(0, 0, 0, 0.45);
   --sh-2: 0 2px 4px rgba(0, 0, 0, 0.6), 0 8px 24px rgba(0, 0, 0, 0.5);

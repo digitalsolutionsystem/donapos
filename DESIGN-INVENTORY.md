@@ -216,6 +216,7 @@ Seluruh alur kerja wajib dari `designpromptrules.md` telah diselesaikan secara b
    - **Iterasi 10 (`81688c7`):** Titip Jual — Setoran Titip (`#tab-consign-expenses`), Modal Setoran (`#consign-expense-modal`), dan Popover Kalender (`#calendar-popover-consign-expenses`).
    - **Iterasi 11 (`98737a3`):** Analisis Fluktuasi Omzet (`#tab-fluctuation`) dan Visualisasi Grafik Fluktuasi Harian tanpa gradien.
    - **Iterasi 12 (`4de3d72`):** Shell Navigasi Global (`#app-sidebar`, `#sidebar-backdrop`, top header mobile), Dialog Konfirmasi Umum (`#confirm-modal`), Notifikasi Toast/Snackbar (`#toast-container`), dan Pembersihan 743 Baris `<style>` Monolitik Lama.
+   - **Iterasi 13:** Penyesuaian Presisi Rasio Viewport 100% Workstation Kasir POS (`#tab-pos`) & Sinkronisasi Aksen Hijau Material 3 (Pine Green `--pri: #1b6b4f`) Sesuai Referensi Native Tablet: 100dvh tanpa scrollbar vertikal pada body, kartu produk 3-kolom kompak (~180px) dengan thumbnail 112px berlatar pastel dan ikon SVG makanan (`cup`, `leaf`, `burger`, `donut`, `pastry`, `pudding`), search bar pill 48px, category chips 36px, dan panel keranjang 392px terpadu dengan summary ledger dan CTA pembayaran di dalam fold layar.
 5. **Fase 4 — Penyapuan Otomatis & Verifikasi:** Selesai. Telah diaudit dengan pencarian otomatis ketat dan nol pelanggaran tersisa.
 
 ---

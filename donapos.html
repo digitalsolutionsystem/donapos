@@ -299,9 +299,46 @@
         border-radius: var(--r-lg);
       }
     }
+    html, body {
+      height: 100%;
+      height: 100dvh;
+      overflow: hidden;
+      overscroll-behavior: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #app-content-wrapper {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0 !important;
+      margin: 0 !important;
+      max-width: 100% !important;
+    }
+
+    .tab-content:not(#tab-pos) {
+      height: 100%;
+      min-height: 0;
+      overflow-y: auto;
+      padding: var(--s-4) var(--s-5) var(--s-8) var(--s-5);
+      box-sizing: border-box;
+    }
   </style>
 </head>
-<body class="bg-[var(--surface)] text-[var(--on)] font-sans min-h-screen flex flex-col antialiased selection:bg-[var(--pri)] selection:text-[var(--on-pri)]">
+<body class="bg-[var(--surface)] text-[var(--on)] font-sans antialiased selection:bg-[var(--pri)] selection:text-[var(--on-pri)]">
 
   <!-- Backdrop overlay ketika sidebar floating terbuka -->
   <div id="sidebar-backdrop" onclick="closeSidebar()" aria-hidden="true"></div>
@@ -463,7 +500,7 @@
   <!-- ============================================== -->
   <!-- KONTEN UTAMA APLIKASI                          -->
   <!-- ============================================== -->
-  <div id="app-content-wrapper" class="flex-1 w-full min-h-screen flex flex-col">
+  <div id="app-content-wrapper" class="w-full h-full flex flex-col overflow-hidden min-h-0">
     
     <!-- Mobile Top Header Bar (Hanya tampil di layar kecil < lg) -->
     <header class="lg:hidden sticky top-0 z-[var(--z-sticky)] bg-[var(--c)] border-b-2 border-[var(--out-v)] px-3.5 py-2.5 flex items-center justify-between shadow-[var(--sh-1)]">
@@ -484,7 +521,7 @@
       </div>
     </header>
     <!-- Kontainer Utama -->
-    <main class="flex-1 max-w-[1680px] w-full mx-auto p-3 sm:p-5 lg:p-6 transition-all duration-300">
+    <main class="flex-1 w-full h-full min-h-0 overflow-hidden m-0 p-0">
 
     <!-- ============================================== -->
     <!-- TAB 1: KASIR (POS DUAL-PANE WORKSTATION) -->
@@ -494,24 +531,23 @@
       <div class="pos-catalog-pane">
         
         <!-- Search & Category Header -->
-        <div class="pos-catalog-toolbar">
-          <div class="flex items-center gap-2 w-full sm:w-auto">
-            <!-- Tombol Menu Sidebar -->
-            <button id="sidebar-unhide-btn" onclick="toggleSidebar()" class="pos-icon-btn pos-icon-btn-outlined" title="Buka / tutup menu sidebar (Pintasan: M)">
-              <span data-icon="menu"></span>
-            </button>
+        <header class="pos-catalog-toolbar">
+          <!-- Tombol Menu Sidebar -->
+          <button id="sidebar-unhide-btn" onclick="toggleSidebar()" class="ripple-surface" title="Buka / tutup menu sidebar (Pintasan: M)" aria-label="Menu">
+            <span data-icon="home"></span>
+          </button>
 
-            <!-- Outlined Search Bar -->
-            <div class="pos-input-container" style="height: var(--touch-lg); max-width: 320px;">
-              <span class="pos-input-icon" data-icon="search"></span>
-              <input type="text" id="pos-search-input" oninput="renderPosCatalog()" placeholder="Cari nama produk..." class="pos-input" style="font-size: var(--t-sm);">
-            </div>
-          </div>
+          <!-- Outlined Search Bar -->
+          <label id="pos-search-container" class="ripple-surface">
+            <span class="pos-input-icon" data-icon="search"></span>
+            <input type="text" id="pos-search-input" oninput="renderPosCatalog()" placeholder="Cari nama produk…" autocomplete="off">
+          </label>
           
-          <div class="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0" id="category-pills">
+          <!-- Category Chips -->
+          <nav class="chips" id="category-pills" aria-label="Kategori">
             <!-- Dynamic Category Pills -->
-          </div>
-        </div>
+          </nav>
+        </header>
 
         <!-- Wadah Scroll Khusus Grid Produk -->
         <div class="pos-product-grid" id="pos-product-grid">
@@ -520,37 +556,29 @@
       </div>
 
       <!-- Kolom Kanan: Rincian Pemesanan (Panel 392px) -->
-      <div id="pos-cart-panel" class="pos-cart-panel hidden lg:flex">
+      <aside id="pos-cart-panel" class="pos-cart-panel hidden lg:flex">
         
         <!-- Header Panel -->
         <div class="pos-cart-header">
-          <div class="flex items-center gap-2">
-            <span class="pos-icon-btn pos-icon-btn-outlined" style="width: 32px; height: 32px;" data-icon="pos"></span>
-            <div>
-              <h2 class="pos-cart-title">Rincian pesanan</h2>
-              <div class="flex items-center gap-1.5 mt-0.5">
-                <span class="w-2 h-2 rounded-full" style="background-color: var(--ok);"></span>
-                <span class="text-xs" style="color: var(--on-v);" id="cart-order-session">Sesi aktif</span>
-              </div>
-            </div>
+          <div class="ico" data-icon="bag"></div>
+          <div>
+            <h2>Rincian order</h2>
+            <small id="cart-order-session">Order aktif</small>
           </div>
-          <div class="flex items-center gap-1.5">
-            <button onclick="clearCart()" class="pos-btn pos-btn-sm pos-btn-outlined" title="Kosongkan keranjang pesanan">
-              <span data-icon="trash" data-icon-size="14"></span>
-              <span>Batal</span>
-            </button>
-            <button onclick="closeMobileCartDrawer()" class="pos-icon-btn lg:hidden" title="Tutup">
-              <span data-icon="close"></span>
-            </button>
-          </div>
+          <button id="btn-clear-cart" onclick="clearCart()" class="tbtn ripple-surface" disabled title="Kosongkan keranjang pesanan">
+            <span data-icon="trash"></span>
+            <span>Batal</span>
+          </button>
+          <button onclick="closeMobileCartDrawer()" class="pos-icon-btn lg:hidden" title="Tutup">
+            <span data-icon="close"></span>
+          </button>
         </div>
 
         <!-- Customer Name Input Bar -->
         <div class="pos-cart-customer">
-          <div class="pos-input-container" style="height: var(--touch-lg);">
-            <span class="pos-input-icon" data-icon="user"></span>
-            <input type="text" id="pos-customer-name" placeholder="Nama pelanggan (opsional)..." class="pos-input" style="font-size: var(--t-sm);">
-          </div>
+          <span class="pos-input-icon" data-icon="user"></span>
+          <input type="text" id="pos-customer-name" placeholder=" " autocomplete="off">
+          <label for="pos-customer-name">Nama pelanggan (opsional)</label>
         </div>
 
         <!-- Items Scroll List -->
@@ -560,28 +588,25 @@
 
         <!-- Bottom Ledger Summary & Checkout CTA -->
         <div class="pos-cart-summary">
-          <div class="flex justify-between items-center">
-            <span class="text-sm font-medium" style="color: var(--on-v);">Total kuantitas</span>
-            <span id="cart-item-count" class="pos-badge pos-badge-neutral">0 unit</span>
+          <div class="r a">
+            <span>Total kuantitas</span>
+            <span id="cart-item-count" class="unit">0 unit</span>
           </div>
-          <div style="height: 1px; background-color: color-mix(in srgb, var(--out-v) 35%, transparent);"></div>
-          <div class="flex justify-between items-baseline pt-1">
-            <div>
-              <span class="text-sm font-medium" style="color: var(--on);">Total tagihan</span>
-            </div>
-            <span id="cart-total-price" class="text-2xl font-bold" style="color: var(--pri);">Rp 0</span>
+          <div class="r total">
+            <span>Total tagihan</span>
+            <span id="cart-total-price" class="total-v">Rp 0</span>
           </div>
-        </div>
-
-        <div style="padding: 0 var(--s-3) var(--s-3) var(--s-3);">
-          <button id="btn-checkout" onclick="openPaymentPage()" class="pos-btn pos-btn-xl pos-btn-filled w-full" disabled>
-            <span data-icon="credit-card"></span>
-            <span>Proses pembayaran</span>
+          <div class="hint">Siap diproses kasir</div>
+          <button id="btn-checkout" onclick="openPaymentPage()" class="fab ripple-surface" disabled>
+            <span style="display: flex; align-items: center; gap: 12px;">
+              <span data-icon="credit-card"></span>
+              <span>Proses pembayaran</span>
+            </span>
             <span data-icon="chevron-right"></span>
           </button>
         </div>
 
-      </div>
+      </aside>
     </section>
 
     <section id="tab-payment" class="tab-content hidden space-y-4">
@@ -3075,6 +3100,17 @@
       return 'Rp ' + Number(num).toLocaleString('id-ID');
     }
 
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      return String(str).replace(/[&<>"']/g, c => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[c]));
+    }
+
     function getTodayISO() {
       const now = new Date();
       const y = now.getFullYear();
@@ -3446,6 +3482,25 @@
       return minServings === Infinity ? 0 : Math.max(0, minServings);
     }
 
+    const PRODUCT_THEMES = {
+      'prd-1': { icon: 'cup', bg: 'var(--thumb-warm-bg)', fg: 'var(--thumb-warm-fg)' },
+      'prd-2': { icon: 'cup', bg: 'var(--thumb-espresso-bg)', fg: 'var(--thumb-espresso-fg)' },
+      'prd-3': { icon: 'leaf', bg: 'var(--thumb-matcha-bg)', fg: 'var(--thumb-matcha-fg)' },
+      'prd-4': { icon: 'burger', bg: 'var(--thumb-burger-bg)', fg: 'var(--thumb-burger-fg)' },
+      'csg-1': { icon: 'donut', bg: 'var(--thumb-donut-bg)', fg: 'var(--thumb-donut-fg)' },
+      'csg-2': { icon: 'pastry', bg: 'var(--thumb-pastry-bg)', fg: 'var(--thumb-pastry-fg)' },
+      'csg-3': { icon: 'pudding', bg: 'var(--thumb-pudding-bg)', fg: 'var(--thumb-pudding-fg)' }
+    };
+
+    function getProductTheme(product) {
+      if (PRODUCT_THEMES[product.id]) return PRODUCT_THEMES[product.id];
+      if (product.category === 'Kopi') return { icon: 'cup', bg: 'var(--thumb-warm-bg)', fg: 'var(--thumb-warm-fg)' };
+      if (product.category === 'Non-Kopi') return { icon: 'leaf', bg: 'var(--thumb-matcha-bg)', fg: 'var(--thumb-matcha-fg)' };
+      if (product.category === 'Makanan') return { icon: 'burger', bg: 'var(--thumb-burger-bg)', fg: 'var(--thumb-burger-fg)' };
+      if (product.isConsignment) return { icon: 'donut', bg: 'var(--thumb-donut-bg)', fg: 'var(--thumb-donut-fg)' };
+      return { icon: 'pos', bg: 'var(--c-high)', fg: 'var(--on-v)' };
+    }
+
     function filterCategory(cat) {
       appState.posSelectedCategory = cat;
       renderPosCatalog();
@@ -3463,9 +3518,9 @@
         pillsContainer.innerHTML = categories.map(cat => {
           const isActive = appState.posSelectedCategory === cat;
           return `
-            <button onclick="filterCategory('${cat}')" class="pos-chip ${isActive ? 'is-selected' : ''}">
-              ${isActive ? renderIcon('check', '', 14) : ''}
-              <span>${cat}</span>
+            <button type="button" onclick="filterCategory('${escapeHtml(cat)}')" class="chip ripple-surface ${isActive ? 'is-selected' : ''}" aria-pressed="${isActive}">
+              ${isActive ? renderIcon('check', '', 16) : ''}
+              <span>${escapeHtml(cat)}</span>
             </button>
           `;
         }).join('');
@@ -3493,49 +3548,27 @@
         const inCartItem = appState.cart.find(c => c.productId === p.id);
         const inCartQty = inCartItem ? inCartItem.qty : 0;
         const isSelected = inCartQty > 0;
-
-        let statusBadge = '';
-        if (isOutOfStock) {
-          statusBadge = `<span class="pos-badge pos-badge-err">Habis</span>`;
-        } else if (p.isConsignment) {
-          statusBadge = `<span class="pos-badge pos-badge-ter">Titip · ${remainingCapacity} unit</span>`;
-        } else if (remainingCapacity <= 5) {
-          statusBadge = `<span class="pos-badge pos-badge-warn">${remainingCapacity} porsi</span>`;
-        } else {
-          statusBadge = `<span class="pos-badge pos-badge-ok">${remainingCapacity} porsi</span>`;
-        }
-
-        const vendorBadge = p.isConsignment
-          ? `<span class="pos-badge pos-badge-neutral">${p.vendor || 'Mitra'}</span>`
-          : '';
+        const theme = getProductTheme(p);
+        const unitLabel = p.unit || (p.isConsignment ? 'unit' : 'porsi');
 
         return `
-          <div onclick="${isOutOfStock ? '' : `addToCart('${p.id}')`}" class="pos-product-card ripple-surface ${isSelected ? 'is-selected' : ''} ${isOutOfStock ? 'is-out-of-stock' : ''}">
-            <div class="pos-product-thumb">
-              <img src="${p.image || 'https://placehold.co/400x300/e7e5e4/78716c?text=Menu'}" alt="${p.name}" onerror="this.src='https://placehold.co/400x300/e7e5e4/78716c?text=Menu'">
-              <div style="position: absolute; top: var(--s-2); right: var(--s-2);">
-                ${statusBadge}
-              </div>
-              ${isSelected ? `
-                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: var(--pri); color: var(--on-pri); padding: 4px 8px; font-size: var(--t-xs); font-weight: 500; display: flex; align-items: center; justify-content: space-between;">
-                  <span>Dalam pesanan</span>
-                  <span class="pos-badge-counter">${inCartQty}</span>
-                </div>
-              ` : ''}
+          <button type="button" onclick="${isOutOfStock ? '' : `addToCart('${p.id}')`}" class="pos-product-card ripple-surface ${isOutOfStock ? 'is-out-of-stock' : ''}" ${isOutOfStock ? 'disabled' : ''} data-pid="${p.id}">
+            <div class="pos-product-thumb" style="background-color: ${theme.bg}; color: ${theme.fg};">
+              ${p.isConsignment ? '<span class="badge tt">Titip jual</span>' : ''}
+              <span class="badge">${isOutOfStock ? 'Habis' : `${remainingCapacity} ${unitLabel}`}</span>
+              ${renderIcon(theme.icon, '', '48px')}
+              <span class="qb ${isSelected ? 'on' : ''}">${inCartQty}</span>
             </div>
             <div class="pos-product-body">
-              <div>
-                <h3 class="pos-product-name">${p.name}</h3>
-                ${vendorBadge ? `<div style="margin-top: 4px;">${vendorBadge}</div>` : ''}
-              </div>
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: var(--s-2);">
+              <div class="pos-product-name">${escapeHtml(p.name)}</div>
+              <div class="pos-product-row">
                 <span class="pos-product-price">${formatRupiah(p.price)}</span>
-                <span class="pos-icon-btn pos-icon-btn-outlined" style="width: 32px; height: 32px;">
-                  ${renderIcon('plus', '', 16)}
-                </span>
+                ${p.isConsignment 
+                  ? `<span class="pos-product-titip" title="Titipan ${escapeHtml(p.vendor || 'Mitra')}">Titipan ${escapeHtml(p.vendor || 'Mitra')}</span>`
+                  : `<span class="pos-product-meta">${p.ingredients ? p.ingredients.length : 0} bahan</span>`}
               </div>
             </div>
-          </div>
+          </button>
         `;
       }).join('');
     }
@@ -3603,6 +3636,7 @@
       const countEl = document.getElementById('cart-item-count');
       const totalEl = document.getElementById('cart-total-price');
       const btnCheckout = document.getElementById('btn-checkout');
+      const btnClear = document.getElementById('btn-clear-cart');
       const mobileBar = document.getElementById('mobile-cart-bar');
       const mobileBadge = document.getElementById('mobile-cart-badge');
       const mobileTotal = document.getElementById('mobile-cart-total-text');
@@ -3613,6 +3647,7 @@
       if (countEl) countEl.innerText = `${totalItems} unit`;
       if (totalEl) totalEl.innerText = formatRupiah(totalAmount);
       if (btnCheckout) btnCheckout.disabled = (appState.cart.length === 0);
+      if (btnClear) btnClear.disabled = (appState.cart.length === 0);
 
       if (mobileBar && mobileBadge && mobileTotal) {
         if (appState.cart.length > 0) {
@@ -3626,10 +3661,10 @@
 
       if (appState.cart.length === 0) {
         container.innerHTML = `
-          <div class="pos-empty-state" style="padding: var(--s-6) var(--s-3); flex: 1;">
-            <div class="pos-empty-icon-circle">${renderIcon('pos', '', 36)}</div>
-            <h3 class="pos-empty-title">Keranjang masih kosong</h3>
-            <p class="pos-empty-desc">Pilih produk di menu sebelah kiri untuk menambahkan ke pesanan aktif.</p>
+          <div class="blank">
+            <div class="bag">${renderIcon('bag', '', 36)}</div>
+            <b>Keranjang masih kosong</b>
+            Pilih produk di menu sebelah kiri<br>untuk menambahkan pesanan.
           </div>
         `;
         return;
@@ -3638,23 +3673,16 @@
       container.innerHTML = appState.cart.map(item => {
         const prod = findCatalogItemById(item.productId);
         if (!prod) return '';
-        const itemSubtotal = prod.price * item.qty;
         return `
-          <div class="pos-cart-item">
-            <div style="flex: 1; min-width: 0;">
-              <div style="display: flex; align-items: center; gap: var(--s-1);">
-                <h4 style="font-size: var(--t-md); font-weight: 500; color: var(--on); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${prod.name}</h4>
-                ${prod.isConsignment ? `<span class="pos-badge pos-badge-ter">Titip</span>` : ''}
-              </div>
-              <span style="font-size: var(--t-sm); color: var(--on-v); font-variant-numeric: tabular-nums;">${formatRupiah(prod.price)}</span>
+          <div class="line">
+            <div class="n">
+              ${escapeHtml(prod.name)}
+              <span>${formatRupiah(prod.price)}</span>
             </div>
-            <div class="pos-cart-stepper">
-              <button type="button" onclick="updateCartQty('${prod.id}', -1)" class="pos-stepper-btn" title="Kurangi jumlah">−</button>
-              <span class="pos-stepper-qty">${item.qty}</span>
-              <button type="button" onclick="updateCartQty('${prod.id}', 1)" class="pos-stepper-btn" title="Tambah jumlah">+</button>
-            </div>
-            <div style="text-align: right; min-width: 72px;">
-              <span style="font-size: var(--t-md); font-weight: 700; color: var(--on); font-variant-numeric: tabular-nums;">${formatRupiah(itemSubtotal)}</span>
+            <div class="qty">
+              <button type="button" onclick="updateCartQty('${prod.id}', -1)" aria-label="Kurangi" class="ripple-surface">${renderIcon('minus', '', 18)}</button>
+              <span>${item.qty}</span>
+              <button type="button" onclick="updateCartQty('${prod.id}', 1)" aria-label="Tambah" class="ripple-surface">${renderIcon('plus', '', 18)}</button>
             </div>
           </div>
         `;
