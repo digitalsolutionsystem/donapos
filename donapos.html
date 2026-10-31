@@ -176,9 +176,7 @@
       position: fixed;
       inset: 0;
       background: var(--scrim);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: var(--z-scrim);
+      z-index: calc(var(--z-drawer) - 1);
       opacity: 0;
       pointer-events: none;
       transition: opacity var(--d-base) cubic-bezier(0.16, 1, 0.3, 1);
