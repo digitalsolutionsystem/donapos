@@ -1354,39 +1354,37 @@
     <!-- TAB 2: PRODUK & FORMULA RESEP (BOM) -->
     <!-- ============================================== -->
     <section id="tab-products" class="tab-content hidden space-y-4">
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-4 rounded-xl border-2 border-stone-300 shadow-sm sticky-menu-header">
+      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
-          <button onclick="toggleSidebar()" class="p-2 sm:p-2.5 rounded-lg bg-stone-950 hover:bg-stone-850 text-amber-400 border-2 border-stone-900 flex items-center justify-center cursor-pointer transition shrink-0 shadow-xs hover:scale-105 active:scale-95" title="Buka / Tutup Sidebar Menu (Pintasan: M)">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-            </svg>
+          <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
           </button>
           <div>
-            <h2 class="text-sm font-black text-stone-950 uppercase tracking-tight">Katalog Produk & Formula BOM</h2>
-            <p class="text-xs text-stone-700 font-semibold mt-0.5">Pemetaan pemotongan otomatis bahan mentah untuk tiap unit yang terjual. Klik tombol resep bahan untuk melihat rincian.</p>
+            <h2 class="text-sm font-bold text-[var(--on-surf)]">Katalog produk & formula BOM</h2>
+            <p class="text-xs text-[var(--on-surf-v)] font-normal mt-0.5">Pemetaan pemotongan otomatis bahan mentah untuk tiap unit yang terjual</p>
           </div>
         </div>
-        <button onclick="openProductModal()" class="px-4 py-2 bg-stone-950 hover:bg-stone-850 text-white rounded-lg text-xs font-extrabold flex items-center gap-2 transition border-2 border-stone-950 shadow-2xs">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-          <span>Tambah Menu Baru</span>
+        <button type="button" onclick="openProductModal()" class="pos-btn-filled text-xs flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+          <span>Tambah menu baru</span>
         </button>
       </div>
 
       <!-- Table Container -->
-      <div class="bg-white rounded-xl border-2 border-stone-300 shadow-sm overflow-hidden">
+      <div class="pos-table-container">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-stone-800 min-w-[700px]">
-            <thead class="bg-stone-100 text-stone-950 font-black border-b-2 border-stone-300 uppercase tracking-wider text-[11px]">
+          <table class="pos-table min-w-[700px]">
+            <thead>
               <tr>
-                <th class="px-5 py-3.5">Produk</th>
-                <th class="px-5 py-3.5">Kategori</th>
-                <th class="px-5 py-3.5 font-mono">Harga Jual</th>
-                <th class="px-5 py-3.5">Formula Bahan Baku (BOM)</th>
-                <th class="px-5 py-3.5">Estimasi Siap Jual</th>
-                <th class="px-5 py-3.5 text-right">Tindakan</th>
+                <th>Produk</th>
+                <th>Kategori</th>
+                <th class="tabular-nums">Harga jual</th>
+                <th>Formula bahan baku (BOM)</th>
+                <th>Estimasi siap jual</th>
+                <th class="text-right">Tindakan</th>
               </tr>
             </thead>
-            <tbody id="product-table-body" class="divide-y-2 divide-stone-200">
+            <tbody id="product-table-body">
               <!-- Render by JS -->
             </tbody>
           </table>
@@ -2552,53 +2550,45 @@
     </div>
   </div>
 
-  <!-- MODAL: PRODUK & RESEP FORM (REDESIGNED: LEBAR, JELAS, SOFT) -->
-  <div id="product-modal" class="fixed inset-0 bg-stone-950/70 z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto backdrop-blur-xs">
-    <div class="bg-white w-full max-w-4xl rounded-2xl shadow-2xl border-2 border-[#2a2f38] overflow-hidden my-4 max-h-[92vh] flex flex-col transition-all">
+  <!-- MODAL: PRODUK & RESEP FORM -->
+  <div id="product-modal" class="pos-scrim hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="pos-dialog max-w-4xl w-full p-0 overflow-hidden my-4 max-h-[92vh] flex flex-col">
       
-      <!-- Modal Header: Bersih, Soft & Elegan -->
-      <div class="px-5 py-4 border-b border-stone-200/90 flex items-center justify-between bg-gradient-to-r from-stone-50 via-white to-stone-50">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-[#26a2ad]/10 text-[#1e757e] flex items-center justify-center border border-[#26a2ad]/25 shrink-0 shadow-2xs">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
-          </div>
-          <div>
-            <h3 id="product-modal-title" class="font-black text-stone-950 text-sm tracking-tight uppercase">Tambah Menu Baru</h3>
-            <p class="text-xs text-stone-500 font-medium mt-0.5">Lengkapi informasi produk dan atur takaran bahan baku (Formula BOM)</p>
-          </div>
+      <!-- Modal Header -->
+      <div class="pos-modal-header bg-[var(--surf-hi)] border-b border-[var(--out-v)]">
+        <div>
+          <h3 id="product-modal-title" class="font-bold text-[var(--on-surf)] text-sm">Tambah menu baru</h3>
+          <p class="text-xs text-[var(--on-surf-v)] font-normal mt-0.5">Lengkapi informasi produk dan atur takaran bahan baku (formula BOM)</p>
         </div>
-        <button type="button" onclick="closeProductModal()" class="w-8 h-8 rounded-lg text-stone-400 hover:text-stone-950 hover:bg-stone-100 flex items-center justify-center transition cursor-pointer" title="Tutup">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button type="button" onclick="closeProductModal()" class="pos-icon-btn" title="Tutup">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
       <!-- Form Body (Scrollable) -->
-      <form id="product-form" onsubmit="handleProductSubmit(event)" class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-5 bg-[#fafbfc]">
+      <form id="product-form" onsubmit="handleProductSubmit(event)" class="p-4 sm:p-6 overflow-y-auto flex-1 space-y-4">
         <input type="hidden" id="product-form-id">
         <input type="hidden" id="product-image-data">
 
         <!-- KARTU 1: DATA UTAMA MENU -->
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-stone-200/90 shadow-xs space-y-4">
-          <div class="flex items-center gap-2 pb-2.5 border-b border-stone-100">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#26a2ad]"></span>
-            <span class="text-xs font-black uppercase tracking-wider text-stone-800">1. Data Dasar Menu</span>
-          </div>
+        <div class="pos-card p-4 sm:p-5 space-y-4">
+          <h4 class="text-xs font-bold text-[var(--on-surf)] pb-2 border-b border-[var(--out-v)]">1. Data dasar menu</h4>
 
           <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
             <!-- Upload Foto Menu (md:col-span-4) -->
             <div class="md:col-span-4 flex flex-col gap-2">
-              <label class="block text-xs font-bold text-stone-800">Foto Menu</label>
+              <label class="block text-xs font-medium text-[var(--on-surf)]">Foto menu</label>
               <div class="flex items-center gap-3">
-                <div id="product-img-preview-box" class="w-20 h-20 sm:w-22 sm:h-22 rounded-xl border-2 border-dashed border-stone-300 bg-stone-50 flex items-center justify-center overflow-hidden shrink-0 group relative hover:border-[#26a2ad] transition">
+                <div id="product-img-preview-box" class="w-20 h-20 sm:w-22 sm:h-22 rounded-xl border-2 border-dashed border-[var(--out-v)] bg-[var(--surf-hi)] flex items-center justify-center overflow-hidden shrink-0 group relative">
                   <img id="product-img-preview" src="" class="w-full h-full object-cover hidden" alt="Preview">
-                  <div id="product-img-placeholder" class="flex flex-col items-center justify-center text-stone-400 text-[10px] font-bold text-center p-1">
-                    <svg class="w-6 h-6 mb-1 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                    <span>No Pic</span>
+                  <div id="product-img-placeholder" class="flex flex-col items-center justify-center text-[var(--on-surf-v)] text-[10px] font-medium text-center p-1">
+                    <svg class="w-6 h-6 mb-1 text-[var(--on-surf-v)]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                    <span>Tanpa foto</span>
                   </div>
                 </div>
                 <div class="flex-1 min-w-0">
-                  <input type="file" id="product-image-file" accept="image/*" onchange="handleImageUpload(event)" class="block w-full text-xs text-stone-700 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border file:border-stone-300 file:text-xs file:font-bold file:bg-stone-100 file:text-stone-900 hover:file:bg-stone-200 cursor-pointer">
-                  <span class="text-[10px] text-stone-500 font-medium mt-1 block">JPG, PNG, WEBP (Maks. 2MB)</span>
+                  <input type="file" id="product-image-file" accept="image/*" onchange="handleImageUpload(event)" class="block w-full text-xs text-[var(--on-surf-v)] file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-2 file:border-[var(--out-v)] file:text-xs file:font-medium file:bg-[var(--surf-hi)] file:text-[var(--on-surf)] hover:file:bg-[var(--surf-hi-max)] cursor-pointer">
+                  <span class="text-[10px] text-[var(--on-surf-v)] font-normal mt-1 block">JPG, PNG, WEBP (maksimal 2MB)</span>
                 </div>
               </div>
             </div>
@@ -2606,20 +2596,20 @@
             <!-- Nama, Kategori & Harga (md:col-span-8) -->
             <div class="md:col-span-8 space-y-3">
               <div>
-                <label class="block text-xs font-bold text-stone-800 mb-1">Nama Menu *</label>
-                <input type="text" id="product-name" required placeholder="Contoh: Flat White 8oz / Donat Coklat Melted" class="w-full px-3.5 py-2 text-xs font-bold border border-stone-300 rounded-xl focus:outline-none focus:border-[#26a2ad] focus:ring-2 focus:ring-[#26a2ad]/15 text-stone-950 bg-white transition">
+                <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Nama menu *</label>
+                <input type="text" id="product-name" required placeholder="Contoh: Flat White 8oz / Donat Coklat Melted" class="pos-input text-xs w-full">
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-bold text-stone-800 mb-1">Kategori *</label>
-                  <input type="text" id="product-category" required placeholder="Contoh: Kopi, Tea, Pastry" class="w-full px-3.5 py-2 text-xs font-bold border border-stone-300 rounded-xl focus:outline-none focus:border-[#26a2ad] focus:ring-2 focus:ring-[#26a2ad]/15 text-stone-950 bg-white transition">
+                  <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Kategori *</label>
+                  <input type="text" id="product-category" required placeholder="Contoh: Kopi, Tea, Pastry" class="pos-input text-xs w-full">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-stone-800 mb-1">Harga Jual (Rp) *</label>
+                  <label class="block text-xs font-medium text-[var(--on-surf)] mb-1">Harga jual (Rp) *</label>
                   <div class="relative flex items-center">
-                    <span class="absolute left-3 font-mono font-bold text-xs text-stone-500">Rp</span>
-                    <input type="number" id="product-price" required min="0" step="500" placeholder="28000" class="w-full pl-9 pr-3.5 py-2 font-mono text-xs font-black border border-stone-300 rounded-xl focus:outline-none focus:border-[#26a2ad] focus:ring-2 focus:ring-[#26a2ad]/15 text-stone-950 bg-white transition">
+                    <span class="absolute left-3 tabular-nums font-medium text-xs text-[var(--on-surf-v)]">Rp</span>
+                    <input type="number" id="product-price" required min="0" step="500" placeholder="28000" class="pos-input pl-9 text-xs tabular-nums font-bold w-full">
                   </div>
                 </div>
               </div>
@@ -2628,30 +2618,27 @@
         </div>
 
         <!-- KARTU 2: RINCIAN FORMULA BAHAN BAKU (BOM) -->
-        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-stone-200/90 shadow-xs space-y-3.5">
-          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-stone-100">
-            <div class="flex items-center gap-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h4 class="text-xs font-black uppercase tracking-wider text-stone-800">2. Rincian Formula Bahan Baku (BOM / Resep)</h4>
-                  <span id="recipe-count-badge" class="px-2 py-0.5 text-[10px] font-mono font-bold bg-[#26a2ad]/10 text-[#1e757e] rounded-full">0 Bahan</span>
-                </div>
-                <p class="text-[11px] text-stone-500 font-medium mt-0.5">Bahan mentah di bawah otomatis terpotong dari gudang setiap kali 1 porsi menu ini terjual.</p>
+        <div class="pos-card p-4 sm:p-5 space-y-3.5">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b border-[var(--out-v)]">
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="text-xs font-bold text-[var(--on-surf)]">2. Rincian formula bahan baku (BOM / resep)</h4>
+                <span id="recipe-count-badge" class="pos-badge-neutral text-[10px]">0 bahan baku</span>
               </div>
+              <p class="text-[11px] text-[var(--on-surf-v)] font-normal mt-0.5">Bahan mentah di bawah otomatis terpotong dari gudang setiap kali 1 porsi menu ini terjual.</p>
             </div>
-            <button type="button" onclick="addRecipeIngredientRow()" class="px-3.5 py-1.5 bg-[#26a2ad] hover:bg-[#1f8791] text-white rounded-xl text-xs font-black flex items-center gap-1.5 transition shadow-xs cursor-pointer active:scale-95 shrink-0">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-              <span>Tambah Bahan</span>
+            <button type="button" onclick="addRecipeIngredientRow()" class="pos-btn-tonal text-xs py-1.5 px-3 flex items-center gap-1.5 shrink-0">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+              <span>Tambah bahan</span>
             </button>
           </div>
 
           <!-- Table Header Strip (Desktop View) -->
-          <div class="hidden sm:grid sm:grid-cols-12 gap-3 px-3.5 py-2 bg-stone-50/90 rounded-xl border border-stone-200/70 text-[11px] font-bold text-stone-500 uppercase tracking-wider">
-            <div class="col-span-6">Pilihan Bahan Mentah / Baku</div>
-            <div class="col-span-3">Takaran / Resep (per 1 Porsi)</div>
-            <div class="col-span-2">Sisa Stok Gudang</div>
-            <div class="col-span-1 text-center">Aksi</div>
+          <div class="hidden sm:grid sm:grid-cols-12 gap-3 px-3.5 py-2 bg-[var(--surf-hi)] rounded-lg text-[11px] font-bold text-[var(--on-surf-v)]">
+            <div class="col-span-6">Pilihan bahan mentah / baku</div>
+            <div class="col-span-3">Takaran / resep (per 1 porsi)</div>
+            <div class="col-span-2">Sisa stok gudang</div>
+            <div class="col-span-1 text-center">Tindakan</div>
           </div>
 
           <!-- Recipe Rows Container -->
@@ -2662,17 +2649,17 @@
 
         <!-- Footer Actions -->
         <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div class="text-[11px] text-stone-500 font-medium flex items-center gap-1.5">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <div class="text-[11px] text-[var(--on-surf-v)] font-normal flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--p)]"></span>
             <span>Formula BOM otomatis menghitung estimasi porsi siap jual di kasir.</span>
           </div>
           <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
-            <button type="button" onclick="closeProductModal()" class="px-4 py-2 border border-stone-300 rounded-xl text-xs font-bold text-stone-700 hover:bg-stone-100 transition cursor-pointer">
+            <button type="button" onclick="closeProductModal()" class="pos-btn-outlined text-xs py-2 px-4">
               Batal
             </button>
-            <button type="submit" class="px-5 py-2 bg-gradient-to-r from-stone-900 to-stone-950 hover:from-black hover:to-stone-900 text-white rounded-xl text-xs font-black uppercase tracking-wide transition shadow-sm cursor-pointer active:scale-95 flex items-center gap-1.5">
-              <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-              <span>Simpan Menu</span>
+            <button type="submit" class="pos-btn-filled text-xs py-2 px-5 flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+              <span>Simpan menu</span>
             </button>
           </div>
         </div>
@@ -2821,53 +2808,48 @@
   <!-- Toast Notification Dock -->
   <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col space-y-2 pointer-events-none"></div>
 
-  <!-- MODAL: RINCIAN FORMULA RESEP (BOM POPUP) (REDESIGNED: LEBAR, JELAS, SOFT) -->
-  <div id="recipe-detail-modal" class="fixed inset-0 bg-stone-950/70 z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto backdrop-blur-xs">
-    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl border-2 border-[#2a2f38] overflow-hidden flex flex-col max-h-[88vh] transition-all">
+  <!-- MODAL: RINCIAN FORMULA RESEP (BOM POPUP) -->
+  <div id="recipe-detail-modal" class="pos-scrim hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="pos-dialog max-w-2xl w-full p-0 overflow-hidden flex flex-col max-h-[88vh]">
       
       <!-- Header -->
-      <div class="px-5 py-4 border-b border-stone-200/90 flex items-center justify-between bg-gradient-to-r from-stone-50 via-white to-stone-50">
-        <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-[#26a2ad]/10 text-[#1e757e] flex items-center justify-center border border-[#26a2ad]/25 shrink-0 shadow-2xs">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
-          </div>
-          <div>
-            <h3 id="recipe-modal-product-name" class="font-black text-stone-950 text-sm uppercase tracking-tight">Rincian Formula Bahan</h3>
-            <span id="recipe-modal-product-category" class="text-xs font-mono font-bold text-stone-500">Kategori Menu</span>
-          </div>
+      <div class="pos-modal-header bg-[var(--surf-hi)] border-b border-[var(--out-v)]">
+        <div>
+          <h3 id="recipe-modal-product-name" class="font-bold text-[var(--on-surf)] text-sm">Rincian formula bahan</h3>
+          <span id="recipe-modal-product-category" class="text-xs text-[var(--on-surf-v)] font-normal">Kategori menu</span>
         </div>
-        <button type="button" onclick="closeRecipeDetailModal()" class="w-8 h-8 rounded-lg text-stone-400 hover:text-stone-950 hover:bg-stone-100 flex items-center justify-center transition cursor-pointer" title="Tutup">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button type="button" onclick="closeRecipeDetailModal()" class="pos-icon-btn" title="Tutup">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <div class="p-5 overflow-y-auto space-y-4 bg-[#fafbfc]">
-        <!-- Summary Cards (Soft & Clear) -->
+      <div class="p-4 sm:p-5 overflow-y-auto space-y-4">
+        <!-- Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div class="bg-white p-3.5 rounded-xl border border-stone-200/90 shadow-2xs flex items-center justify-between">
+          <div class="pos-kpi-card p-3.5 flex items-center justify-between">
             <div>
-              <span class="text-[11px] font-bold text-stone-500 uppercase block tracking-wider">Kapasitas Siap Jual</span>
-              <span id="recipe-modal-servings" class="font-mono font-black text-stone-950 text-lg mt-0.5 block">0 Porsi</span>
+              <span class="text-[11px] font-medium text-[var(--on-surf-v)] block">Kapasitas siap jual</span>
+              <span id="recipe-modal-servings" class="tabular-nums font-bold text-[var(--on-surf)] text-lg mt-0.5 block">0 porsi</span>
             </div>
-            <span class="p-2 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/70">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="pos-badge-ok p-2 rounded-xl">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </span>
           </div>
-          <div class="bg-white p-3.5 rounded-xl border border-stone-200/90 shadow-2xs flex items-center justify-between">
+          <div class="pos-kpi-card p-3.5 flex items-center justify-between">
             <div>
-              <span class="text-[11px] font-bold text-stone-500 uppercase block tracking-wider">Harga Menu Kasir</span>
-              <span id="recipe-modal-price" class="font-mono font-black text-stone-950 text-lg mt-0.5 block">Rp 0</span>
+              <span class="text-[11px] font-medium text-[var(--on-surf-v)] block">Harga menu kasir</span>
+              <span id="recipe-modal-price" class="tabular-nums font-bold text-[var(--on-surf)] text-lg mt-0.5 block">Rp 0</span>
             </div>
-            <span class="p-2 rounded-xl bg-[#26a2ad]/10 text-[#1e757e] border border-[#26a2ad]/20">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="pos-badge-neutral p-2 rounded-xl">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </span>
           </div>
         </div>
 
-        <div class="bg-white p-4 rounded-xl border border-stone-200/90 shadow-2xs space-y-3">
-          <div class="flex items-center justify-between pb-2 border-b border-stone-100">
-            <span class="text-xs font-bold uppercase tracking-wider text-stone-700">Komposisi Takaran per 1 Porsi:</span>
-            <span class="text-[11px] text-stone-500 font-mono">Dideplesi otomatis per transaksi</span>
+        <div class="pos-card p-4 space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-[var(--out-v)]">
+            <span class="text-xs font-bold text-[var(--on-surf)]">Komposisi takaran per 1 porsi:</span>
+            <span class="text-[11px] text-[var(--on-surf-v)]">Dideplesi otomatis per transaksi</span>
           </div>
           <div id="recipe-modal-ingredients-list" class="space-y-2.5">
             <!-- Dynamic ingredient rows via JS -->
@@ -2875,8 +2857,8 @@
         </div>
       </div>
 
-      <div class="px-5 py-3.5 bg-stone-50 border-t border-stone-200/90 flex justify-end">
-        <button type="button" onclick="closeRecipeDetailModal()" class="px-5 py-2 bg-stone-950 hover:bg-stone-850 text-white rounded-xl text-xs font-bold transition shadow-xs cursor-pointer">
+      <div class="px-5 py-3.5 bg-[var(--surf-hi)] border-t border-[var(--out-v)] flex justify-end">
+        <button type="button" onclick="closeRecipeDetailModal()" class="pos-btn-filled text-xs py-2 px-5">
           Tutup
         </button>
       </div>
@@ -4912,7 +4894,7 @@
 
       const listContainer = document.getElementById('recipe-modal-ingredients-list');
       if (!product.ingredients || product.ingredients.length === 0) {
-        listContainer.innerHTML = `<div class="p-4 text-center text-xs text-stone-500 font-medium bg-stone-50 border border-stone-200/80 rounded-xl">Menu ini tidak menggunakan pemotongan bahan baku gudang otomatis.</div>`;
+        listContainer.innerHTML = `<div class="p-4 text-center text-xs text-[var(--on-surf-v)] font-medium bg-[var(--surf-hi)] border border-[var(--out-v)] rounded-xl">Menu ini tidak menggunakan pemotongan bahan baku gudang otomatis.</div>`;
       } else {
         listContainer.innerHTML = product.ingredients.map(ing => {
           const stock = appState.stockItems.find(s => s.id === ing.stockId);
@@ -4923,19 +4905,19 @@
           const isDepleted = currentStock <= 0;
 
           return `
-            <div class="p-3.5 rounded-xl border border-stone-200/90 bg-[#fbfcfd] hover:bg-white flex items-center justify-between gap-3 text-xs shadow-2xs transition-all">
+            <div class="p-3 rounded-xl border border-[var(--out-v)] bg-[var(--surf-c-lowest)] flex items-center justify-between gap-3 text-xs">
               <div class="flex-1 min-w-0">
                 <div class="flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full ${isDepleted ? 'bg-rose-500' : 'bg-emerald-500'} shrink-0 shadow-xs"></span>
-                  <span class="font-extrabold text-stone-900 truncate text-xs">${stockName}</span>
+                  <span class="w-2.5 h-2.5 rounded-full ${isDepleted ? 'bg-[var(--err)]' : 'bg-[var(--p)]'} shrink-0"></span>
+                  <span class="font-bold text-[var(--on-surf)] truncate text-xs">${stockName}</span>
                 </div>
-                <div class="text-[11px] text-stone-600 font-mono font-medium mt-1">
-                  Sisa stok gudang: <strong class="text-stone-950 font-bold">${currentStock} ${stockUnit}</strong> · Cukup untuk <span class="font-bold ${availablePortions <= 0 ? 'text-rose-600' : 'text-emerald-700'}">~${availablePortions} porsi</span>
+                <div class="text-[11px] text-[var(--on-surf-v)] font-normal mt-1">
+                  Sisa stok gudang: <strong class="text-[var(--on-surf)] font-bold tabular-nums">${currentStock} ${stockUnit}</strong> · Cukup untuk <span class="font-bold tabular-nums ${availablePortions <= 0 ? 'text-[var(--err)]' : 'text-[var(--p)]'}">~${availablePortions} porsi</span>
                 </div>
               </div>
               <div class="text-right shrink-0">
-                <span class="px-3 py-1 rounded-lg bg-stone-100 border border-stone-200/80 font-mono font-black text-stone-900 text-xs block">${ing.amount} ${stockUnit}</span>
-                <span class="text-[10px] text-stone-500 font-mono uppercase font-bold mt-0.5 block">per 1 porsi</span>
+                <span class="px-3 py-1 rounded-lg bg-[var(--surf-hi)] border border-[var(--out-v)] tabular-nums font-bold text-[var(--on-surf)] text-xs block">${ing.amount} ${stockUnit}</span>
+                <span class="text-[10px] text-[var(--on-surf-v)] uppercase font-medium mt-0.5 block">per 1 porsi</span>
               </div>
             </div>
           `;
@@ -4951,32 +4933,32 @@
     function renderProductTable() {
       const tbody = document.getElementById('product-table-body');
       if (appState.products.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="6" class="px-5 py-8 text-center text-stone-700 font-mono font-bold">Belum ada produk.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="px-5 py-8 text-center text-[var(--on-surf-v)] font-medium text-xs">Belum ada data produk</td></tr>`;
         return;
       }
       tbody.innerHTML = appState.products.map(p => {
         const maxServings = calculateMaxServings(p);
         const ingredientCount = p.ingredients ? p.ingredients.length : 0;
         let bomCellContent = ingredientCount === 0 
-          ? `<span class="text-stone-600 text-xs font-bold italic">Tanpa resep bahan</span>`
-          : `<button type="button" onclick="openRecipeDetailModal('${p.id}')" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-black border-2 border-stone-400 bg-stone-100 text-stone-950 hover:bg-stone-950 hover:text-white hover:border-stone-950 transition shadow-2xs"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg><span>${ingredientCount} Bahan Baku</span></button>`;
+          ? `<span class="text-[var(--on-surf-v)] text-xs italic">Tanpa resep bahan</span>`
+          : `<button type="button" onclick="openRecipeDetailModal('${p.id}')" class="pos-btn-tonal text-xs py-1 px-2.5 inline-flex items-center gap-1.5"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg><span>${ingredientCount} bahan baku</span></button>`;
 
         return `
-          <tr class="hover:bg-stone-50 transition align-middle">
+          <tr class="hover:bg-[var(--surf-hi)] transition">
             <td class="px-5 py-3.5 flex items-center space-x-3">
-              <img src="${p.image || 'https://placehold.co/100x100/e7e5e4/78716c?text=Menu'}" class="w-11 h-11 rounded-lg object-cover border-2 border-stone-300 shrink-0" onerror="this.src='https://placehold.co/100x100/e7e5e4/78716c?text=Menu'">
+              <img src="${p.image || 'https://placehold.co/100x100/e7e5e4/78716c?text=Menu'}" class="w-11 h-11 rounded-lg object-cover border-2 border-[var(--out-v)] shrink-0" onerror="this.src='https://placehold.co/100x100/e7e5e4/78716c?text=Menu'">
               <div>
-                <span class="font-black text-stone-950 block text-xs">${p.name}</span>
-                <span class="text-[10px] font-mono font-bold text-stone-600">${p.id}</span>
+                <span class="font-bold text-[var(--on-surf)] block text-xs">${p.name}</span>
+                <span class="text-[10px] tabular-nums text-[var(--on-surf-v)]">${p.id}</span>
               </div>
             </td>
-            <td class="px-5 py-3.5"><span class="text-xs font-mono font-black bg-stone-100 text-stone-900 px-2.5 py-1 rounded border-2 border-stone-300">${p.category}</span></td>
-            <td class="px-5 py-3.5 font-mono font-black text-stone-950">${formatRupiah(p.price)}</td>
+            <td class="px-5 py-3.5"><span class="pos-badge-neutral text-xs">${p.category}</span></td>
+            <td class="px-5 py-3.5 tabular-nums font-bold text-xs text-[var(--on-surf)]">${formatRupiah(p.price)}</td>
             <td class="px-5 py-3.5">${bomCellContent}</td>
-            <td class="px-5 py-3.5 font-mono"><span class="text-xs font-black px-2.5 py-1 rounded border-2 ${maxServings <= 0 ? 'bg-rose-100 text-rose-950 border-rose-400 font-black' : 'bg-stone-100 text-stone-950 border-stone-300'}">${maxServings <= 0 ? 'Habis (0)' : `${maxServings} Porsi`}</span></td>
+            <td class="px-5 py-3.5"><span class="text-xs ${maxServings <= 0 ? 'pos-badge-err' : 'pos-badge-ok'}">${maxServings <= 0 ? 'Habis (0)' : `${maxServings} porsi`}</span></td>
             <td class="px-5 py-3.5 text-right space-x-1.5 whitespace-nowrap">
-              <button onclick="editProduct('${p.id}')" class="px-3 py-1 bg-stone-900 text-white hover:bg-stone-950 border-2 border-stone-950 rounded-md transition text-xs font-black cursor-pointer">Edit</button>
-              <button onclick="deleteProduct('${p.id}')" class="px-3 py-1 bg-rose-800 text-white hover:bg-rose-900 border-2 border-rose-950 rounded-md transition text-xs font-black cursor-pointer">Hapus</button>
+              <button type="button" onclick="editProduct('${p.id}')" class="pos-btn-outlined text-xs py-1 px-2.5">Edit</button>
+              <button type="button" onclick="deleteProduct('${p.id}')" class="pos-btn-text text-xs py-1 px-2.5 text-[var(--err)] hover:bg-[var(--err-c)]">Hapus</button>
             </td>
           </tr>
         `;
@@ -4988,7 +4970,7 @@
       const badge = document.getElementById('recipe-count-badge');
       if (container && badge) {
         const count = container.querySelectorAll('.recipe-row-card').length;
-        badge.innerText = `${count} Bahan Baku`;
+        badge.innerText = `${count} bahan baku`;
       }
     }
 
@@ -5019,13 +5001,13 @@
         unitBadge.innerText = stock.unit || 'unit';
         if (statusText) statusText.innerText = `Sisa: ${stock.qty} ${stock.unit}`;
         if (dot) {
-          dot.className = `recipe-stock-status-dot w-2 h-2 rounded-full shrink-0 ${stock.qty <= 0 ? 'bg-rose-500' : 'bg-emerald-500'}`;
+          dot.className = `recipe-stock-status-dot w-2 h-2 rounded-full shrink-0 ${stock.qty <= 0 ? 'bg-[var(--err)]' : 'bg-[var(--p)]'}`;
         }
       } else {
         unitBadge.innerText = 'satuan';
         if (statusText) statusText.innerText = 'Pilih bahan baku';
         if (dot) {
-          dot.className = 'recipe-stock-status-dot w-2 h-2 rounded-full shrink-0 bg-stone-300';
+          dot.className = 'recipe-stock-status-dot w-2 h-2 rounded-full shrink-0 bg-[var(--out-v)]';
         }
       }
       updateRecipeRowEstimate(rowId);
@@ -5045,7 +5027,7 @@
       if (stock && amount > 0) {
         const portions = Math.floor(stock.qty / amount);
         estimateText.innerText = `~${portions} porsi`;
-        estimateText.className = `recipe-stock-estimate-text text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${portions <= 0 ? 'bg-rose-50 text-rose-700 border-rose-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200'}`;
+        estimateText.className = `recipe-stock-estimate-text text-[10px] tabular-nums font-bold px-1.5 py-0.5 rounded ${portions <= 0 ? 'pos-badge-err' : 'pos-badge-ok'}`;
       } else {
         estimateText.innerText = '';
         estimateText.className = 'recipe-stock-estimate-text hidden';
@@ -5059,7 +5041,7 @@
         document.getElementById('product-image-data').value = '';
         document.getElementById('product-img-preview').classList.add('hidden');
         document.getElementById('product-img-placeholder').classList.remove('hidden');
-        document.getElementById('product-modal-title').innerText = 'Tambah Menu Baru';
+        document.getElementById('product-modal-title').innerText = 'Tambah menu baru';
         document.getElementById('recipe-rows-container').innerHTML = '';
         addRecipeIngredientRow();
       }
@@ -5099,46 +5081,46 @@
       const selectedStock = appState.stockItems.find(s => s.id === selectedStockId);
       const unitText = selectedStock ? selectedStock.unit : 'satuan';
       const stockQtyText = selectedStock ? `Sisa: ${selectedStock.qty} ${selectedStock.unit}` : 'Pilih bahan baku';
-      const dotClass = selectedStock ? (selectedStock.qty <= 0 ? 'bg-rose-500' : 'bg-emerald-500') : 'bg-stone-300';
+      const dotClass = selectedStock ? (selectedStock.qty <= 0 ? 'bg-[var(--err)]' : 'bg-[var(--p)]') : 'bg-[var(--out-v)]';
       const portions = (selectedStock && amount > 0) ? Math.floor(selectedStock.qty / amount) : 0;
       const estimateClass = (selectedStock && amount > 0) 
-        ? `text-[10px] font-mono font-bold px-1.5 py-0.5 rounded border ${portions <= 0 ? 'bg-rose-50 text-rose-700 border-rose-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200'}`
+        ? `recipe-stock-estimate-text text-[10px] tabular-nums font-bold px-1.5 py-0.5 rounded ${portions <= 0 ? 'pos-badge-err' : 'pos-badge-ok'}`
         : 'hidden';
       const estimateText = (selectedStock && amount > 0) ? `~${portions} porsi` : '';
 
       const rowHtml = document.createElement('div');
       rowHtml.id = rowId;
-      rowHtml.className = 'recipe-row-card bg-[#fcfdfe] hover:bg-white p-3 rounded-xl border border-stone-200/90 hover:border-stone-300 transition-all flex flex-col sm:grid sm:grid-cols-12 gap-2.5 sm:gap-3 sm:items-center shadow-2xs';
+      rowHtml.className = 'recipe-row-card bg-[var(--surf-c-lowest)] p-3 rounded-xl border border-[var(--out-v)] flex flex-col sm:grid sm:grid-cols-12 gap-2.5 sm:gap-3 sm:items-center';
       rowHtml.innerHTML = `
         <div class="sm:col-span-6">
-          <label class="sm:hidden text-[11px] font-bold text-stone-600 mb-1 block">Bahan Baku Gudang:</label>
+          <label class="sm:hidden text-[11px] font-bold text-[var(--on-surf)] mb-1 block">Bahan baku gudang:</label>
           <div class="relative">
-            <select onchange="updateRecipeRowUnit('${rowId}')" class="recipe-stock-select w-full text-xs font-bold text-stone-900 border border-stone-300 rounded-xl px-3 py-2 bg-white focus:outline-none focus:border-[#26a2ad] focus:ring-2 focus:ring-[#26a2ad]/15 transition">
-              <option value="">-- Pilih Bahan Baku Gudang --</option>
+            <select onchange="updateRecipeRowUnit('${rowId}')" class="recipe-stock-select pos-select w-full text-xs">
+              <option value="">-- Pilih bahan baku gudang --</option>
               ${stockOptions}
             </select>
           </div>
         </div>
 
         <div class="sm:col-span-3">
-          <label class="sm:hidden text-[11px] font-bold text-stone-600 mb-1 block">Takaran per 1 Porsi:</label>
+          <label class="sm:hidden text-[11px] font-bold text-[var(--on-surf)] mb-1 block">Takaran per 1 porsi:</label>
           <div class="relative flex items-center">
-            <input type="number" min="0.0001" step="any" required placeholder="0" value="${amount}" oninput="updateRecipeRowEstimate('${rowId}')" class="recipe-stock-amount w-full text-xs font-mono font-bold text-stone-900 border border-stone-300 rounded-xl pl-3 pr-14 py-2 bg-white focus:outline-none focus:border-[#26a2ad] focus:ring-2 focus:ring-[#26a2ad]/15 transition">
-            <span class="recipe-stock-unit-badge absolute right-2 text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-stone-100 text-stone-600 border border-stone-200 uppercase">${unitText}</span>
+            <input type="number" min="0.0001" step="any" required placeholder="0" value="${amount}" oninput="updateRecipeRowEstimate('${rowId}')" class="recipe-stock-amount pos-input w-full text-xs tabular-nums font-bold pl-3 pr-14">
+            <span class="recipe-stock-unit-badge absolute right-2 text-[10px] tabular-nums font-bold px-2 py-0.5 rounded pos-badge-neutral uppercase">${unitText}</span>
           </div>
         </div>
 
         <div class="sm:col-span-2 flex items-center justify-between sm:justify-start gap-1.5">
           <div class="flex items-center gap-1.5 min-w-0">
             <span class="recipe-stock-status-dot w-2 h-2 rounded-full shrink-0 ${dotClass}"></span>
-            <span class="recipe-stock-status-text text-[11px] font-mono font-semibold text-stone-600 truncate">${stockQtyText}</span>
+            <span class="recipe-stock-status-text text-[11px] tabular-nums font-medium text-[var(--on-surf-v)] truncate">${stockQtyText}</span>
           </div>
-          <span class="recipe-stock-estimate-text ${estimateClass}">${estimateText}</span>
+          <span class="${estimateClass}">${estimateText}</span>
         </div>
 
         <div class="sm:col-span-1 flex justify-end sm:justify-center">
-          <button type="button" onclick="removeRecipeRow('${rowId}')" class="p-2 text-stone-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition cursor-pointer" title="Hapus Bahan Ini">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          <button type="button" onclick="removeRecipeRow('${rowId}')" class="pos-icon-btn text-[var(--err)] hover:bg-[var(--err-c)]" title="Hapus bahan ini">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
           </button>
         </div>
       `;
@@ -5204,7 +5186,7 @@
         preview.classList.add('hidden');
         document.getElementById('product-img-placeholder').classList.remove('hidden');
       }
-      document.getElementById('product-modal-title').innerText = 'Edit Menu & Formula BOM';
+      document.getElementById('product-modal-title').innerText = 'Edit menu & formula BOM';
 
       const container = document.getElementById('recipe-rows-container');
       container.innerHTML = '';
