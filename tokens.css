@@ -263,8 +263,8 @@ button {
 
 /* Focus Visible Standar */
 :focus-visible {
-  outline: var(--bw-focus) solid var(--pri) !important;
-  outline-offset: 2px !important;
+  outline: var(--bw-focus) solid var(--pri);
+  outline-offset: 2px;
 }
 
 /* Efek Sentuh Native: Ripple Feedback (±0.55s) */

@@ -106,7 +106,7 @@
 /* 5. Destructive: Latar --err, teks putih/on-err-c */
 .pos-btn-destructive {
   background-color: var(--err);
-  color: #ffffff;
+  color: var(--on-pri);
   border: var(--bw) solid var(--err);
 }
 @media (hover: hover) {
@@ -119,9 +119,9 @@
 /* Disabled State */
 .pos-btn:disabled,
 .pos-btn[aria-disabled="true"] {
-  opacity: 0.45 !important;
-  pointer-events: none !important;
-  box-shadow: none !important;
+  opacity: 0.45;
+  pointer-events: none;
+  box-shadow: none;
 }
 
 /* Loading State */
@@ -208,13 +208,13 @@
 }
 
 .pos-input-container:focus-within {
-  border-color: var(--pri) !important;
-  border-width: var(--bw-focus) !important;
+  border-color: var(--pri);
+  border-width: var(--bw-focus);
   outline: none;
 }
 
 .pos-input-container.is-error {
-  border-color: var(--err) !important;
+  border-color: var(--err);
 }
 
 .pos-input {
@@ -267,8 +267,8 @@
   outline: none;
 }
 .pos-textarea:focus {
-  border-color: var(--pri) !important;
-  border-width: var(--bw-focus) !important;
+  border-color: var(--pri);
+  border-width: var(--bw-focus);
 }
 
 .pos-select {
@@ -285,8 +285,8 @@
   outline: none;
 }
 .pos-select:focus {
-  border-color: var(--pri) !important;
-  border-width: var(--bw-focus) !important;
+  border-color: var(--pri);
+  border-width: var(--bw-focus);
 }
 
 .pos-field-error-msg {
@@ -355,9 +355,9 @@
   }
 }
 .pos-chip.is-selected {
-  background-color: var(--pri) !important;
-  color: var(--on-pri) !important;
-  border-color: var(--pri) !important;
+  background-color: var(--pri);
+  color: var(--on-pri);
+  border-color: var(--pri);
 }
 
 /* Badge Status Pil */
@@ -508,7 +508,7 @@
 }
 
 .pos-table tbody tr.is-selected {
-  background-color: var(--sec-c) !important;
+  background-color: var(--sec-c);
 }
 
 .pos-table tbody td {
@@ -558,8 +558,8 @@
   user-select: none;
 }
 .pos-segmented-btn.is-active {
-  background-color: var(--sec-c) !important;
-  color: var(--on-sec-c) !important;
+  background-color: var(--sec-c);
+  color: var(--on-sec-c);
   font-weight: 700;
 }
 
@@ -827,12 +827,12 @@
   }
 }
 .pos-product-card.is-selected {
-  background-color: var(--sec-c) !important;
-  border-color: var(--pri) !important;
+  background-color: var(--sec-c);
+  border-color: var(--pri);
 }
 .pos-product-card.is-out-of-stock {
-  opacity: 0.45 !important;
-  pointer-events: none !important;
+  opacity: 0.45;
+  pointer-events: none;
 }
 
 .pos-product-thumb {

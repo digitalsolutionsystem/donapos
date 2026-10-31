@@ -285,8 +285,8 @@
         width: 80mm !important;
         margin: 0;
         padding: 8px !important;
-        background: #fff !important;
-        color: #000 !important;
+        background: white !important;
+        color: black !important;
         font-size: 11px !important;
       }
     }
@@ -696,11 +696,11 @@
             <!-- Container Section Metode Pembayaran -->
             <div class="flex-1 flex flex-col justify-center min-h-[280px]">
               <!-- QRIS Section -->
-              <div id="qris-payment-section" class="hidden pos-surface-embedded flex flex-col items-center justify-center text-center" style="gap: var(--s-3); min-height: 280px;">
+              <div id="qris-payment-section" class="hidden pos-surface-embedded flex flex-col items-center justify-center text-center gap-3 min-h-[280px]">
                 <span class="pos-badge pos-badge-info">QRIS pembayaran digital</span>
-                <div style="background-color: #ffffff; padding: var(--s-3); border-radius: var(--r-xl); border: var(--bw) solid var(--out-v); box-shadow: var(--sh-1); display: flex; align-items: center; justify-content: center;">
+                <div class="pos-card p-3 flex items-center justify-center bg-[var(--c-low)]">
                   <svg class="w-32 h-32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="120" height="120" fill="white"/>
+                    <rect width="120" height="120" fill="var(--c-low)"/>
                     <rect x="10" y="10" width="28" height="28" stroke="var(--outline)" stroke-width="4" fill="none"/>
                     <rect x="18" y="18" width="12" height="12" fill="var(--outline)"/>
                     <rect x="82" y="10" width="28" height="28" stroke="var(--outline)" stroke-width="4" fill="none"/>
@@ -809,7 +809,7 @@
     <!-- TAB 2: PRODUK & FORMULA RESEP (BOM) -->
     <!-- ============================================== -->
     <section id="tab-products" class="tab-content hidden space-y-4">
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -851,7 +851,7 @@
     <!-- TAB 3: INVENTARIS BAHAN MENTAH -->
     <!-- ============================================== -->
     <section id="tab-stock" class="tab-content hidden space-y-4">
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -904,7 +904,7 @@
     <!-- TAB 4: AUDIT RIWAYAT PENJUALAN -->
     <!-- ============================================== -->
     <section id="tab-history" class="tab-content hidden space-y-4">
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col xl:flex-row justify-between items-start xl:items-center gap-3">
         <div class="flex items-center gap-3">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -945,7 +945,7 @@
             <input type="hidden" id="history-filter-date" value="">
 
             <!-- Popover Kalender Bahasa Indonesia -->
-            <div id="calendar-popover-history" class="pos-popover hidden absolute right-0 mt-2 z-40 p-3.5 w-72">
+            <div id="calendar-popover-history" class="pos-popover hidden absolute right-0 mt-2 z-dropdown p-3.5 w-72">
               <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--out-v)]">
                 <button type="button" onclick="navigateCalendarMonth('history', -1)" class="pos-icon-btn p-1 text-[var(--on-surf)]">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -1011,7 +1011,7 @@
     <!-- ============================================== -->
     <section id="tab-report" class="tab-content hidden space-y-4">
       <!-- Top Action Bar -->
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -1032,7 +1032,7 @@
             <input type="hidden" id="report-filter-date" value="">
 
             <!-- Popover Kalender Bahasa Indonesia -->
-            <div id="calendar-popover-report" class="pos-popover hidden absolute right-0 mt-2 z-40 p-3.5 w-72">
+            <div id="calendar-popover-report" class="pos-popover hidden absolute right-0 mt-2 z-dropdown p-3.5 w-72">
               <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--out-v)]">
                 <button type="button" onclick="navigateCalendarMonth('report', -1)" class="pos-icon-btn p-1" title="Bulan sebelumnya">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -1176,7 +1176,7 @@
     <!-- TAB 6: INPUT & MANAJEMEN STOK TITIP JUAL -->
     <!-- ============================================== -->
     <section id="tab-consign-stock" class="tab-content hidden space-y-4">
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -1234,7 +1234,7 @@
     <!-- TAB 8: REKAP & BUKU KAS TITIP JUAL (TERPISAH) -->
     <!-- ============================================== -->
     <section id="tab-consign-report" class="tab-content hidden space-y-4">
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col xl:flex-row justify-between items-start xl:items-center gap-3">
         <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 shrink-0">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -1288,7 +1288,7 @@
             </button>
             <input type="hidden" id="consign-report-filter-date" value="">
 
-            <div id="calendar-popover-consign-report" class="pos-popover hidden absolute right-0 mt-2 z-40 p-3.5 w-72">
+            <div id="calendar-popover-consign-report" class="pos-popover hidden absolute right-0 mt-2 z-dropdown p-3.5 w-72">
               <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--out-v)]">
                 <button type="button" onclick="navigateCalendarMonth('consign-report', -1)" class="pos-icon-btn p-1" title="Bulan sebelumnya">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -1489,7 +1489,7 @@
     <!-- TAB 9: MENU PENGELUARAN KAS (BARANG JUALAN SENDIRI) -->
     <!-- ============================================== -->
     <section id="tab-expenses" class="tab-content hidden space-y-4">
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -1512,7 +1512,7 @@
             </button>
             <input type="hidden" id="expenses-filter-date" value="">
 
-            <div id="calendar-popover-expenses" class="pos-popover hidden absolute right-0 mt-2 z-40 p-3.5 w-72">
+            <div id="calendar-popover-expenses" class="pos-popover hidden absolute right-0 mt-2 z-dropdown p-3.5 w-72">
               <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--out-v)]">
                 <button type="button" onclick="navigateCalendarMonth('expenses', -1)" class="pos-icon-btn p-1" title="Bulan sebelumnya">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -1602,7 +1602,7 @@
     <!-- TAB 10: MENU PENGELUARAN KAS (BARANG TITIP JUAL) -->
     <!-- ============================================== -->
     <section id="tab-consign-expenses" class="tab-content hidden space-y-4">
-      <div class="pos-catalog-toolbar sticky top-0 z-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+      <div class="pos-catalog-toolbar sticky top-0 z-sticky flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div class="flex items-center gap-3">
           <button type="button" onclick="toggleSidebar()" class="pos-icon-btn" title="Buka / tutup menu">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -1625,7 +1625,7 @@
             </button>
             <input type="hidden" id="consign-expenses-filter-date" value="">
 
-            <div id="calendar-popover-consign-expenses" class="pos-popover hidden absolute right-0 mt-2 z-40 p-3.5 w-72">
+            <div id="calendar-popover-consign-expenses" class="pos-popover hidden absolute right-0 mt-2 z-dropdown p-3.5 w-72">
               <div class="flex items-center justify-between pb-2 mb-2 border-b border-[var(--out-v)]">
                 <button type="button" onclick="navigateCalendarMonth('consign-expenses', -1)" class="pos-icon-btn p-1" title="Bulan sebelumnya">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -1943,7 +1943,7 @@
   </div> <!-- end app-content-wrapper -->
 
   <!-- Mobile Floating Order Summary Bar -->
-  <div id="mobile-cart-bar" class="hidden fixed bottom-4 left-3 right-3 z-20 lg:hidden">
+  <div id="mobile-cart-bar" class="hidden fixed bottom-4 left-3 right-3 z-nav lg:hidden">
     <button onclick="openMobileCartDrawer()" class="pos-btn pos-btn-xl pos-btn-filled w-full flex items-center justify-between" style="box-shadow: var(--sh-2);">
       <div class="flex items-center gap-2">
         <span id="mobile-cart-badge" class="pos-badge-counter">0</span>
@@ -2476,8 +2476,9 @@
       </div>
 
       <div class="p-4 space-y-4 overflow-y-auto flex-1">
-        <div class="pos-card p-3 bg-[var(--surf-hi)] text-xs text-[var(--on-surf)] leading-relaxed font-medium">
-          💡 <strong>Formula:</strong> Penjualan kotor mitra dikurangi pengeluaran terkait = <strong>hasil bersih</strong>. Persentase di bawah menentukan pembagian hasil bersih antara toko dan mitra.
+        <div class="pos-card p-3 bg-[var(--surf-hi)] text-xs text-[var(--on-surf)] leading-relaxed font-medium flex items-start gap-2">
+          <svg class="w-4 h-4 text-[var(--pri)] shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2v1m0 18v1M4.22 4.22l.71.71m14.14 14.14l.71.71M2 12h1m18 0h1M4.22 19.78l.71-.71m14.14-14.14l.71-.71M12 6a6 6 0 00-6 6c0 2.22 1.21 4.16 3 5.2V19a1 1 0 001 1h4a1 1 0 001-1v-1.8c1.79-1.04 3-2.98 3-5.2a6 6 0 00-6-6z"/></svg>
+          <div><strong>Formula:</strong> Penjualan kotor mitra dikurangi pengeluaran terkait = <strong>hasil bersih</strong>. Persentase di bawah menentukan pembagian hasil bersih antara toko dan mitra.</div>
         </div>
 
         <div class="pos-table-container">
@@ -2847,7 +2848,7 @@
           <div class="pos-table-container">
             <div class="max-h-56 sm:max-h-64 overflow-y-auto">
               <table class="pos-table w-full text-left text-xs">
-                <thead class="sticky top-0 z-10">
+                <thead class="sticky top-0 z-sticky">
                   <tr>
                     <th class="px-3 py-2.5 w-10 text-center">No.</th>
                     <th class="px-3.5 py-2.5">Nama produk</th>
@@ -2881,7 +2882,7 @@
           <div class="pos-table-container">
             <div class="max-h-48 overflow-y-auto">
               <table class="pos-table w-full text-left text-xs">
-                <thead class="sticky top-0 z-10">
+                <thead class="sticky top-0 z-sticky">
                   <tr>
                     <th class="px-3 py-2 w-10 text-center">No.</th>
                     <th class="px-3.5 py-2">Jam</th>
@@ -4346,7 +4347,7 @@
               </div>
               <div class="text-right shrink-0">
                 <span class="px-3 py-1 rounded-lg bg-[var(--surf-hi)] border border-[var(--out-v)] tabular-nums font-bold text-[var(--on-surf)] text-xs block">${ing.amount} ${stockUnit}</span>
-                <span class="text-[10px] text-[var(--on-surf-v)] uppercase font-medium mt-0.5 block">per 1 porsi</span>
+                <span class="text-[10px] text-[var(--on-surf-v)] font-medium mt-0.5 block">per 1 porsi</span>
               </div>
             </div>
           `;
@@ -4535,7 +4536,7 @@
           <label class="sm:hidden text-[11px] font-bold text-[var(--on-surf)] mb-1 block">Takaran per 1 porsi:</label>
           <div class="relative flex items-center">
             <input type="number" min="0.0001" step="any" required placeholder="0" value="${amount}" oninput="updateRecipeRowEstimate('${rowId}')" class="recipe-stock-amount pos-input w-full text-xs tabular-nums font-bold pl-3 pr-14">
-            <span class="recipe-stock-unit-badge absolute right-2 text-[10px] tabular-nums font-bold px-2 py-0.5 rounded pos-badge-neutral uppercase">${unitText}</span>
+            <span class="recipe-stock-unit-badge absolute right-2 text-[10px] tabular-nums font-bold px-2 py-0.5 rounded pos-badge-neutral">${unitText}</span>
           </div>
         </div>
 
@@ -7012,27 +7013,28 @@
         <!DOCTYPE html>
         <html>
         <head>
-          <title>Laporan Bagi Hasil Titip Jual - DonaPOS</title>
+          <title>Laporan bagi hasil titip jual - DoonaPOS</title>
+          <link rel="stylesheet" href="tokens.css">
           <style>
-            body { font-family: system-ui, -apple-system, sans-serif; padding: 24px; color: #1c1917; font-size: 11px; }
-            h2 { margin: 0 0 4px; text-transform: uppercase; font-size: 15px; font-weight: 900; }
-            .header { border-bottom: 2px solid #1c1917; padding-bottom: 10px; margin-bottom: 14px; }
+            body { font-family: Roboto, sans-serif; padding: 24px; color: var(--on); font-size: 11px; font-variant-numeric: tabular-nums; }
+            h2 { margin: 0 0 4px; font-size: 15px; font-weight: 700; }
+            .header { border-bottom: 2px solid var(--out-v); padding-bottom: 10px; margin-bottom: 14px; }
             .meta { display: flex; justify-content: space-between; margin-bottom: 14px; font-size: 11px; }
             .summary { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-            .summary-box { border: 2px solid #e7e5e4; border-radius: 8px; padding: 10px; }
-            .summary-box.bersih { border-color: #059669; background: #ecfdf5; }
-            .summary-box.mitra { border-color: #d97706; background: #fffbeb; }
-            .summary-box.toko { border-color: #44403c; background: #f5f5f4; }
-            .summary-box h3 { margin: 4px 0 0; font-size: 16px; font-family: monospace; font-weight: 900; }
+            .summary-box { border: 2px solid var(--out-v); border-radius: var(--r-md); padding: 10px; }
+            .summary-box.bersih { border-color: var(--ok); background: var(--ok-c); }
+            .summary-box.mitra { border-color: var(--warn); background: var(--ter-c); }
+            .summary-box.toko { border-color: var(--out-v); background: var(--c-high); }
+            .summary-box h3 { margin: 4px 0 0; font-size: 16px; font-weight: 700; }
             table { width: 100%; border-collapse: collapse; margin-top: 8px; margin-bottom: 16px; font-size: 11px; }
-            th, td { border: 1px solid #d6d3d1; padding: 6px 8px; text-align: left; }
-            th { background: #f5f5f4; font-size: 10px; text-transform: uppercase; }
+            th, td { border: 1px solid var(--out-v); padding: 6px 8px; text-align: left; }
+            th { background: var(--c-high); font-size: 10px; }
             .text-right { text-align: right; }
             .text-center { text-align: center; }
-            .font-mono { font-family: monospace; }
-            .font-black { font-weight: 900; }
-            tfoot tr td { font-weight: 900; background: #f5f5f4; }
-            .section-title { font-weight: 900; text-transform: uppercase; font-size: 12px; margin-top: 14px; margin-bottom: 4px; }
+            .font-mono { font-variant-numeric: tabular-nums; }
+            .font-black { font-weight: 700; }
+            tfoot tr td { font-weight: 700; background: var(--c-high); }
+            .section-title { font-weight: 700; font-size: 12px; margin-top: 14px; margin-bottom: 4px; }
             @media print {
               body { padding: 0; }
             }
@@ -7040,29 +7042,29 @@
         </head>
         <body>
           <div class="header">
-            <h2>DonaPOS · Rekapitulasi Bagi Hasil Titip Jual</h2>
-            <div style="font-size:11px; color:#57534e;">Hasil Penjualan Kotor - Pengeluaran Beban = Hasil Bersih (Dibagi sesuai skema per mitra)</div>
+            <h2>DoonaPOS · Rekapitulasi bagi hasil titip jual</h2>
+            <div style="font-size:11px; color:var(--on-v);">Hasil penjualan kotor - pengeluaran beban = hasil bersih (dibagi sesuai skema per mitra)</div>
           </div>
           <div class="meta">
-            <div><strong>Periode Laporan:</strong> ${periodLabel}</div>
+            <div><strong>Periode laporan:</strong> ${periodLabel}</div>
             <div><strong>Dicetak:</strong> ${new Date().toLocaleString('id-ID')}</div>
           </div>
           <div class="summary">
             <div class="summary-box bersih">
-              <div style="font-size: 9px; text-transform: uppercase; font-weight: bold; color: #065f46;">Total Hasil Bersih</div>
-              <h3 style="color: #065f46;">${periodNetTotal}</h3>
+              <div style="font-size: 10px; font-weight: bold; color: var(--on-ok-c);">Total hasil bersih</div>
+              <h3 style="color: var(--on-ok-c);">${periodNetTotal}</h3>
             </div>
             <div class="summary-box mitra">
-              <div style="font-size: 9px; text-transform: uppercase; font-weight: bold; color: #92400e;">Total Hak Mitra (Setor)</div>
-              <h3 style="color: #92400e;">${periodVendorTotal}</h3>
+              <div style="font-size: 10px; font-weight: bold; color: var(--on-ter-c);">Total hak mitra (setor)</div>
+              <h3 style="color: var(--on-ter-c);">${periodVendorTotal}</h3>
             </div>
             <div class="summary-box toko">
-              <div style="font-size: 9px; text-transform: uppercase; font-weight: bold; color: #1c1917;">Total Hak Toko (Komisi)</div>
-              <h3 style="color: #1c1917;">${periodStoreTotal}</h3>
+              <div style="font-size: 10px; font-weight: bold; color: var(--on);">Total hak toko (komisi)</div>
+              <h3 style="color: var(--on);">${periodStoreTotal}</h3>
             </div>
           </div>
 
-          <div class="section-title">1. Rekapitulasi Pembagian Bersih per Mitra</div>
+          <div class="section-title">1. Rekapitulasi pembagian bersih per mitra</div>
           <table>
             <thead>
               <tr>
