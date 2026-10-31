@@ -119,53 +119,35 @@
       height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #edf0f5;
+      background: var(--c-high);
     }
     ::-webkit-scrollbar-thumb {
-      background: #78716c;
-      border-radius: 999px;
+      background: var(--outline);
+      border-radius: var(--r-pill);
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #44403c;
+      background: var(--on-v);
     }
 
     /* ======================================================== */
-    /* FLOATING MODERN SIDEBAR — GLASSMORPHISM + SPRING ANIM    */
+    /* MATERIAL 3 NAVIGATION DRAWER & APP SHELL                 */
     /* ======================================================== */
     #app-sidebar {
-      /* Floating panel — detached from edges */
       position: fixed;
-      left: 12px;
-      top: 12px;
-      bottom: 12px;
-      width: 260px;
+      left: var(--s-3);
+      top: var(--s-3);
+      bottom: var(--s-3);
+      width: 270px;
       max-width: calc(100vw - 24px);
-      z-index: 50;
-
-      /* Glassmorphism & Elevated Depth */
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(20px) saturate(1.6);
-      -webkit-backdrop-filter: blur(20px) saturate(1.6);
-
-      /* Shape & depth */
-      border-radius: 20px;
-      border: 1.5px solid #2a2f38;
-      box-shadow:
-        0 14px 38px -4px rgba(15, 23, 42, 0.16),
-        0 4px 12px -2px rgba(15, 23, 42, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 1);
-
-      /* Spring animation */
-      transition:
-        transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-        opacity 0.25s ease;
-
-      /* Hidden by default */
+      z-index: var(--z-drawer);
+      background-color: var(--c);
+      border: var(--bw) solid var(--out-v);
+      border-radius: var(--r-xl);
+      box-shadow: var(--sh-2);
+      transition: transform var(--d-slow) cubic-bezier(0.34, 1.56, 0.64, 1), opacity var(--d-base) ease;
       transform: translateX(calc(-100% - 24px));
       opacity: 0;
       pointer-events: none;
-
-      /* Layout */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -173,14 +155,12 @@
       user-select: none;
     }
 
-    /* Sidebar visible state */
     #app-sidebar.sidebar-open {
       transform: translateX(0);
       opacity: 1;
       pointer-events: auto;
     }
 
-    /* Scrollbar inside sidebar */
     #app-sidebar ::-webkit-scrollbar {
       width: 4px;
     }
@@ -188,629 +168,106 @@
       background: transparent;
     }
     #app-sidebar ::-webkit-scrollbar-thumb {
-      background: rgba(168, 162, 158, 0.4);
-      border-radius: 999px;
-    }
-    #app-sidebar ::-webkit-scrollbar-thumb:hover {
-      background: rgba(120, 113, 108, 0.5);
+      background: var(--outline);
+      border-radius: var(--r-pill);
     }
 
-    /* Backdrop overlay */
     #sidebar-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(28, 25, 23, 0.45);
+      background: var(--scrim);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
-      z-index: 45;
+      z-index: var(--z-scrim);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity var(--d-base) cubic-bezier(0.16, 1, 0.3, 1);
     }
     #sidebar-backdrop.active {
       opacity: 1;
       pointer-events: auto;
     }
 
-    /* ======================================================== */
-    /* NAVIGATION BUTTON STYLING & SOLID COLOR ACTIVE SYSTEM    */
-    /* ======================================================== */
     .nav-btn {
-      position: relative !important;
-      border: 1.5px solid transparent !important;
-      border-radius: 10px !important;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      position: relative;
+      width: 100%;
+      height: var(--touch-lg);
+      border-radius: var(--r-pill);
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+      padding: 0 var(--s-4);
+      color: var(--on-v);
+      font-size: var(--t-sm);
+      font-weight: 500;
+      background: transparent;
+      border: 2px solid transparent;
+      transition: background-color var(--d-fast) ease, color var(--d-fast) ease, transform var(--d-fast) ease;
       touch-action: manipulation;
+      cursor: pointer;
     }
+
     .nav-btn:hover {
-      background-color: #f5f5f4 !important;
-      color: #0c0a09 !important;
-      transform: translateX(3px) !important;
+      background-color: var(--c-high);
+      color: var(--on);
     }
-    .nav-btn:hover .nav-icon-box {
-      transform: scale(1.08) !important;
-      box-shadow: 0 3px 8px -1px rgba(0, 0, 0, 0.25) !important;
-    }
+
     .nav-btn:active {
-      transform: translateX(1px) scale(0.98) !important;
-    }
-    .nav-btn .nav-icon-box {
-      border-radius: 8px !important;
-      transition: transform 0.2s ease, box-shadow 0.2s ease !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12) !important;
+      transform: scale(0.98);
     }
 
-    /* Active menu item enhancements: solid left indicator bar + active indicator dot */
     .nav-btn.active-menu-item {
-      border-left-width: 3.5px !important;
-      padding-left: calc(0.625rem - 2px) !important;
-      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.05) !important;
+      background-color: var(--sec-c);
+      color: var(--on-sec-c);
+      font-weight: 700;
+      border-color: var(--out-v);
     }
-    .nav-btn.active-menu-item::after {
-      content: '';
-      position: absolute;
-      right: 12px;
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background-color: currentColor;
-      box-shadow: 0 0 6px currentColor;
+
+    .nav-btn.consign-item.active-menu-item {
+      background-color: var(--ter-c);
+      color: var(--on-ter-c);
+      border-color: var(--out-v);
     }
+
+    .nav-btn .nav-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--c-high);
+      color: var(--on);
+      border: 1px solid var(--out-v);
+      transition: transform var(--d-fast) ease;
+    }
+
     .nav-btn.active-menu-item .nav-icon-box {
-      transform: scale(1.06) !important;
-      box-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.25) !important;
+      background: var(--pri);
+      color: var(--on-pri);
+      border-color: var(--pri);
     }
 
-    /* 1. Kasir (POS) - Solid Emerald */
-    #nav-pos .nav-icon-box {
-      background-color: #059669 !important;
-      border: 1px solid #047857 !important;
-      color: #ffffff !important;
-    }
-    #nav-pos.active-menu-item {
-      background-color: #ecfdf5 !important;
-      border-color: #059669 !important;
-    }
-    #nav-pos.active-menu-item .nav-title {
-      color: #065f46 !important;
-      font-weight: 800 !important;
+    .nav-btn.consign-item.active-menu-item .nav-icon-box {
+      background: var(--warn);
+      color: var(--on-pri);
+      border-color: var(--warn);
     }
 
-    /* 2. Katalog & Resep - Solid Indigo */
-    #nav-products .nav-icon-box {
-      background-color: #4f46e5 !important;
-      border: 1px solid #4338ca !important;
-      color: #ffffff !important;
-    }
-    #nav-products.active-menu-item {
-      background-color: #eef2ff !important;
-      border-color: #4f46e5 !important;
-    }
-    #nav-products.active-menu-item .nav-title {
-      color: #3730a3 !important;
-      font-weight: 800 !important;
-    }
-
-    /* 3. Bahan Mentah - Solid Amber/Orange */
-    #nav-stock .nav-icon-box {
-      background-color: #d97706 !important;
-      border: 1px solid #b45309 !important;
-      color: #ffffff !important;
-    }
-    #nav-stock.active-menu-item {
-      background-color: #fffbeb !important;
-      border-color: #d97706 !important;
-    }
-    #nav-stock.active-menu-item .nav-title {
-      color: #92400e !important;
-      font-weight: 800 !important;
-    }
-
-    /* 4. Riwayat Transaksi - Solid Slate/Charcoal */
-    #nav-history .nav-icon-box {
-      background-color: #475569 !important;
-      border: 1px solid #334155 !important;
-      color: #ffffff !important;
-    }
-    #nav-history.active-menu-item {
-      background-color: #f1f5f9 !important;
-      border-color: #475569 !important;
-    }
-    #nav-history.active-menu-item .nav-title {
-      color: #1e293b !important;
-      font-weight: 800 !important;
-    }
-
-    /* 5. Buku Kas - Solid Teal */
-    #nav-report .nav-icon-box {
-      background-color: #0d9488 !important;
-      border: 1px solid #0f766e !important;
-      color: #ffffff !important;
-    }
-    #nav-report.active-menu-item {
-      background-color: #f0fdfa !important;
-      border-color: #0d9488 !important;
-    }
-    #nav-report.active-menu-item .nav-title {
-      color: #115e59 !important;
-      font-weight: 800 !important;
-    }
-
-    /* 6. Pengeluaran - Solid Rose/Red */
-    #nav-expenses .nav-icon-box {
-      background-color: #e11d48 !important;
-      border: 1px solid #be123c !important;
-      color: #ffffff !important;
-    }
-    #nav-expenses.active-menu-item {
-      background-color: #fff1f2 !important;
-      border-color: #e11d48 !important;
-    }
-    #nav-expenses.active-menu-item .nav-title {
-      color: #9f1239 !important;
-      font-weight: 800 !important;
-    }
-
-    /* 7. Fluktuasi Omzet - Solid Purple/Violet */
-    #nav-fluctuation .nav-icon-box {
-      background-color: #7c3aed !important;
-      border: 1px solid #6d28d9 !important;
-      color: #ffffff !important;
-    }
-    #nav-fluctuation.active-menu-item {
-      background-color: #faf5ff !important;
-      border-color: #7c3aed !important;
-    }
-    #nav-fluctuation.active-menu-item .nav-title {
-      color: #5b21b6 !important;
-      font-weight: 800 !important;
-    }
-
-    /* 8. Stok Titip - Solid Warm Amber */
-    #nav-consign-stock .nav-icon-box {
-      background-color: #b45309 !important;
-      border: 1px solid #92400e !important;
-      color: #ffffff !important;
-    }
-    #nav-consign-stock.active-menu-item {
-      background-color: #fffbeb !important;
-      border-color: #b45309 !important;
-    }
-    #nav-consign-stock.active-menu-item .nav-title {
-      color: #78350f !important;
-      font-weight: 800 !important;
-    }
-
-    /* 9. Rekap Titip - Solid Emerald */
-    #nav-consign-report .nav-icon-box {
-      background-color: #059669 !important;
-      border: 1px solid #047857 !important;
-      color: #ffffff !important;
-    }
-    #nav-consign-report.active-menu-item {
-      background-color: #ecfdf5 !important;
-      border-color: #059669 !important;
-    }
-    #nav-consign-report.active-menu-item .nav-title {
-      color: #065f46 !important;
-      font-weight: 800 !important;
-    }
-
-    /* 10. Setoran Titip - Solid Crimson */
-    #nav-consign-expenses .nav-icon-box {
-      background-color: #be123c !important;
-      border: 1px solid #9f1239 !important;
-      color: #ffffff !important;
-    }
-    #nav-consign-expenses.active-menu-item {
-      background-color: #fff1f2 !important;
-      border-color: #be123c !important;
-    }
-    #nav-consign-expenses.active-menu-item .nav-title {
-      color: #881337 !important;
-      font-weight: 800 !important;
-    }
-
-    /* ======================================================== */
-    /* UNIVERSAL GLASSMORPHISM & DEPTH AESTHETICS SYSTEM        */
-    /* ======================================================== */
-    :root {
-      --glass-bg: #ffffff;
-      --glass-bg-subtle: #f8fafc;
-      --glass-bg-modal: #ffffff;
-      /* Charcoal Outline System - Uniform 1.5px across all parts of menus */
-      --charcoal-outline: #2a2f38;
-      --charcoal-outline-subtle: #475569;
-      --outline-width: 1.5px;
-      --glass-border: var(--charcoal-outline);
-      --glass-border-strong: #1b1f26;
-      /* Multi-layered 3D elevation shadow for authentic 'timbul' depth */
-      --glass-shadow:
-        0 1px 2px 0 rgba(15, 23, 42, 0.05),
-        0 4px 14px -2px rgba(15, 23, 42, 0.08),
-        0 12px 24px -4px rgba(15, 23, 42, 0.04),
-        inset 0 1px 0 #ffffff;
-      --glass-shadow-lg:
-        0 4px 6px -1px rgba(15, 23, 42, 0.05),
-        0 14px 28px -4px rgba(15, 23, 42, 0.12),
-        0 24px 48px -8px rgba(15, 23, 42, 0.06),
-        inset 0 1px 0 #ffffff;
-      --glass-shadow-hover:
-        0 4px 8px -2px rgba(15, 23, 42, 0.06),
-        0 12px 24px -4px rgba(15, 23, 42, 0.12),
-        0 20px 36px -6px rgba(15, 23, 42, 0.06),
-        inset 0 1px 0 #ffffff;
-      --glass-blur: blur(16px);
-      --glass-blur-modal: blur(28px);
-    }
-
-    body {
-      background-color: #eaedf2 !important;
-      background-image:
-        radial-gradient(at 0% 0%, rgba(226, 232, 240, 0.6) 0px, transparent 45%),
-        radial-gradient(at 100% 0%, rgba(230, 235, 243, 0.5) 0px, transparent 45%),
-        radial-gradient(at 50% 100%, rgba(222, 228, 237, 0.5) 0px, transparent 50%),
-        radial-gradient(at 80% 50%, rgba(228, 233, 242, 0.4) 0px, transparent 40%) !important;
-      background-attachment: fixed !important;
-      background-size: 100% 100% !important;
-      min-height: 100vh !important;
-    }
-
-    /* Ambient soft glow canvas */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.4) 0%, transparent 40%);
-    }
-
-    /* Universal Elevated Panels & Cards with crisp charcoal outline & timbul depth */
-    .bg-white:not(#print-area):not(#print-area *):not(#pos-cart-panel):not(input):not(select):not(textarea):not(button):not(kbd):not(span) {
-      background: var(--glass-bg) !important;
-      border: 1.5px solid var(--charcoal-outline) !important;
-      box-shadow: var(--glass-shadow) !important;
-      transition: box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    /* Defined charcoal outlines across all card containers and panels */
-    .border-2.border-stone-300,
-    .border-2.border-stone-400,
-    .border.border-stone-300,
-    .border.border-stone-200,
-    .border-2.border-stone-200,
-    .border-2.border-amber-400,
-    .border-2.border-\[\#2a2f38\],
-    .border-2.border-stone-800,
-    .border-2.border-stone-900,
-    .border-2.border-stone-950 {
-      border: 1.5px solid var(--charcoal-outline) !important;
-      box-shadow: var(--glass-shadow) !important;
-    }
-
-    /* Charcoal dividers for internal headers & footers within panels */
-    .border-b-2.border-stone-300,
-    .border-b-2.border-stone-200,
-    .border-b-2.border-\[\#2a2f38\] {
-      border-bottom: 1.5px solid var(--charcoal-outline) !important;
-    }
-    .border-t-2.border-stone-300,
-    .border-t-2.border-stone-200,
-    .border-t-2.border-\[\#2a2f38\] {
-      border-top: 1.5px solid var(--charcoal-outline) !important;
-    }
-
-    /* Mobile header outline */
-    header.lg\:hidden {
-      border-bottom: 1.5px solid var(--charcoal-outline) !important;
-    }
-
-    /* ======================================================== */
-    /* UNIVERSAL STICKY MENU HEADERS SYSTEM                     */
-    /* Menjaga header di semua menu tetap menempel di atas saat */
-    /* halaman digulir (desktop top: 0, mobile top: 56px)       */
-    /* ======================================================== */
+    /* Universal sticky header */
     .sticky-menu-header {
-      position: -webkit-sticky !important;
-      position: sticky !important;
-      top: 0 !important;
-      z-index: 25 !important;
-      background: #ffffff !important;
-      box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.1) !important;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+      background-color: var(--c);
+      border-bottom: var(--bw) solid var(--out-v);
     }
     @media (max-width: 1023px) {
       .sticky-menu-header {
-        top: 3.5rem !important; /* 56px di bawah header bar mobile */
+        top: 3.5rem;
       }
-    }
-
-    /* ======================================================== */
-    /* STANDARDIZED OUTLINE THICKNESS: 1.5px SEMUA BAGIAN MENU  */
-    /* Menyamakan ketebalan outline di seluruh tombol, badge,   */
-    /* pembatas, dan kartu menu agar seragam dan presisi        */
-    /* ======================================================== */
-    .border,
-    .border-2,
-    button.border,
-    button.border-2,
-    span.border,
-    span.border-2,
-    div.border,
-    div.border-2,
-    input.border,
-    input.border-2,
-    select.border,
-    select.border-2,
-    table.border,
-    table.border-2 {
-      border-width: 1.5px !important;
-    }
-
-    .border-b,
-    .border-b-2 {
-      border-bottom-width: 1.5px !important;
-    }
-
-    .border-t,
-    .border-t-2 {
-      border-top-width: 1.5px !important;
-    }
-
-    .border-l,
-    .border-l-2 {
-      border-left-width: 1.5px !important;
-    }
-
-    .border-r,
-    .border-r-2 {
-      border-right-width: 1.5px !important;
-    }
-
-    /* Sub-panels, headers, and section stripes */
-    .bg-stone-50:not(#print-area):not(#print-area *) {
-      background: rgba(248, 250, 252, 0.8) !important;
-    }
-    .bg-stone-100:not(#print-area):not(#print-area *) {
-      background: rgba(241, 245, 249, 0.85) !important;
-    }
-
-    /* Refined modern curved corners */
-    .rounded-xl {
-      border-radius: 18px !important;
-    }
-    .rounded-2xl {
-      border-radius: 22px !important;
-    }
-    .rounded-lg {
-      border-radius: 12px !important;
-    }
-
-    /* Inputs with charcoal outline and subtle debossed depth */
-    input[type="text"],
-    input[type="number"],
-    input[type="date"],
-    select,
-    textarea {
-      background: #ffffff !important;
-      border: 1.5px solid var(--charcoal-outline) !important;
-      border-radius: 12px !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03) !important;
-    }
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    input[type="date"]:focus,
-    select:focus,
-    textarea:focus {
-      background: #ffffff !important;
-      border-color: #26a2ad !important;
-      box-shadow: 0 0 0 3px rgba(38, 162, 173, 0.22), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
-      outline: none !important;
-    }
-
-    /* Clean nested customer input in cart panel */
-    #pos-customer-name {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      backdrop-filter: none !important;
-    }
-
-    /* Crisp Tables with sleek header and rows */
-    table thead tr {
-      background: #f1f4f8 !important;
-      backdrop-filter: blur(16px) !important;
-      -webkit-backdrop-filter: blur(16px) !important;
-    }
-    table thead th {
-      border-bottom: 1.5px solid var(--charcoal-outline) !important;
-    }
-    table tbody tr {
-      border-bottom: 1.5px solid rgba(42, 47, 56, 0.15) !important;
-      transition: background-color 0.18s ease, transform 0.18s ease;
-    }
-    table tbody tr:hover {
-      background-color: #f8fafc !important;
-    }
-
-    /* ======================================================== */
-    /* MODALS: ONLY TARGET MODAL BACKDROPS                      */
-    /* ======================================================== */
-    [id$="-modal"],
-    #daily-sales-rekap-modal,
-    #copy-stock-modal {
-      background: rgba(15, 14, 12, 0.45) !important;
-      backdrop-filter: blur(12px) saturate(1.4) !important;
-      -webkit-backdrop-filter: blur(12px) saturate(1.4) !important;
-    }
-    [id$="-modal"] > div.bg-white,
-    #daily-sales-rekap-modal > div.bg-white,
-    #copy-stock-modal > div.bg-white {
-      background: #ffffff !important;
-      backdrop-filter: var(--glass-blur-modal) !important;
-      -webkit-backdrop-filter: var(--glass-blur-modal) !important;
-      border: 1.5px solid var(--charcoal-outline) !important;
-      border-radius: 24px !important;
-      box-shadow: var(--glass-shadow-lg) !important;
-      animation: modalScaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    @keyframes modalScaleIn {
-      0% { transform: scale(0.95) translateY(12px); opacity: 0; }
-      100% { transform: scale(1) translateY(0); opacity: 1; }
-    }
-
-
-
-    /* Modern Depth Buttons (Gradients & Micro-elevation) - 1.5px outline */
-    .bg-stone-950 {
-      background: linear-gradient(135deg, #1c1917 0%, #292524 100%) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.14) !important;
-      box-shadow: 0 4px 14px -2px rgba(28, 25, 23, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .bg-stone-950:hover {
-      background: linear-gradient(135deg, #292524 0%, #44403c 100%) !important;
-      transform: translateY(-1.5px);
-      box-shadow: 0 8px 18px -2px rgba(28, 25, 23, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
-    }
-    .bg-stone-950:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    /* Teal #26a2ad Buttons (Bayar / Konfirmasi) - 1.5px outline */
-    .bg-emerald-600, .bg-emerald-700, .bg-emerald-800 {
-      background: linear-gradient(135deg, #26a2ad 0%, #1e757e 100%) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
-      box-shadow: 0 4px 16px -2px rgba(38, 162, 173, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .bg-emerald-600:hover, .bg-emerald-700:hover, .bg-emerald-800:hover {
-      box-shadow: 0 8px 22px -2px rgba(38, 162, 173, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.32) !important;
-      transform: translateY(-1.5px);
-    }
-    .bg-emerald-600:active, .bg-emerald-700:active, .bg-emerald-800:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-
-    /* Amber Buttons (Konsinyasi / Catat) - 1.5px outline */
-    .bg-amber-400, .bg-amber-500 {
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
-      box-shadow: 0 4px 16px -2px rgba(217, 119, 6, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.38) !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    .bg-amber-400:hover, .bg-amber-500:hover {
-      box-shadow: 0 8px 22px -2px rgba(217, 119, 6, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.42) !important;
-      transform: translateY(-1.5px);
-    }
-
-    /* Rose / Danger Buttons - 1.5px outline */
-    .bg-rose-600, .bg-rose-700, .bg-rose-800 {
-      background: linear-gradient(135deg, #e11d48 0%, #be123c 100%) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
-      box-shadow: 0 4px 14px -2px rgba(225, 29, 72, 0.32) !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-
-    /* Batalkan Pesanan button - solid non-stabilo compact */
-    button[onclick="clearCart()"] {
-      background: #9f1239 !important;
-      border: 1.5px solid #881337 !important;
-      color: #ffffff !important;
-      border-radius: 6px !important;
-      padding: 3px 7px !important;
-      font-size: 11px !important;
-      transition: all 0.2s ease !important;
-    }
-    button[onclick="clearCart()"]:hover {
-      background: #881337 !important;
-      color: #ffffff !important;
-      border-color: #4c0519 !important;
-    }
-
-    /* Checkout CTA button - 1.5px crisp charcoal outline */
-    #btn-checkout {
-      border: 1.5px solid var(--charcoal-outline) !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    #btn-checkout:disabled {
-      background: #f5f5f4 !important;
-      color: #a8a29e !important;
-      border: 1.5px solid var(--charcoal-outline) !important;
-      cursor: not-allowed !important;
-      box-shadow: none !important;
-      transform: none !important;
-      opacity: 1 !important;
-    }
-    #btn-checkout:disabled svg,
-    #btn-checkout:disabled span {
-      color: #a8a29e !important;
-    }
-    #btn-checkout:not(:disabled) {
-      background: linear-gradient(135deg, #26a2ad 0%, #1e757e 100%) !important;
-      color: #ffffff !important;
-      border: 1.5px solid var(--charcoal-outline) !important;
-      box-shadow: 0 6px 20px -2px rgba(38, 162, 173, 0.4) !important;
-    }
-
-    /* Popovers (Calendar Slicer, etc) */
-    [id^="calendar-popover-"] {
-      background: #ffffff !important;
-      backdrop-filter: blur(28px) saturate(1.9) !important;
-      -webkit-backdrop-filter: blur(28px) saturate(1.9) !important;
-      border: 1.5px solid var(--charcoal-outline) !important;
-      border-radius: 20px !important;
-      box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.18), inset 0 1px 0 #ffffff !important;
-    }
-
-    /* ======================================================== */
-    /* FIX: CATEGORY PILLS (NO BLANK SPOT ON ACTIVE)            */
-    /* ======================================================== */
-    #category-pills button {
-      border-radius: 9999px !important;
-      padding: 6px 16px !important;
-      font-size: 12px !important;
-      font-weight: 800 !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      background: #ffffff !important;
-      border: 1.5px solid var(--charcoal-outline) !important;
-      color: #292524 !important;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05) !important;
-    }
-    #category-pills button:hover {
-      background: #ffffff !important;
-      border-color: #1c1917 !important;
-      color: #000000 !important;
-      transform: translateY(-1px);
-    }
-    /* Active category pill (e.g. "Semua", "Kopi", etc.) - 1.5px outline */
-    #category-pills button.bg-stone-950,
-    #category-pills button.text-white {
-      background: linear-gradient(135deg, #1c1917 0%, #292524 100%) !important;
-      color: #ffffff !important;
-      border: 1.5px solid #1c1917 !important;
-      box-shadow: 0 4px 12px -2px rgba(28, 25, 23, 0.35) !important;
-    }
-
-    /* Uniform outline across all buttons & badges */
-    button.border-2,
-    button.border,
-    button.border-stone-900,
-    button.border-stone-950,
-    span.border-2,
-    span.border {
-      border-width: 1.5px !important;
-    }
-
-    /* Glassmorphic Toast Notifications - 1.5px outline */
-    #toast-container > div {
-      backdrop-filter: blur(20px) saturate(1.8) !important;
-      -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
-      border-radius: 9999px !important;
-      box-shadow: 0 14px 32px -5px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
     }
 
     /* Print receipt formatting */
@@ -834,161 +291,159 @@
       }
     }
 
-    /* Mobile adjustments */
     @media (max-width: 639px) {
       #app-sidebar {
-        left: 8px;
-        top: 8px;
-        bottom: 8px;
+        left: var(--s-2);
+        top: var(--s-2);
+        bottom: var(--s-2);
         width: calc(100vw - 16px);
         max-width: 300px;
-        border-radius: 18px;
+        border-radius: var(--r-lg);
       }
     }
   </style>
 </head>
-<body class="bg-[#eaedf2] text-stone-950 font-sans min-h-screen flex flex-col antialiased selection:bg-stone-950 selection:text-white">
+<body class="bg-[var(--surface)] text-[var(--on)] font-sans min-h-screen flex flex-col antialiased selection:bg-[var(--pri)] selection:text-[var(--on-pri)]">
 
   <!-- Backdrop overlay ketika sidebar floating terbuka -->
   <div id="sidebar-backdrop" onclick="closeSidebar()" aria-hidden="true"></div>
 
   <!-- ============================================== -->
-  <!-- SIDEBAR UTAMA APLIKASI (RESPONSIF & BERSIH) -->
+  <!-- SIDEBAR UTAMA APLIKASI (MATERIAL 3 DRAWER)     -->
   <!-- ============================================== -->
   <aside id="app-sidebar" class="select-none">
     
     <!-- Sidebar Header: Brand & Live Clock -->
-    <div class="p-3.5 flex flex-col gap-2.5 shrink-0 border-b border-stone-200/70 bg-stone-50/50">
+    <div class="p-3.5 flex flex-col gap-2.5 shrink-0 border-b border-[var(--out-v)] bg-[var(--c-high)]">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-stone-950 text-white flex items-center justify-center font-black text-xs shrink-0 tracking-wider shadow-md">
+          <div class="w-9 h-9 rounded-[var(--r-md)] bg-[var(--pri)] text-[var(--on-pri)] flex items-center justify-center font-bold text-xs shrink-0 tracking-wider border-2 border-[var(--out-v)]">
             DP
           </div>
           <div>
             <div class="flex items-center gap-1.5">
-              <span class="text-sm font-black tracking-tight text-stone-950">DoonaPOS</span>
+              <span class="text-sm font-bold tracking-tight text-[var(--on)]">DoonaPOS</span>
             </div>
-            <p class="text-[10px] text-stone-500 font-semibold">Kasir & Inventaris</p>
+            <p class="text-xs text-[var(--on-v)]">Kasir & inventaris</p>
           </div>
         </div>
 
         <!-- Tombol Tutup Sidebar -->
-        <button onclick="closeSidebar()" class="p-1.5 rounded-lg text-stone-400 hover:text-stone-950 hover:bg-stone-200/60 cursor-pointer transition-all duration-200 flex items-center justify-center shrink-0 hover:rotate-90" title="Tutup Sidebar (Pintasan: M)">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button onclick="closeSidebar()" class="pos-icon-btn" title="Tutup menu samping (M)">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
       <!-- Jam Digital & Status Register -->
-      <div class="flex items-center justify-between px-3 py-1.5 rounded-xl bg-stone-950/[0.04] border border-stone-200/70 text-[11px] font-mono">
-        <div class="flex items-center gap-1.5 font-bold text-stone-600">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(5,150,105,0.5)]"></span>
+      <div class="flex items-center justify-between px-3 py-1.5 rounded-[var(--r-md)] bg-[var(--c-low)] border border-[var(--out-v)] text-xs tabular-nums">
+        <div class="flex items-center gap-1.5 font-bold text-[var(--on)]">
+          <span class="w-2 h-2 rounded-full bg-[var(--ok)]"></span>
           <span>Reg #01</span>
         </div>
-        <span id="current-clock" class="font-bold text-stone-800">00:00:00</span>
+        <span id="current-clock" class="font-bold text-[var(--on)]">00:00:00</span>
       </div>
     </div>
 
     <!-- Sidebar Menu List (Scrollable & Responsive) -->
-    <!-- Sidebar Menu List -->
-    <div class="flex-1 overflow-y-auto min-h-0 px-2.5 py-1 space-y-3">
+    <div class="flex-1 overflow-y-auto min-h-0 px-2.5 py-2 space-y-3">
       
       <!-- Kelompok 1: Toko Utama -->
       <div>
-        <div class="px-2 pt-1 pb-1 flex items-center justify-between">
-          <span class="text-[10px] font-black uppercase tracking-wider text-stone-600">Toko Utama</span>
-          <span class="text-[9px] font-mono font-bold text-stone-600 bg-stone-100 px-1.5 py-0.2 rounded border border-stone-200">7 Menu</span>
+        <div class="px-2 pt-1 pb-1.5 flex items-center justify-between">
+          <span class="text-xs font-bold text-[var(--on-v)]">Toko utama</span>
+          <span class="pos-badge-neutral text-[10px] tabular-nums">7 menu</span>
         </div>
         
-        <div class="space-y-0.5 mt-0.5">
+        <div class="space-y-1 mt-0.5">
           <!-- 1. Kasir (POS) -->
-          <button id="nav-pos" onclick="switchTab('pos')" class="nav-btn active-menu-item w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-emerald-600 text-white flex items-center justify-center shrink-0 border border-emerald-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <button id="nav-pos" onclick="switchTab('pos')" class="nav-btn active-menu-item">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
             </div>
             <span class="nav-title truncate">Kasir (POS)</span>
           </button>
 
           <!-- 2. Katalog & Resep -->
-          <button id="nav-products" onclick="switchTab('products')" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-indigo-600 text-white flex items-center justify-center shrink-0 border border-indigo-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <button id="nav-products" onclick="switchTab('products')" class="nav-btn">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
             </div>
-            <span class="nav-title truncate">Katalog & Resep</span>
+            <span class="nav-title truncate">Katalog & resep</span>
           </button>
 
           <!-- 3. Bahan Mentah -->
-          <button id="nav-stock" onclick="switchTab('stock')" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-amber-600 text-white flex items-center justify-center shrink-0 border border-amber-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          <button id="nav-stock" onclick="switchTab('stock')" class="nav-btn">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
             </div>
-            <span class="nav-title truncate">Bahan Mentah</span>
+            <span class="nav-title truncate">Bahan mentah</span>
           </button>
 
           <!-- 4. Riwayat Transaksi -->
-          <button id="nav-history" onclick="switchTab('history')" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-slate-600 text-white flex items-center justify-center shrink-0 border border-slate-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <button id="nav-history" onclick="switchTab('history')" class="nav-btn">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             </div>
-            <span class="nav-title truncate">Riwayat Transaksi</span>
+            <span class="nav-title truncate">Riwayat transaksi</span>
           </button>
 
           <!-- 5. Buku Kas -->
-          <button id="nav-report" onclick="switchTab('report')" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-teal-600 text-white flex items-center justify-center shrink-0 border border-teal-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <button id="nav-report" onclick="switchTab('report')" class="nav-btn">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
             </div>
-            <span class="nav-title truncate">Buku Kas</span>
+            <span class="nav-title truncate">Buku kas</span>
           </button>
 
           <!-- 6. Pengeluaran -->
-          <button id="nav-expenses" onclick="switchTab('expenses')" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-rose-600 text-white flex items-center justify-center shrink-0 border border-rose-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <button id="nav-expenses" onclick="switchTab('expenses')" class="nav-btn">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <span class="nav-title truncate">Pengeluaran</span>
           </button>
 
           <!-- 7. Fluktuasi Omzet -->
-          <button id="nav-fluctuation" onclick="switchTab('fluctuation')" class="nav-btn w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-purple-600 text-white flex items-center justify-center shrink-0 border border-purple-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
+          <button id="nav-fluctuation" onclick="switchTab('fluctuation')" class="nav-btn">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
             </div>
-            <span class="nav-title truncate">Fluktuasi Omzet</span>
+            <span class="nav-title truncate">Fluktuasi omzet</span>
           </button>
         </div>
       </div>
 
       <!-- Kelompok 2: Titip Jual (Konsinyasi) -->
-      <div class="pt-2.5 mt-0.5">
-        <div class="mx-2 mb-2 h-px bg-gradient-to-r from-transparent via-stone-300/60 to-transparent"></div>
-        <div class="px-2 mb-1 flex items-center justify-between">
-          <span class="text-[10px] font-black uppercase tracking-wider text-amber-900">Titip Jual</span>
-          <span class="text-[9px] font-mono font-bold text-amber-800 bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">Mitra · 3 Menu</span>
+      <div class="pt-2">
+        <div class="mx-2 mb-2 h-px bg-[var(--out-v)] opacity-40"></div>
+        <div class="px-2 mb-1.5 flex items-center justify-between">
+          <span class="text-xs font-bold text-[var(--on-ter-c)]">Titip jual</span>
+          <span class="pos-badge-consign text-[10px] tabular-nums">Mitra · 3 menu</span>
         </div>
         
-        <div class="space-y-0.5 mt-0.5">
+        <div class="space-y-1 mt-0.5">
           <!-- 8. Stok Titip -->
-          <button id="nav-consign-stock" onclick="switchTab('consign-stock')" class="nav-btn consign-item w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-amber-700 text-white flex items-center justify-center shrink-0 border border-amber-800 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <button id="nav-consign-stock" onclick="switchTab('consign-stock')" class="nav-btn consign-item">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
             </div>
-            <span class="nav-title truncate">Stok Titip</span>
+            <span class="nav-title truncate">Stok titip</span>
           </button>
 
           <!-- 9. Rekap Titip -->
-          <button id="nav-consign-report" onclick="switchTab('consign-report')" class="nav-btn consign-item w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-emerald-600 text-white flex items-center justify-center shrink-0 border border-emerald-700 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <button id="nav-consign-report" onclick="switchTab('consign-report')" class="nav-btn consign-item">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <span class="nav-title truncate">Rekap Titip</span>
+            <span class="nav-title truncate">Rekap titip</span>
           </button>
 
           <!-- 10. Setoran Titip -->
-          <button id="nav-consign-expenses" onclick="switchTab('consign-expenses')" class="nav-btn consign-item w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-stone-700 font-bold text-xs cursor-pointer text-left">
-            <div class="nav-icon-box w-7 h-7 rounded-md bg-rose-700 text-white flex items-center justify-center shrink-0 border border-rose-800 shadow-xs">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <button id="nav-consign-expenses" onclick="switchTab('consign-expenses')" class="nav-btn consign-item">
+            <div class="nav-icon-box">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
-            <span class="nav-title truncate">Setoran Titip</span>
+            <span class="nav-title truncate">Setoran titip</span>
           </button>
         </div>
       </div>
@@ -996,36 +451,36 @@
     </div>
 
     <!-- Sidebar Footer: Dynamic Active Status & Keyboard Hint -->
-    <div class="p-3 flex items-center justify-between text-xs text-stone-500 font-mono shrink-0 border-t border-stone-200/70 bg-stone-50/60">
-      <span class="flex items-center gap-2 font-bold text-stone-700">
-        <span id="sidebar-active-tab-dot" class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(5,150,105,0.5)] transition-all duration-300"></span>
-        <span id="sidebar-active-tab-label" class="truncate max-w-[155px]">Kasir (POS) Aktif</span>
+    <div class="p-3.5 flex items-center justify-between text-xs font-medium text-[var(--on-v)] shrink-0 border-t border-[var(--out-v)] bg-[var(--c-high)]">
+      <span class="flex items-center gap-2 font-bold text-[var(--on)]">
+        <span id="sidebar-active-tab-dot" class="w-2.5 h-2.5 rounded-full bg-[var(--ok)] shrink-0"></span>
+        <span id="sidebar-active-tab-label" class="truncate max-w-[155px]">Kasir (POS) aktif</span>
       </span>
-      <span class="text-[10px] text-stone-400 shrink-0 flex items-center gap-1" title="Tekan M untuk buka/tutup menu">
-        <kbd class="px-1.5 py-0.5 rounded-md bg-white border border-stone-300 font-bold text-stone-600 text-[9px] shadow-2xs">M</kbd>
+      <span class="text-xs text-[var(--on-v)] shrink-0 flex items-center gap-1" title="Tekan M untuk buka/tutup menu">
+        <kbd class="px-1.5 py-0.5 rounded-[var(--r-xs)] bg-[var(--c-low)] border border-[var(--out-v)] font-bold text-[var(--on-v)] text-[10px]">M</kbd>
       </span>
     </div>
   </aside>
 
   <!-- ============================================== -->
-  <!-- KONTEN UTAMA APLIKASI -->
+  <!-- KONTEN UTAMA APLIKASI                          -->
   <!-- ============================================== -->
   <div id="app-content-wrapper" class="flex-1 w-full min-h-screen flex flex-col">
     
     <!-- Mobile Top Header Bar (Hanya tampil di layar kecil < lg) -->
-    <header class="lg:hidden sticky top-0 z-30 bg-white border-b border-stone-300 px-3.5 py-2.5 flex items-center justify-between shadow-2xs">
+    <header class="lg:hidden sticky top-0 z-[var(--z-sticky)] bg-[var(--c)] border-b-2 border-[var(--out-v)] px-3.5 py-2.5 flex items-center justify-between shadow-[var(--sh-1)]">
       <div class="flex items-center gap-2.5">
-        <button onclick="openSidebar()" class="p-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-900 border border-stone-300 cursor-pointer flex items-center justify-center" title="Buka Menu">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <button onclick="openSidebar()" class="pos-icon-btn" title="Buka menu samping">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-        <div class="flex items-center gap-1.5">
-          <div class="w-6 h-6 rounded-md bg-stone-950 text-white flex items-center justify-center font-black text-[10px]">DP</div>
-          <span id="active-menu-badge" class="text-xs font-black tracking-tight text-stone-950">Kasir</span>
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-[var(--r-sm)] bg-[var(--pri)] text-[var(--on-pri)] flex items-center justify-center font-bold text-xs border border-[var(--out-v)]">DP</div>
+          <span id="active-menu-badge" class="text-xs font-bold text-[var(--on)] tracking-tight">Kasir</span>
         </div>
       </div>
       <div class="flex items-center gap-2">
-        <div class="flex items-center gap-1.5 font-mono text-[11px] font-bold text-stone-700 bg-stone-100 px-2 py-1 rounded-md border border-stone-200">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div class="flex items-center gap-1.5 tabular-nums text-xs font-bold text-[var(--on)] bg-[var(--c-high)] px-2.5 py-1 rounded-[var(--r-sm)] border border-[var(--out-v)]">
+          <span class="w-2 h-2 rounded-full bg-[var(--ok)] animate-pulse"></span>
           <span id="mobile-clock">00:00:00</span>
         </div>
       </div>
@@ -2794,7 +2249,7 @@
   </div>
 
   <!-- Toast Notification Dock -->
-  <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+  <div id="toast-container" class="fixed bottom-6 right-6 z-[var(--z-toast)] flex flex-col space-y-2 pointer-events-none max-w-sm"></div>
 
   <!-- MODAL: RINCIAN FORMULA RESEP (BOM POPUP) -->
   <div id="recipe-detail-modal" class="pos-scrim hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
@@ -2854,13 +2309,13 @@
   </div>
 
   <!-- Universal Confirmation Dialog -->
-  <div id="confirm-modal" class="fixed inset-0 bg-stone-950/70 z-50 hidden flex items-center justify-center p-4 backdrop-blur-xs">
-    <div class="bg-white w-full max-w-xs rounded-xl shadow-2xl border-2 border-stone-400 p-4 space-y-3.5">
-      <h4 id="confirm-title" class="font-black text-stone-950 text-xs uppercase">Konfirmasi Tindakan</h4>
-      <p id="confirm-message" class="text-xs text-stone-800 font-bold leading-relaxed">-</p>
-      <div class="flex justify-end gap-2 pt-2 border-t-2 border-stone-200">
-        <button onclick="closeConfirmModal(false)" class="px-3.5 py-1.5 border-2 border-stone-300 rounded-lg text-xs font-bold text-stone-800 hover:bg-stone-100">Batal</button>
-        <button id="confirm-ok-btn" onclick="closeConfirmModal(true)" class="px-4 py-1.5 bg-stone-950 hover:bg-stone-850 text-white rounded-lg text-xs font-black uppercase">Lanjutkan</button>
+  <div id="confirm-modal" class="pos-scrim hidden flex items-center justify-center p-4">
+    <div class="pos-dialog w-full max-w-sm p-5 space-y-4">
+      <h4 id="confirm-title" class="font-bold text-[var(--on)] text-sm">Konfirmasi tindakan</h4>
+      <p id="confirm-message" class="text-xs text-[var(--on-v)] leading-relaxed">-</p>
+      <div class="flex justify-end gap-2 pt-3 border-t-2 border-[var(--out-v)]">
+        <button type="button" onclick="closeConfirmModal(false)" class="pos-btn-outlined text-xs h-9 px-3.5">Batal</button>
+        <button type="button" id="confirm-ok-btn" onclick="closeConfirmModal(true)" class="pos-btn-filled text-xs h-9 px-4">Lanjutkan</button>
       </div>
     </div>
   </div>
@@ -3810,21 +3265,21 @@
       const menuLabels = {
         pos: 'Kasir (POS)',
         payment: 'Kasir · Pembayaran',
-        products: 'Katalog & Resep',
-        stock: 'Bahan Mentah',
-        history: 'Riwayat Transaksi',
-        report: 'Buku Kas',
+        products: 'Katalog & resep',
+        stock: 'Bahan mentah',
+        history: 'Riwayat transaksi',
+        report: 'Buku kas',
         expenses: 'Pengeluaran',
-        fluctuation: 'Fluktuasi Omzet',
-        'consign-stock': 'Stok Titip',
-        'consign-report': 'Rekap Titip',
-        'consign-expenses': 'Setoran Titip'
+        fluctuation: 'Fluktuasi omzet',
+        'consign-stock': 'Stok titip',
+        'consign-report': 'Rekap titip',
+        'consign-expenses': 'Setoran titip'
       };
       const menuText = menuLabels[tabId] || 'Kasir (POS)';
       const badgeEl = document.getElementById('active-menu-badge');
       if (badgeEl) badgeEl.innerText = menuText;
 
-      // Update highlight menu sidebar agar BERWARNA saat dipilih
+      // Update highlight menu sidebar agar terpilih sesuai sistem desain
       document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active-menu-item');
       });
@@ -3837,25 +3292,11 @@
       const footerTabLabel = document.getElementById('sidebar-active-tab-label');
       const footerTabDot = document.getElementById('sidebar-active-tab-dot');
       if (footerTabLabel) {
-        footerTabLabel.innerText = `${menuText} Aktif`;
+        footerTabLabel.innerText = `${menuText} aktif`;
       }
       if (footerTabDot) {
-        const dotColors = {
-          pos: '#059669',
-          payment: '#059669',
-          products: '#4f46e5',
-          stock: '#d97706',
-          history: '#475569',
-          report: '#0d9488',
-          expenses: '#e11d48',
-          fluctuation: '#7c3aed',
-          'consign-stock': '#b45309',
-          'consign-report': '#059669',
-          'consign-expenses': '#be123c'
-        };
-        const color = dotColors[tabId] || '#059669';
-        footerTabDot.style.backgroundColor = color;
-        footerTabDot.style.boxShadow = `0 0 6px ${color}`;
+        footerTabDot.style.backgroundColor = 'var(--ok)';
+        footerTabDot.style.boxShadow = 'none';
       }
 
       // Tutup floating sidebar otomatis setelah menu dipilih
@@ -3885,21 +3326,21 @@
       const container = document.getElementById('toast-container');
       if (!container) return;
       const toast = document.createElement('div');
-      const styles = {
-        info: 'bg-stone-900/90 text-white border-white/20',
-        warning: 'bg-amber-600/90 text-white border-white/25',
-        error: 'bg-rose-600/90 text-white border-white/25',
-        success: 'bg-emerald-600/90 text-white border-white/25'
+      const typeClasses = {
+        info: 'bg-[var(--inv)] text-[var(--on-inv)] border-[var(--out-v)]',
+        warning: 'bg-[var(--warn-c)] text-[var(--on-warn-c)] border-[var(--out-v)]',
+        error: 'bg-[var(--err-c)] text-[var(--on-err-c)] border-[var(--err)]',
+        success: 'bg-[var(--ok-c)] text-[var(--on-ok-c)] border-[var(--ok)]'
       };
-      toast.className = `px-5 py-2.5 rounded-full shadow-2xl text-xs font-bold border flex items-center space-x-2.5 transition-all duration-300 transform translate-y-3 opacity-0 pointer-events-none ${styles[type] || styles.info}`;
+      toast.className = `min-h-[48px] px-5 py-3 rounded-[var(--r-md)] border-2 shadow-[var(--sh-3)] text-xs font-bold flex items-center gap-2.5 transition-all duration-200 transform translate-y-3 opacity-0 pointer-events-auto ${typeClasses[type] || typeClasses.info}`;
       toast.innerHTML = `<span class="tracking-wide">${message}</span>`;
       container.appendChild(toast);
 
       requestAnimationFrame(() => toast.classList.remove('translate-y-3', 'opacity-0'));
       setTimeout(() => {
         toast.classList.add('opacity-0', 'translate-y-3');
-        setTimeout(() => toast.remove(), 300);
-      }, 2500);
+        setTimeout(() => toast.remove(), 250);
+      }, 3500);
     }
 
     function showCustomConfirm(title, message, callback) {
