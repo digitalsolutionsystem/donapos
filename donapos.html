@@ -693,24 +693,6 @@
       transform: translateY(0) scale(0.98);
     }
 
-    /* Warna hijau tenang & tidak mencolok untuk Tunai (Cash) */
-    .btn-cash-selected {
-      background-color: #356b46 !important;
-      background-image: none !important;
-      border: 1px solid #23492f !important;
-      color: #ffffff !important;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08) !important;
-      transition: all 0.15s ease !important;
-      transform: none !important;
-    }
-    .btn-cash-selected:hover {
-      background-color: #2b5738 !important;
-      background-image: none !important;
-      border: 1px solid #1b3823 !important;
-      color: #ffffff !important;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12) !important;
-      transform: none !important;
-    }
 
     /* Amber Buttons (Konsinyasi / Catat) - 1.5px outline */
     .bg-amber-400, .bg-amber-500 {
@@ -1149,227 +1131,218 @@
       </div>
     </section>
 
-    <!-- ============================================== -->
-    <!-- TAB: HALAMAN PEMBAYARAN (CHECKOUT FULL PAGE) -->
-    <!-- ============================================== -->
     <section id="tab-payment" class="tab-content hidden space-y-4">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start lg:items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start lg:items-stretch">
         
         <!-- Kolom Kiri: Rincian Pesanan (lg:col-span-7) -->
         <div class="lg:col-span-7 xl:col-span-7 flex flex-col space-y-4 min-h-0">
           
-          <!-- Top Bar Navigasi (Bersih, Ramping, Sejajar) -->
-          <div class="flex-none bg-white p-3.5 rounded-2xl border-2 border-[#2a2f38] shadow-sm flex items-center justify-between sticky-menu-header">
-            <div class="flex items-center gap-2.5">
-              <button onclick="toggleSidebar()" class="p-2 rounded-xl bg-stone-950 hover:bg-stone-850 text-white border-2 border-[#2a2f38] flex items-center justify-center cursor-pointer transition shrink-0 active:scale-95" title="Buka / Tutup Sidebar Menu">
-                <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-                </svg>
-              </button>
-              <button type="button" onclick="switchTab('pos')" title="Kembali ke Layar Kasir" class="px-3 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-900 rounded-xl text-xs font-bold border border-stone-300 flex items-center gap-1.5 transition cursor-pointer">
-                <svg class="w-4 h-4 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+          <!-- Top Bar Navigasi -->
+          <div class="pos-catalog-toolbar">
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="switchTab('pos')" title="Kembali ke layar kasir" class="pos-btn pos-btn-md pos-btn-outlined">
+                <span data-icon="arrow-left"></span>
                 <span>Kasir</span>
               </button>
-              <div class="h-5 w-px bg-stone-200"></div>
+              <div style="width: 1px; height: 24px; background: color-mix(in srgb, var(--out-v) 35%, transparent);"></div>
               <div>
-                <h2 class="text-xs sm:text-sm font-bold text-stone-900 tracking-tight">Penyelesaian Transaksi</h2>
-                <p class="text-[11px] text-stone-500 hidden sm:block">Periksa pesanan dan konfirmasi pembayaran</p>
+                <h2 class="text-sm font-medium" style="color: var(--on);">Penyelesaian transaksi</h2>
+                <p class="text-xs hidden sm:block" style="color: var(--on-v);">Periksa pesanan dan konfirmasi pembayaran</p>
               </div>
             </div>
 
-            <button type="button" onclick="clearCart(); switchTab('pos');" class="px-3 py-1.5 text-xs text-rose-700 hover:text-rose-900 hover:bg-rose-50 font-bold rounded-lg border border-rose-200 transition cursor-pointer flex items-center gap-1">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            <button type="button" onclick="clearCart(); switchTab('pos');" class="pos-btn pos-btn-md pos-btn-outlined" title="Batalkan pesanan">
+              <span data-icon="trash" data-icon-size="14"></span>
               <span>Batal</span>
             </button>
           </div>
 
-          <!-- Card Rincian Pesanan: flex-1 agar sejajar ke bawah dengan form pembayaran di sebelah kanan -->
-          <div class="flex-1 flex flex-col bg-white rounded-2xl border-2 border-[#2a2f38] shadow-sm overflow-hidden min-h-0">
+          <!-- Card Rincian Pesanan -->
+          <div class="pos-card flex flex-col overflow-hidden min-h-0" style="padding: 0;">
             <!-- Header Kartu -->
-            <div class="flex-none px-4 py-3 bg-stone-900 text-white flex items-center justify-between border-b-2 border-[#2a2f38]">
+            <div class="pos-modal-header">
               <div class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-[#26a2ad]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <h3 class="text-xs font-bold uppercase tracking-wider text-white">Rincian Item Pesanan</h3>
+                <span data-icon="receipt"></span>
+                <h3 class="pos-modal-title" style="font-size: var(--t-md);">Rincian item pesanan</h3>
               </div>
-              <span id="payment-cart-total-qty" class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-md bg-stone-800 text-stone-200 border border-stone-700">0 item</span>
+              <span id="payment-cart-total-qty" class="pos-badge pos-badge-neutral">0 item</span>
             </div>
 
             <!-- Input Pelanggan / No Meja -->
-            <div class="flex-none p-3 border-b border-stone-200 bg-stone-50/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div style="padding: var(--s-3); border-bottom: 1px solid color-mix(in srgb, var(--out-v) 35%, transparent); background-color: var(--c); display: flex; align-items: center; justify-content: space-between; gap: var(--s-2);">
               <div class="flex items-center gap-2 flex-1">
-                <span class="text-xs font-semibold text-stone-600 shrink-0">Pelanggan / Meja:</span>
-                <input type="text" id="payment-customer-name-sync" oninput="syncCustomerName(this.value)" placeholder="Nama pelanggan / no. meja (opsional)..." class="w-full text-xs font-bold text-stone-900 bg-white border border-stone-300 focus:border-[#26a2ad] focus:ring-1 focus:ring-[#26a2ad] rounded-lg px-3 py-1.5 focus:outline-none">
+                <span class="text-xs font-medium" style="color: var(--on-v); white-space: nowrap;">Pelanggan / meja:</span>
+                <div class="pos-input-container" style="height: var(--touch); flex: 1;">
+                  <input type="text" id="payment-customer-name-sync" oninput="syncCustomerName(this.value)" placeholder="Nama pelanggan / no. meja (opsional)..." class="pos-input" style="font-size: var(--t-xs);">
+                </div>
               </div>
-              <button type="button" onclick="switchTab('pos')" class="text-xs font-semibold text-[#26a2ad] hover:text-[#1e838c] shrink-0 cursor-pointer flex items-center gap-1">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                <span>Edit Item</span>
+              <button type="button" onclick="switchTab('pos')" class="pos-btn pos-btn-sm pos-btn-text">
+                <span data-icon="edit" data-icon-size="14"></span>
+                <span>Edit item</span>
               </button>
             </div>
 
-            <!-- Tabel Item: flex-1 mengisi ruang vertikal secara fleksibel -->
-            <div class="flex-1 overflow-y-auto overflow-x-auto min-h-[160px] bg-white">
-              <table class="w-full text-left text-xs text-stone-800">
-                <thead class="bg-stone-50 text-stone-600 font-semibold border-b border-stone-200 uppercase text-[10px] tracking-wider sticky top-0 z-10">
+            <!-- Tabel Item -->
+            <div class="pos-table-container flex-1 overflow-y-auto" style="border: none; border-radius: 0; box-shadow: none;">
+              <table class="pos-table">
+                <thead>
                   <tr>
-                    <th class="px-4 py-2.5">Menu / Produk</th>
-                    <th class="px-3 py-2.5 text-right font-mono">Harga</th>
-                    <th class="px-3 py-2.5 text-center font-mono">Qty</th>
-                    <th class="px-4 py-2.5 text-right font-mono">Subtotal</th>
+                    <th>Menu / produk</th>
+                    <th style="text-align: right;">Harga</th>
+                    <th style="text-align: center;">Qty</th>
+                    <th style="text-align: right;">Subtotal</th>
                   </tr>
                 </thead>
-                <tbody id="payment-cart-items-tbody" class="divide-y divide-stone-100 bg-white">
+                <tbody id="payment-cart-items-tbody">
                   <!-- Dynamic rows -->
                 </tbody>
               </table>
             </div>
 
-            <!-- Footer Ringkasan: Total Tagihan Bersih (menempel di paling bawah) -->
-            <div class="flex-none mt-auto p-4 bg-stone-900 text-white border-t-2 border-[#2a2f38] flex items-center justify-between">
+            <!-- Footer Ringkasan: Total Tagihan Bersih -->
+            <div style="background-color: var(--c-high); border-top: var(--bw) solid var(--out-v); padding: var(--s-4); display: flex; align-items: center; justify-content: space-between;">
               <div>
-                <span class="text-[11px] font-semibold text-stone-400 uppercase tracking-wider block">Total Tagihan</span>
-                <span class="text-xs text-stone-300">Termasuk semua produk toko & titipan</span>
+                <span class="text-xs font-medium block" style="color: var(--on-v);">Total tagihan</span>
+                <span class="text-xs" style="color: var(--on-v);">Termasuk semua produk toko & titipan</span>
               </div>
-              <span id="payment-page-big-total" class="text-2xl sm:text-3xl font-mono font-bold text-white tracking-tight">Rp 0</span>
+              <span id="payment-page-big-total" class="text-2xl sm:text-3xl font-bold" style="color: var(--pri); font-variant-numeric: tabular-nums;">Rp 0</span>
             </div>
           </div>
         </div>
 
         <!-- Kolom Kanan: Panel Eksekusi Pembayaran (lg:col-span-5) -->
         <div class="lg:col-span-5 xl:col-span-5 flex flex-col min-h-0">
-          <div class="flex-1 flex flex-col justify-between bg-white rounded-2xl border-2 border-[#2a2f38] shadow-sm p-5 space-y-4">
+          <div class="pos-card flex flex-col justify-between" style="gap: var(--s-4);">
             
             <!-- Box Tagihan Bersih & Jelas -->
-            <div class="flex-none p-4 rounded-xl bg-stone-50 border border-stone-200 flex items-center justify-between">
+            <div class="pos-surface-embedded flex items-center justify-between">
               <div>
-                <span class="text-[11px] font-semibold uppercase tracking-wider text-stone-500 block">Total yang Harus Dibayar</span>
-                <span class="text-xs text-stone-600 font-medium">Tagihan akhir kasir</span>
+                <span class="text-xs font-medium block" style="color: var(--on-v);">Total yang harus dibayar</span>
+                <span class="text-xs" style="color: var(--on-v);">Tagihan akhir kasir</span>
               </div>
-              <span id="payment-total-bill" class="text-2xl sm:text-3xl font-mono font-black text-emerald-700 tracking-tight">Rp 0</span>
+              <span id="payment-total-bill" class="text-2xl sm:text-3xl font-bold" style="color: var(--pri); font-variant-numeric: tabular-nums;">Rp 0</span>
             </div>
 
             <!-- Pilihan Metode Bayar (Segmented Switcher) -->
-            <div class="flex-none">
-              <label class="block text-xs font-bold text-stone-800 mb-1.5">Metode Pembayaran</label>
-              <div class="grid grid-cols-2 p-1 bg-stone-100 rounded-xl border border-stone-200 gap-1">
-                <button type="button" onclick="selectPaymentMethod('Tunai')" id="pm-cash" class="py-2.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 btn-cash-selected cursor-pointer">
-                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <div>
+              <label class="pos-field-label" style="margin-bottom: var(--s-1);">Metode pembayaran</label>
+              <div class="pos-segmented-group w-full flex">
+                <button type="button" onclick="selectPaymentMethod('Tunai')" id="pm-cash" class="pos-segmented-btn is-active flex-1">
+                  <span data-icon="banknote"></span>
                   <span>Tunai (Cash)</span>
                 </button>
-                <button type="button" onclick="selectPaymentMethod('QRIS')" id="pm-qris" class="py-2.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 text-stone-600 hover:text-stone-900 border border-transparent hover:bg-stone-200/50 cursor-pointer">
-                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
+                <button type="button" onclick="selectPaymentMethod('QRIS')" id="pm-qris" class="pos-segmented-btn flex-1">
+                  <span data-icon="qr-code"></span>
                   <span>QRIS</span>
                 </button>
               </div>
             </div>
 
-            <!-- Container Section Metode Pembayaran (Tinggi Stabil & Tidak Berubah Saat Beralih ke QRIS) -->
-            <div class="flex-1 flex flex-col justify-center min-h-[300px]">
+            <!-- Container Section Metode Pembayaran -->
+            <div class="flex-1 flex flex-col justify-center min-h-[280px]">
               <!-- QRIS Section -->
-              <div id="qris-payment-section" class="hidden h-full min-h-[300px] flex flex-col items-center justify-center p-4 bg-gradient-to-b from-blue-50/70 via-white to-blue-50/40 rounded-xl border-2 border-blue-200 text-center space-y-2.5">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-900 border border-blue-300 text-[11px] font-bold">
-                  <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-                  <span>QRIS Pembayaran Digital</span>
-                </div>
-                <div class="p-3 bg-white rounded-xl border-2 border-blue-200 shadow-sm flex items-center justify-center">
-                  <svg class="w-36 h-36" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div id="qris-payment-section" class="hidden pos-surface-embedded flex flex-col items-center justify-center text-center" style="gap: var(--s-3); min-height: 280px;">
+                <span class="pos-badge pos-badge-info">QRIS pembayaran digital</span>
+                <div style="background-color: #ffffff; padding: var(--s-3); border-radius: var(--r-xl); border: var(--bw) solid var(--out-v); box-shadow: var(--sh-1); display: flex; align-items: center; justify-content: center;">
+                  <svg class="w-32 h-32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="120" height="120" fill="white"/>
-                    <rect x="10" y="10" width="28" height="28" stroke="#1e3a8a" stroke-width="4" fill="none"/>
-                    <rect x="18" y="18" width="12" height="12" fill="#1e3a8a"/>
-                    <rect x="82" y="10" width="28" height="28" stroke="#1e3a8a" stroke-width="4" fill="none"/>
-                    <rect x="90" y="18" width="12" height="12" fill="#1e3a8a"/>
-                    <rect x="10" y="82" width="28" height="28" stroke="#1e3a8a" stroke-width="4" fill="none"/>
-                    <rect x="18" y="90" width="12" height="12" fill="#1e3a8a"/>
-                    <rect x="46" y="14" width="7" height="7" fill="#0f172a"/>
-                    <rect x="60" y="14" width="7" height="7" fill="#0f172a"/>
-                    <rect x="46" y="28" width="7" height="7" fill="#0f172a"/>
-                    <rect x="67" y="28" width="7" height="7" fill="#0f172a"/>
-                    <rect x="14" y="46" width="7" height="7" fill="#0f172a"/>
-                    <rect x="28" y="53" width="7" height="7" fill="#0f172a"/>
-                    <rect x="46" y="46" width="14" height="14" fill="#1e3a8a"/>
-                    <rect x="67" y="53" width="7" height="7" fill="#0f172a"/>
-                    <rect x="81" y="46" width="7" height="7" fill="#0f172a"/>
-                    <rect x="95" y="53" width="7" height="7" fill="#0f172a"/>
-                    <rect x="46" y="74" width="7" height="7" fill="#0f172a"/>
-                    <rect x="60" y="81" width="7" height="7" fill="#0f172a"/>
-                    <rect x="74" y="74" width="7" height="7" fill="#0f172a"/>
-                    <rect x="88" y="88" width="7" height="7" fill="#0f172a"/>
-                    <rect x="46" y="95" width="7" height="7" fill="#0f172a"/>
-                    <rect x="67" y="102" width="7" height="7" fill="#0f172a"/>
-                    <rect x="95" y="95" width="7" height="7" fill="#0f172a"/>
+                    <rect x="10" y="10" width="28" height="28" stroke="var(--outline)" stroke-width="4" fill="none"/>
+                    <rect x="18" y="18" width="12" height="12" fill="var(--outline)"/>
+                    <rect x="82" y="10" width="28" height="28" stroke="var(--outline)" stroke-width="4" fill="none"/>
+                    <rect x="90" y="18" width="12" height="12" fill="var(--outline)"/>
+                    <rect x="10" y="82" width="28" height="28" stroke="var(--outline)" stroke-width="4" fill="none"/>
+                    <rect x="18" y="90" width="12" height="12" fill="var(--outline)"/>
+                    <rect x="46" y="14" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="60" y="14" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="46" y="28" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="67" y="28" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="14" y="46" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="28" y="53" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="46" y="46" width="14" height="14" fill="var(--outline)"/>
+                    <rect x="67" y="53" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="81" y="46" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="95" y="53" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="46" y="74" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="60" y="81" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="74" y="74" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="88" y="88" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="46" y="95" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="67" y="102" width="7" height="7" fill="var(--outline)"/>
+                    <rect x="95" y="95" width="7" height="7" fill="var(--outline)"/>
                   </svg>
                 </div>
-                <p class="text-xs text-blue-950 font-medium">Pelanggan dapat memindai dengan aplikasi m-Banking atau E-Wallet apa pun.</p>
+                <p class="text-xs" style="color: var(--on-v);">Pelanggan dapat memindai dengan aplikasi m-Banking atau dompet digital apa pun.</p>
               </div>
 
               <!-- Cash Section -->
-              <div id="cash-payment-section" class="h-full min-h-[300px] flex flex-col justify-between space-y-3">
+              <div id="cash-payment-section" class="flex flex-col justify-between" style="gap: var(--s-3); min-height: 280px;">
                 <div>
-                  <div class="flex items-center justify-between mb-1.5">
-                    <label class="block text-xs font-bold text-stone-800">Nominal Uang Diterima</label>
-                    <div class="inline-flex p-0.5 rounded-lg bg-stone-100 border border-stone-200 text-[11px] font-bold">
-                      <button type="button" id="cash-mode-k-btn" onclick="setCashInputMode('k')" class="px-2.5 py-0.5 rounded-md transition-all cursor-pointer bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold">
+                  <div class="flex items-center justify-between" style="margin-bottom: var(--s-1);">
+                    <label class="pos-field-label">Nominal uang diterima</label>
+                    <div class="pos-segmented-group" style="padding: 1px;">
+                      <button type="button" id="cash-mode-k-btn" onclick="setCashInputMode('k')" class="pos-segmented-btn is-active" style="height: 28px; padding: 0 10px; font-size: var(--t-xs);">
                         Ribuan (k)
                       </button>
-                      <button type="button" id="cash-mode-custom-btn" onclick="setCashInputMode('custom')" class="px-2.5 py-0.5 rounded-md transition-all cursor-pointer text-stone-500 hover:text-stone-800">
+                      <button type="button" id="cash-mode-custom-btn" onclick="setCashInputMode('custom')" class="pos-segmented-btn" style="height: 28px; padding: 0 10px; font-size: var(--t-xs);">
                         Custom (Rp)
                       </button>
                     </div>
                   </div>
                   
                   <!-- Input Mode Ribuan (k) -->
-                  <div id="cash-input-k-wrapper" class="relative flex items-center">
-                    <span class="absolute left-3.5 font-mono font-bold text-xs text-stone-500">Rp</span>
-                    <input type="number" id="payment-cash-input-k" oninput="handleThousandsCashInput()" onkeydown="if(event.key === 'Enter') executeCheckout()" placeholder="0" min="0" step="1" class="w-full pl-10 pr-16 py-2.5 font-mono text-xl font-bold rounded-xl focus:outline-none focus:border-[#356b46] focus:ring-1 focus:ring-[#356b46] bg-white text-stone-900 border border-stone-300 transition">
-                    <span class="absolute right-3.5 px-2 py-0.5 rounded bg-stone-100 border border-stone-200 font-mono text-xs font-semibold text-stone-500">.000</span>
+                  <div id="cash-input-k-wrapper" class="pos-input-container">
+                    <span class="pos-input-prefix">Rp</span>
+                    <input type="number" id="payment-cash-input-k" oninput="handleThousandsCashInput()" onkeydown="if(event.key === 'Enter') executeCheckout()" placeholder="0" min="0" step="1" class="pos-input pos-input-number" style="font-size: var(--t-xl); font-weight: 700;">
+                    <span class="pos-badge pos-badge-neutral" style="margin-left: var(--s-2);">.000</span>
                   </div>
 
-                  <!-- Input Mode Custom (Rp) dengan pemisah titik otomatis per 1.000 -->
-                  <div id="cash-input-custom-wrapper" class="relative flex items-center hidden">
-                    <span class="absolute left-3.5 font-mono font-bold text-xs text-stone-500">Rp</span>
-                    <input type="text" inputmode="numeric" id="payment-cash-input-custom" oninput="handleCustomCashInput(this)" onkeydown="if(event.key === 'Enter') executeCheckout()" placeholder="0" class="w-full pl-10 pr-12 py-2.5 font-mono text-xl font-bold rounded-xl focus:outline-none focus:border-[#356b46] focus:ring-1 focus:ring-[#356b46] bg-white text-stone-900 border border-stone-300 transition">
-                    <span class="absolute right-3.5 text-stone-400 font-mono text-xs font-semibold select-none">,-</span>
+                  <!-- Input Mode Custom (Rp) -->
+                  <div id="cash-input-custom-wrapper" class="pos-input-container hidden">
+                    <span class="pos-input-prefix">Rp</span>
+                    <input type="text" inputmode="numeric" id="payment-cash-input-custom" oninput="handleCustomCashInput(this)" onkeydown="if(event.key === 'Enter') executeCheckout()" placeholder="0" class="pos-input pos-input-number" style="font-size: var(--t-xl); font-weight: 700;">
+                    <span class="text-xs" style="color: var(--on-v); margin-left: var(--s-2);">,-</span>
                   </div>
 
-                  <div class="flex items-center justify-between text-xs text-stone-500 font-mono mt-1 px-0.5">
-                    <span>Nominal Penuh:</span>
-                    <span id="cash-full-nominal-display" class="font-bold text-stone-800 text-sm">Rp 0</span>
+                  <div class="flex items-center justify-between text-xs" style="color: var(--on-v); margin-top: 4px;">
+                    <span>Nominal penuh:</span>
+                    <span id="cash-full-nominal-display" class="font-bold text-sm" style="color: var(--on); font-variant-numeric: tabular-nums;">Rp 0</span>
                   </div>
                 </div>
 
                 <!-- Quick suggestions -->
                 <div>
-                  <span class="text-[11px] uppercase font-bold text-stone-600 block mb-1.5">Pilihan Cepat:</span>
+                  <span class="text-xs font-medium block" style="color: var(--on-v); margin-bottom: var(--s-1);">Pilihan nominal cepat:</span>
                   <div class="flex flex-wrap gap-1.5" id="quick-cash-buttons">
                     <!-- Rendered dynamically -->
                   </div>
                 </div>
 
-                <!-- Status Uang Kembalian (Clean text row) -->
-                <div id="payment-change-box" class="flex justify-between items-center py-2 px-1 border-t border-stone-200 transition-colors">
+                <!-- Status Uang Kembalian -->
+                <div id="payment-change-box" class="pos-surface-embedded flex justify-between items-center">
                   <div class="flex items-center gap-2">
-                    <div id="payment-change-icon" class="text-emerald-600 flex items-center justify-center shrink-0">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <div id="payment-change-icon" style="color: var(--ok);">
+                      <span data-icon="check"></span>
                     </div>
                     <div>
-                      <span id="payment-change-label" class="text-stone-700 font-bold uppercase text-xs block">Kembalian:</span>
-                      <span id="payment-change-sublabel" class="text-[10px] text-stone-500 font-medium block">Kembalikan ke pelanggan</span>
+                      <span id="payment-change-label" class="text-xs font-bold block" style="color: var(--on);">Kembalian:</span>
+                      <span id="payment-change-sublabel" class="text-xs block" style="color: var(--on-v);">Kembalikan ke pelanggan</span>
                     </div>
                   </div>
-                  <span id="payment-cash-change" class="font-mono font-bold text-emerald-700 text-xl tracking-tight">Rp 0</span>
+                  <span id="payment-cash-change" class="text-xl font-bold" style="color: var(--ok); font-variant-numeric: tabular-nums;">Rp 0</span>
                 </div>
               </div>
             </div>
 
             <!-- Stock Failure Warning -->
-            <div id="payment-stock-warning" class="hidden flex-none p-3 bg-rose-50 border border-rose-300 rounded-xl text-xs text-rose-800 font-semibold flex items-center gap-2">
-              <svg class="w-4 h-4 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-              <span id="payment-stock-warning-text">Bahan baku tidak mencukupi untuk pesanan ini!</span>
+            <div id="payment-stock-warning" class="hidden pos-surface-embedded flex items-center gap-2" style="background-color: var(--err-c); border-color: var(--err); color: var(--on-err-c);">
+              <span data-icon="alert"></span>
+              <span id="payment-stock-warning-text" class="text-xs font-medium">Bahan baku tidak mencukupi untuk pesanan ini!</span>
             </div>
 
             <!-- Action Button -->
-            <button id="btn-confirm-checkout" onclick="executeCheckout()" class="flex-none w-full py-3.5 bg-[#356b46] hover:bg-[#2b5738] active:scale-[0.99] text-white text-xs sm:text-sm font-bold rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-xs cursor-pointer border-2 border-[#1b3823]">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-              <span>Konfirmasi & Cetak Struk</span>
+            <button id="btn-confirm-checkout" onclick="executeCheckout()" class="pos-btn pos-btn-xl pos-btn-filled w-full">
+              <span data-icon="printer"></span>
+              <span>Konfirmasi bayar & cetak struk</span>
             </button>
           </div>
         </div>
@@ -4377,20 +4350,20 @@
         totalQty += cartItem.qty;
         const subtotal = item.price * cartItem.qty;
         const typeBadge = item.isConsignment
-          ? `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-50 text-amber-800 border border-amber-200">Titipan · ${item.vendor}</span>`
-          : `<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-stone-100 text-stone-700 border border-stone-200">Toko</span>`;
+          ? `<span class="pos-badge-warn text-[10px]">Titipan · ${item.vendor}</span>`
+          : `<span class="pos-badge-neutral text-[10px]">Toko</span>`;
 
         return `
-          <tr class="hover:bg-stone-50/80 transition border-b border-stone-200">
+          <tr class="border-b border-[var(--out-v)] hover:bg-[var(--surf-hi)] transition">
             <td class="px-4 py-3">
-              <span class="font-semibold text-stone-900 text-xs block">${item.name}</span>
+              <span class="font-medium text-[var(--on-surf)] text-xs block">${item.name}</span>
               <div class="mt-0.5">${typeBadge}</div>
             </td>
-            <td class="px-3 py-3 text-right font-mono text-xs text-stone-600">${formatRupiah(item.price)}</td>
+            <td class="px-3 py-3 text-right tabular-nums text-xs text-[var(--on-surf-v)]">${formatRupiah(item.price)}</td>
             <td class="px-3 py-3 text-center">
-              <span class="inline-block px-2 py-0.5 rounded bg-stone-100 font-mono font-bold text-xs text-stone-800">${cartItem.qty}x</span>
+              <span class="pos-badge-neutral tabular-nums font-bold text-xs">${cartItem.qty}x</span>
             </td>
-            <td class="px-4 py-3 text-right font-mono font-bold text-xs text-stone-900">${formatRupiah(subtotal)}</td>
+            <td class="px-4 py-3 text-right tabular-nums font-bold text-xs text-[var(--on-surf)]">${formatRupiah(subtotal)}</td>
           </tr>
         `;
       }).join('');
@@ -4402,7 +4375,7 @@
     function generateSmartCashSuggestions(total) {
       const container = document.getElementById('quick-cash-buttons');
       if (!container) return;
-      const suggestions = [{ label: 'Uang Pas', value: total, tag: 'pas' }];
+      const suggestions = [{ label: 'Uang pas', value: total, tag: 'pas' }];
       const standardSteps = [5000, 10000, 20000, 50000, 100000];
       const additionalNotes = [];
 
@@ -4421,12 +4394,8 @@
       container.innerHTML = suggestions.map(s => {
         const isPas = s.tag === 'pas';
         return `
-          <button type="button" onclick="setCashAmountFromSuggestion(${s.value})" class="px-3 py-1.5 text-xs font-mono rounded-lg transition-all border cursor-pointer active:scale-95 flex items-center gap-1.5 ${
-            isPas 
-              ? 'bg-[#356b46] text-white border-[#23492f] font-bold shadow-xs' 
-              : 'bg-white hover:bg-stone-50 text-stone-800 border-stone-300 font-semibold'
-          }">
-            ${isPas ? '<svg class="w-3.5 h-3.5 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>' : ''}
+          <button type="button" onclick="setCashAmountFromSuggestion(${s.value})" class="pos-chip ${isPas ? 'is-active font-bold' : 'font-medium'} tabular-nums">
+            ${isPas ? '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>' : ''}
             <span>${s.label}</span>
           </button>
         `;
@@ -4450,8 +4419,8 @@
       const inputCustom = document.getElementById('payment-cash-input-custom');
 
       if (mode === 'custom') {
-        if (btnK) btnK.className = 'px-2.5 py-0.5 rounded-md transition-all cursor-pointer text-stone-500 hover:text-stone-800';
-        if (btnCustom) btnCustom.className = 'px-2.5 py-0.5 rounded-md transition-all cursor-pointer bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold';
+        if (btnK) btnK.className = 'pos-segmented-btn text-xs py-1 px-3 cursor-pointer';
+        if (btnCustom) btnCustom.className = 'pos-segmented-btn is-active text-xs py-1 px-3 cursor-pointer font-bold';
         if (wrapperK) wrapperK.classList.add('hidden');
         if (wrapperCustom) wrapperCustom.classList.remove('hidden');
 
@@ -4467,8 +4436,8 @@
         }
         renderCashChangeDisplay(currentFull);
       } else {
-        if (btnK) btnK.className = 'px-2.5 py-0.5 rounded-md transition-all cursor-pointer bg-white text-stone-900 border border-stone-200 shadow-2xs font-bold';
-        if (btnCustom) btnCustom.className = 'px-2.5 py-0.5 rounded-md transition-all cursor-pointer text-stone-500 hover:text-stone-800';
+        if (btnK) btnK.className = 'pos-segmented-btn is-active text-xs py-1 px-3 cursor-pointer font-bold';
+        if (btnCustom) btnCustom.className = 'pos-segmented-btn text-xs py-1 px-3 cursor-pointer';
         if (wrapperCustom) wrapperCustom.classList.add('hidden');
         if (wrapperK) wrapperK.classList.remove('hidden');
 
@@ -4546,50 +4515,50 @@
         const change = fullCash - total;
         if (change < 0) {
           changeEl.innerText = `- ${formatRupiah(Math.abs(change))}`;
-          changeEl.className = 'font-mono font-bold text-rose-600 text-xl tracking-tight';
-          if (changeBox) changeBox.className = 'flex justify-between items-center py-2 px-1 border-t border-stone-200 transition-colors';
+          changeEl.className = 'tabular-nums font-bold text-[var(--err)] text-xl tracking-tight';
+          if (changeBox) changeBox.className = 'flex justify-between items-center py-2 px-1 border-t border-[var(--out-v)] transition-colors';
           if (changeLabel) {
-            changeLabel.innerText = 'Uang Kurang:';
-            changeLabel.className = 'text-rose-600 font-bold uppercase text-xs block';
+            changeLabel.innerText = 'Uang kurang:';
+            changeLabel.className = 'text-[var(--err)] font-bold text-xs block';
           }
           if (changeSublabel) {
             changeSublabel.innerText = 'Nominal belum mencukupi';
-            changeSublabel.className = 'text-[10px] text-rose-500 font-medium block';
+            changeSublabel.className = 'text-[11px] text-[var(--err)] font-medium block';
           }
           if (changeIcon) {
-            changeIcon.className = 'text-rose-600 flex items-center justify-center shrink-0';
+            changeIcon.className = 'text-[var(--err)] flex items-center justify-center shrink-0';
             changeIcon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>';
           }
         } else if (change === 0) {
-          changeEl.innerText = 'Uang Pas';
-          changeEl.className = 'font-mono font-bold text-emerald-600 text-xl tracking-tight';
-          if (changeBox) changeBox.className = 'flex justify-between items-center py-2 px-1 border-t border-stone-200 transition-colors';
+          changeEl.innerText = 'Uang pas';
+          changeEl.className = 'tabular-nums font-bold text-[var(--ok)] text-xl tracking-tight';
+          if (changeBox) changeBox.className = 'flex justify-between items-center py-2 px-1 border-t border-[var(--out-v)] transition-colors';
           if (changeLabel) {
             changeLabel.innerText = 'Status:';
-            changeLabel.className = 'text-emerald-700 font-bold uppercase text-xs block';
+            changeLabel.className = 'text-[var(--ok)] font-bold text-xs block';
           }
           if (changeSublabel) {
             changeSublabel.innerText = 'Tidak ada kembalian';
-            changeSublabel.className = 'text-[10px] text-stone-500 font-medium block';
+            changeSublabel.className = 'text-[11px] text-[var(--on-surf-v)] font-medium block';
           }
           if (changeIcon) {
-            changeIcon.className = 'text-emerald-600 flex items-center justify-center shrink-0';
+            changeIcon.className = 'text-[var(--ok)] flex items-center justify-center shrink-0';
             changeIcon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>';
           }
         } else {
           changeEl.innerText = formatRupiah(change);
-          changeEl.className = 'font-mono font-bold text-emerald-700 text-xl tracking-tight';
-          if (changeBox) changeBox.className = 'flex justify-between items-center py-2 px-1 border-t border-stone-200 transition-colors';
+          changeEl.className = 'tabular-nums font-bold text-[var(--ok)] text-xl tracking-tight';
+          if (changeBox) changeBox.className = 'flex justify-between items-center py-2 px-1 border-t border-[var(--out-v)] transition-colors';
           if (changeLabel) {
             changeLabel.innerText = 'Kembalian:';
-            changeLabel.className = 'text-stone-700 font-bold uppercase text-xs block';
+            changeLabel.className = 'text-[var(--on-surf)] font-bold text-xs block';
           }
           if (changeSublabel) {
             changeSublabel.innerText = 'Kembalikan ke pelanggan';
-            changeSublabel.className = 'text-[10px] text-stone-500 font-medium block';
+            changeSublabel.className = 'text-[11px] text-[var(--on-surf-v)] font-medium block';
           }
           if (changeIcon) {
-            changeIcon.className = 'text-emerald-600 flex items-center justify-center shrink-0';
+            changeIcon.className = 'text-[var(--ok)] flex items-center justify-center shrink-0';
             changeIcon.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
           }
         }
@@ -4608,24 +4577,24 @@
 
       if (btnCash && btnQris && cashSection && qrisSection) {
         if (method === 'Tunai') {
-          btnCash.className = 'py-2.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 btn-cash-selected cursor-pointer';
-          btnQris.className = 'py-2.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 text-stone-600 hover:text-stone-900 border border-transparent hover:bg-stone-200/50 cursor-pointer';
+          btnCash.className = 'pos-segmented-btn is-active flex-1 cursor-pointer';
+          btnQris.className = 'pos-segmented-btn flex-1 cursor-pointer';
           cashSection.classList.remove('hidden');
           qrisSection.classList.add('hidden');
-          if (totalBill) totalBill.className = 'text-2xl sm:text-3xl font-mono font-black text-[#2e5d3c] tracking-tight';
+          if (totalBill) totalBill.className = 'text-2xl sm:text-3xl tabular-nums font-bold text-[var(--pri)] tracking-tight';
           if (btnConfirm) {
-            btnConfirm.className = 'w-full py-3.5 bg-[#356b46] hover:bg-[#2b5738] active:scale-[0.99] text-white text-xs sm:text-sm font-bold rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-xs cursor-pointer border-2 border-[#1b3823]';
-            if (confirmText) confirmText.innerText = 'Konfirmasi Bayar Tunai & Cetak Struk';
+            btnConfirm.className = 'pos-btn-filled w-full py-3.5 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer';
+            if (confirmText) confirmText.innerText = 'Konfirmasi bayar tunai & cetak struk';
           }
         } else {
-          btnQris.className = 'py-2.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 bg-blue-600 text-white border border-blue-700 shadow-xs cursor-pointer';
-          btnCash.className = 'py-2.5 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 text-stone-600 hover:text-stone-900 border border-transparent hover:bg-stone-200/50 cursor-pointer';
+          btnQris.className = 'pos-segmented-btn is-active flex-1 cursor-pointer';
+          btnCash.className = 'pos-segmented-btn flex-1 cursor-pointer';
           cashSection.classList.add('hidden');
           qrisSection.classList.remove('hidden');
-          if (totalBill) totalBill.className = 'text-2xl sm:text-3xl font-mono font-black text-blue-700 tracking-tight';
+          if (totalBill) totalBill.className = 'text-2xl sm:text-3xl tabular-nums font-bold text-[var(--pri)] tracking-tight';
           if (btnConfirm) {
-            btnConfirm.className = 'w-full py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] text-white text-xs sm:text-sm font-bold rounded-xl transition duration-150 flex items-center justify-center gap-2 shadow-xs cursor-pointer border-2 border-[#2a2f38]';
-            if (confirmText) confirmText.innerText = 'Konfirmasi Pembayaran QRIS & Cetak Struk';
+            btnConfirm.className = 'pos-btn-filled w-full py-3.5 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer';
+            if (confirmText) confirmText.innerText = 'Konfirmasi pembayaran QRIS & cetak struk';
           }
         }
       }
