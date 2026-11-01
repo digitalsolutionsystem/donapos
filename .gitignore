@@ -1,0 +1,21 @@
+# Web legacy files
+donapos.html
+Code.gs
+DESIGN-INVENTORY.md
+designpromptrules.md
+icons.js
+primitives.css
+tokens.css
+
+# Android & Gradle
+.gradle/
+build/
+app/build/
+android/app/build/
+android/.gradle/
+*.iml
+.idea/
+local.properties
+.DS_Store
+*.apk
+*.aab
