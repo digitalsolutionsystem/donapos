@@ -230,7 +230,27 @@ class PosRepository(
             val apiUrl = userPreferences.apiUrl.first()
             if (apiUrl.isBlank()) return@withContext Result.failure(Exception("URL API Google Sheets belum diatur"))
 
-            val token = userPreferences.authToken.first()
+            var token = userPreferences.authToken.first()
+            if (token.isNullOrBlank()) {
+                val role = userPreferences.userRole.first() ?: "kasir"
+                val name = userPreferences.userName.first()
+                val pin = if (role == "owner") userPreferences.ownerPin.first() else userPreferences.kasirPin.first()
+                val loginReq = BaseApiRequest(action = "login", role = role, pin = pin, name = name)
+                try {
+                    val loginRes = ApiClient.apiService.sendRequest(apiUrl, loginReq)
+                    if (loginRes.isSuccessful) {
+                        val loginBody = loginRes.body()?.string() ?: ""
+                        val loginType = object : TypeToken<BaseApiResponse<LoginData>>() {}.type
+                        val parsed: BaseApiResponse<LoginData> = gson.fromJson(loginBody, loginType)
+                        if (parsed.ok && parsed.data?.token != null) {
+                            token = parsed.data.token
+                            userPreferences.saveSession(role, name, token)
+                        }
+                    }
+                } catch (e: Exception) {
+                    // ignore error and proceed
+                }
+            }
 
             val allStocks = stockItems.first()
             val allProducts = products.first()
