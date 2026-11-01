@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DoonaPOS" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#1B6B4F</item>
+        <item name="android:navigationBarColor">#D5DDD3</item>
+    </style>
+</resources>

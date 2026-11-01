@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Store / POS Cash Register Icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M32,38 L76,38 C78.2,38 80,39.8 80,42 L80,70 C80,72.2 78.2,74 76,74 L32,74 C29.8,74 28,72.2 28,70 L28,42 C28,39.8 29.8,38 32,38 Z M34,44 L74,44 L74,52 L34,52 Z M36,58 L46,58 L46,64 L36,64 Z M52,58 L58,58 L58,64 L52,64 Z M64,58 L70,58 L70,64 L64,64 Z" />
+</vector>
